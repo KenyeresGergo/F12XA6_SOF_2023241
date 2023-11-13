@@ -23,5 +23,9 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\F12XA6_SOF_2023241.Logic\F12XA6_SOF_2023241.Logic.csproj" />
+	  <ProjectReference Include="..\F12XA6_SOF_2023241.Models\F12XA6_SOF_2023241.Models.csproj" />
+	</ItemGroup>
 
 </Project>
