@@ -1,4 +1,4 @@
-﻿using F12XA6_SOF_2023241.Models;
+﻿using F12XA6_SOF_2023241.Models.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;

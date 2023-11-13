@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace F12XA6_SOF_2023241.Models
+namespace F12XA6_SOF_2023241.Models.Interfaces
 {
-    public class Game
+    public class Game : IGame
     {
         [Key]
-        public string Id { get;  private set; }
+        public string Id { get; private set; }
         [StringLength(200)]
         [Required]
         public string Title { get; set; }
@@ -15,7 +15,7 @@ namespace F12XA6_SOF_2023241.Models
         [Required]
         public string Description { get; set; }
         [DefaultValue(0)]
-        [Range(0,10)]
+        [Range(0, 10)]
         public int Rating { get; set; }
 
         public string? OwnerId { get; set; }
