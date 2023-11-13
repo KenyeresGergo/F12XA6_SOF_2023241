@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace F12XA6_SOF_2023241.Webapp.Models
+namespace F12XA6_SOF_2023241.Models
 {
     public class Game
     {

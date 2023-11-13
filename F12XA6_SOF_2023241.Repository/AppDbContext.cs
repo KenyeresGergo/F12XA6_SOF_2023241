@@ -1,10 +1,10 @@
-﻿using F12XA6_SOF_2023241.Webapp.Models;
+﻿using F12XA6_SOF_2023241.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace F12XA6_SOF_2023241.Webapp.Data
+namespace F12XA6_SOF_2023241.Repository
 {
     public class AppDbContext : IdentityDbContext
     {
