@@ -1,3 +1,6 @@
+using F12XA6_SOF_2023241.Repository;
+using Microsoft.EntityFrameworkCore;
+
 namespace F12XA6_SOF_2023241.Webapp
 {
     public class Program
@@ -10,6 +13,9 @@ namespace F12XA6_SOF_2023241.Webapp
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            //builder.Services.AddDbContext<AppDbContext>(options =>
+            //    options.UseSqlServer(Coniguration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("TestPatterns2.Data")));
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

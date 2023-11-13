@@ -19,6 +19,7 @@ namespace F12XA6_SOF_2023241.Models
         [Range(0, 10)]
         public int Rating { get; set; }
 
+        public StudioName? StudioName { get; set; }
         public string? OwnerId { get; set; }
 
         [NotMapped]
