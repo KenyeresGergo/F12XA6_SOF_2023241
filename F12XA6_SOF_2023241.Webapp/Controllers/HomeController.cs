@@ -1,4 +1,4 @@
-﻿using F12XA6_SOF_2023241.Webapp.Models;
+﻿using F12XA6_SOF_2023241.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

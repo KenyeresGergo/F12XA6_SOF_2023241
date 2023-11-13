@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace F12XA6_SOF_2023241.Repository
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext, IAppDbContext
     {
-       public DbSet<Game> Games { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         public DbSet<AppUser> Users { get; set; }
 
@@ -32,16 +32,16 @@ namespace F12XA6_SOF_2023241.Repository
                 NormalizedUserName = "KENY.GERGO@GMAIL.COM"
             };
             gergo.PasswordHash = ph.HashPassword(gergo, "asd123");
-            builder.Entity<AppUser>().HasData( gergo );
+            builder.Entity<AppUser>().HasData(gergo);
 
-            builder.Entity<Game>().HasData(new Game() 
-                { 
-                   Title = "Grand Theft Auto V",
-                   Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
-                   Rating = 9,
-                   OwnerId = gergo.Id,
-                   Owner = gergo,
-                   
+            builder.Entity<Game>().HasData(new Game()
+            {
+                Title = "Grand Theft Auto V",
+                Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
+                Rating = 9,
+                OwnerId = gergo.Id,
+                Owner = gergo,
+
             });
 
             builder.Entity<Game>()
