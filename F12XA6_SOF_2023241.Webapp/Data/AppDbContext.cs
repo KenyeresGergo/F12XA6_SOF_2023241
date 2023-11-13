@@ -17,6 +17,14 @@ namespace F12XA6_SOF_2023241.Webapp.Data
             builder.Entity<IdentityRole>().HasData(
               new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
               new { Id = "2", Name = "Customer", NormalizedName = "CUSTOMER" }
+              );
+
+            PasswordHasher<AppUser> ph = new PasswordHasher<AppUser>();
+            AppUser gergo = new AppUser
+            {
+                Id = Guid.NewGuid().ToString(),
+
+            };
 
             builder.Entity<Game>()
                 .HasOne(t => t.Owner)

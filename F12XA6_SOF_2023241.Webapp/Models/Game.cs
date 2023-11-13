@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace F12XA6_SOF_2023241.Webapp.Models
@@ -13,7 +14,8 @@ namespace F12XA6_SOF_2023241.Webapp.Models
         [StringLength(2000)]
         [Required]
         public string Description { get; set; }
-
+        [DefaultValue(0)]
+        [Range(0,10)]
         public int Rating { get; set; }
 
         public string? OwnerId { get; set; }
