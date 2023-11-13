@@ -1,6 +1,4 @@
-﻿using F12XA6_SOF_2023241.Models.Interfaces;
-
-namespace F12XA6_SOF_2023241.Models
+﻿namespace F12XA6_SOF_2023241.Models.Interfaces
 {
     public interface IGame
     {

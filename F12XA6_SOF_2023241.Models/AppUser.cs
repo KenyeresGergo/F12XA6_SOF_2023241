@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using F12XA6_SOF_2023241.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace F12XA6_SOF_2023241.Models.Interfaces
+namespace F12XA6_SOF_2023241.Models
 {
     public class AppUser : IdentityUser, IAppUser
     {
