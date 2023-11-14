@@ -18,7 +18,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Games()
         {
             return View();
         }

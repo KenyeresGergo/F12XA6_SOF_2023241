@@ -9,6 +9,10 @@ namespace F12XA6_SOF_2023241.Repository
 {
     public class AppDbContext : IdentityDbContext, IAppDbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+
+        }
         public DbSet<Game> Games { get; set; }
 
         public DbSet<AppUser> Users { get; set; }
