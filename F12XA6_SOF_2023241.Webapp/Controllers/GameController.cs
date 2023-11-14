@@ -1,4 +1,6 @@
 ﻿using F12XA6_SOF_2023241.Logic;
+using F12XA6_SOF_2023241.Models;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,78 +16,61 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
         // GET: GameController
-        public ActionResult Index()
+        public ActionResult Index() //TODO: Studiok megjelentitese
         {
-            return View(this._logic);
+            return View(this._logic.Read());
+        }
+        public ActionResult ListGames()
+        {
+            return View(this._logic.Read());
         }
 
-        // GET: GameController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: GameController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: GameController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: GameController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Game game)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return View(game);
             }
-            catch
-            {
-                return View();
-            }
+            _logic.Create(game);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: GameController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: GameController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: GameController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            _logic.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: GameController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult GetImage(string id)
         {
-            try
+            var game = _logic.Read(id);
+            if (game.ContentType.Length > 3)
             {
-                return RedirectToAction(nameof(Index));
+                return new FileContentResult(game.PhotoData, game.ContentType);
             }
-            catch
+            else
             {
-                return View();
+                return BadRequest();
             }
+
+        }
+
+        public IActionResult Error()
+        {
+            var exceptionHandlerPathFeature =
+            HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            var msg = exceptionHandlerPathFeature.Error.Message;
+            return View("Error", msg);
         }
     }
 }

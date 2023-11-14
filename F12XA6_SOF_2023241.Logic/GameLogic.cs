@@ -35,6 +35,10 @@ namespace F12XA6_SOF_2023241.Logic
         {
             return this.context.Games.FirstOrDefault(t => t.Id == game.Id);
         }
+        public Game? Read(string id)
+        {
+            return this.context.Games.FirstOrDefault(t => t.Id == id);
+        }
         public void Update(Game game)
         {   
             var old = Read(game);
@@ -50,7 +54,13 @@ namespace F12XA6_SOF_2023241.Logic
         public void Delete(Game game) 
         {
             var _game = Read(game);
-            context.Games.Remove(game);
+            context.Games.Remove(_game);
+            context.SaveChanges();
+        } 
+        public void Delete(string id) 
+        {
+            var _game = Read(id);
+            context.Games.Remove(_game);
             context.SaveChanges();
         }
     }
