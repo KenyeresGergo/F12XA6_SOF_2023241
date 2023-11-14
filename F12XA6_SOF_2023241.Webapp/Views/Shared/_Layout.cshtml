@@ -4,60 +4,57 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>@ViewData["Title"] - F12XA6_SOF_2023241.Webapp</title>
-    
     <!--JS-->
     <script defer src="js/site.js"></script>
+
     <!--CSS-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"/>
     <link rel="stylesheet" href="css/style.css"/>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/F12XA6_SOF_2023241.Webapp.site.css" asp-append-version="true" /> *@
+
+    <title>Game Gallery</title>
 </head>
 <body class="light">
-    <!-- Navbar -->
 
-    <nav class="navbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">Games</li>
-            <li class="nav-item">Add Games</li>
+<!-- Navbar -->
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href ="#">Games</a>
+        </li>
+        <li class="nav-item">
+            <a href="#">Add Games</a>
+        </li>
 
-            <!-- Dropdown -->
+        <!-- Dropdown -->
+        <li class="nav-item has-dropdown">
+            <a href="#">Theme</a>
+            <ul class="dropdown">
+                <li class="dropdown-item">
+                    <a id="light" href="#">light</a>
+                </li>
+                <li class="dropdown-item">
+                    <a id="dark" href="#">dark</a>
+                </li>
+                <li class="dropdown-item">
+                    <a id="solar" href="#">solarize</a>
+                </li>
+            </ul>
+        </li>
+        <!--Login-->
+        <li class="nav-item">Login</li>
+    </ul>
+</nav>
 
-            <li class="nav-item has-dropdown">
-                <a href="#">Theme</a>
-                <ul class="dropdown">
-                    <li class="dropdown-item">
-                        <a id="light" href="#">light</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a id="dark" href="#">dark</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a id="solar" href="#">solarize</a>
-                    </li>
-                </ul>
-            </li>
-            <!--Login-->
-            <li class="nav-item">Login</li>
-        </ul>
-    </nav>
+@RenderBody()
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    @* <footer class="border-top footer text-muted">
+@* <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - F12XA6_SOF_2023241.Webapp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer> *@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false) *@
 </body>
 </html>
