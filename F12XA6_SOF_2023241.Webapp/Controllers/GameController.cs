@@ -18,7 +18,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         // GET: GameController
         public ActionResult Index() //TODO: Studiok megjelentitese
         {
-            return View(this._logic.GamesByStudios);
+            return View(this._logic.GamesByStudios());
         }
         public ActionResult ListGames()
         {
