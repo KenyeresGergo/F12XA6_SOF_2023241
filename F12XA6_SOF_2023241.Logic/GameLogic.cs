@@ -31,9 +31,20 @@ namespace F12XA6_SOF_2023241.Logic
         {
             return this.context.Games;
         }
-        public void Update()
+        public Game? Read(Game game)
+        {
+            return this.context.Games.FirstOrDefault(t => t.Id == game.Id);
+        }
+        public void Update(Game game)
         {   
-        
+            var old = Read(game);
+            old.Description = game.Description;
+            old.Rating = game.Rating;
+            old.PhotoData = game.PhotoData;
+            old.StudioName = game.StudioName;
+            old.Owner = game.Owner;
+            old.OwnerId = game.OwnerId;
+            old.Title = game.Title;
         }
         public void Delete() 
         {
