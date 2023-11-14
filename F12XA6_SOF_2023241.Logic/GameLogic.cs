@@ -46,9 +46,11 @@ namespace F12XA6_SOF_2023241.Logic
             old.OwnerId = game.OwnerId;
             old.Title = game.Title;
         }
-        public void Delete() 
+        public void Delete(Game game) 
         {
-        
+            var _game = Read(game);
+            context.Games.Remove(game);
+            context.SaveChanges();
         }
     }
 }
