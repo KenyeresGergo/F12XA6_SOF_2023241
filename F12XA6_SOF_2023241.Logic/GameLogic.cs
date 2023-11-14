@@ -63,5 +63,15 @@ namespace F12XA6_SOF_2023241.Logic
             context.Games.Remove(_game);
             context.SaveChanges();
         }
+
+        public IEnumerable<IEnumerable<Game>> GamesByStudios()
+        {
+            var res = from game in context.Games
+                      group game by game.StudioName
+                      into g orderby g.Key.Value
+                      select g;
+            return res;
+                      
+        }
     }
 }
