@@ -1,14 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using F12XA6_SOF_2023241.Logic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
     public class GameController : Controller
     {
+        GameLogic _logic;
+        public GameController(GameLogic logic)
+        { 
+            this._logic = logic;
+
+        }
+
         // GET: GameController
         public ActionResult Index()
         {
-            return View();
+            return View(this._logic);
         }
 
         // GET: GameController/Details/5
