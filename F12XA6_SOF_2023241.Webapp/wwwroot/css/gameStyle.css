@@ -15,9 +15,13 @@
     user-select: none;
 }
 
-    #image-track > .image {
-        width: 40vmin;
-        height: 56vmin;
-        object-fit: cover;
-        object-position: 100% center;
-    }
+#image-track > .image {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+}
+.text-right {
+    margin-top: 1rem;
+    text-align: right;
+}

@@ -60,12 +60,11 @@ body::-webkit-scrollbar-thumb {
     margin-left:auto;
 }
 
-/*Drop-down*/
+/* Drop-down */
 .dropdown {
-   
     position: absolute;
     width: 500px;
-    opacity: 0;
+    visibility: hidden; /* Use visibility property */
     z-index: 2;
     background: var(--bg-dropdown);
     border-top: 2px solid var(--border-color);
@@ -79,10 +78,11 @@ body::-webkit-scrollbar-thumb {
     padding: 0.5rem;
     box-shadow: rgba(2, 8, 20, 0.1) 0px 0.175em 0.5em;
     transform: translateX(-90%);
-    transition: opacity .15s ease-out;
+    transition: visibility .15s ease-out;
 }
+
 .theme-circle {
-    content: ' ';
+    background-color: var(--bg);
     border: 2px solid var(--border-color);
     border-radius: 50%;
     width: 2rem;
@@ -90,7 +90,6 @@ body::-webkit-scrollbar-thumb {
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
-    background-color: var(--bg);
 }
 .dropdown-item a::before {
     content: ' ';
