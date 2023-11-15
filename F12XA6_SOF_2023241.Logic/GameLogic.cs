@@ -68,7 +68,7 @@ namespace F12XA6_SOF_2023241.Logic
         {
             var res = from game in context.Games
                       group game by game.StudioName
-                      into g orderby g.Key.Value
+                      into g orderby g.Key
                       select g;
             return res;
                       
