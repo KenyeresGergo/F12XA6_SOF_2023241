@@ -50,7 +50,7 @@ namespace F12XA6_SOF_2023241.Webapp
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+            //app.MapRazorPages();
             app.Run();
         }
     }

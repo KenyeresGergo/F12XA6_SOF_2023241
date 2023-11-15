@@ -41,7 +41,8 @@ namespace F12XA6_SOF_2023241.Repository
             builder.Entity<Game>().HasData(new Game()
             {
                 Title = "Grand Theft Auto V",
-                Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
+                Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton," +
+                " and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
                 Rating = 9,
                 OwnerId = gergo.Id,
                 Owner = gergo,
