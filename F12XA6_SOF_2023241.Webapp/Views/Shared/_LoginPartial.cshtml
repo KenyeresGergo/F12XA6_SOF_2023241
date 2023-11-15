@@ -1,7 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+@* <script defer src="~/js/site.js" asp-append-version="true"></script>
+ *@
+@* <!--CSS-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
+ *@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
@@ -17,10 +22,10 @@
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a  asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a  asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>
