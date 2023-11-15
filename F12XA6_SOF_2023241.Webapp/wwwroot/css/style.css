@@ -17,7 +17,7 @@ a {
     color: currentColor;
     text-decoration: none;
 }
-header {
+.index-header {
     padding: 1em;
     clip-path: polygon(90% 0%, 90% 90%, 10% 90%, 10% 0%);
     background: var(--bg-nav);

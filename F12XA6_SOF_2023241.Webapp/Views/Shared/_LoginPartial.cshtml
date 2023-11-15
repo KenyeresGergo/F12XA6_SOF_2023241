@@ -1,12 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-<script defer src="~/js/site.js" asp-append-version="true"></script>
- 
- <!--CSS-->
+
+<!--CSS-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
- 
+    
+<!--JS-->
+<script defer src="~/js/site.js" asp-append-version="true"></script>
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
