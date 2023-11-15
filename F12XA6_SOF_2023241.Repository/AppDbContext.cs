@@ -27,7 +27,6 @@ namespace F12XA6_SOF_2023241.Repository
             PasswordHasher<AppUser> ph = new PasswordHasher<AppUser>();
             AppUser gergo = new AppUser
             {
-                Id = Guid.NewGuid().ToString(),
                 Email = "keny.gergo@gmail.com",
                 EmailConfirmed = true,
                 UserName = "keny.gergo@gmail.com",

@@ -2,6 +2,7 @@
 {
     public interface IAppUser
     {
+        string Id { get; set; }
         byte[] Data { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
