@@ -20,10 +20,11 @@ namespace F12XA6_SOF_2023241.Models
         public int Rating { get; set; }
 
         public StudioName StudioName { get; set; }
-        public string? OwnerId { get; set; }
 
+        [ForeignKey("AppUser")]
+        public string OwnerId { get; set; }
         [NotMapped]
-        public virtual AppUser? Owner { get; set; }
+        public AppUser AppUser { get; set; }
 
         public string? ContentType { get; set; }
 

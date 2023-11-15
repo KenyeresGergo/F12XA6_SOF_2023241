@@ -46,7 +46,7 @@ namespace F12XA6_SOF_2023241.Logic
             old.Rating = game.Rating;
             old.PhotoData = game.PhotoData;
             old.StudioName = game.StudioName;
-            old.Owner = game.Owner;
+           
             old.OwnerId = game.OwnerId;
             old.Title = game.Title;
             context.SaveChanges();
