@@ -12,6 +12,9 @@ namespace F12XA6_SOF_2023241.Webapp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+              .AddEntityFrameworkStores<AppDbContext>()
+              .AddDefaultTokenProviders();
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -19,6 +22,7 @@ namespace F12XA6_SOF_2023241.Webapp
                     .UseSqlServer(connectionString)
                     .UseLazyLoadingProxies()
             );
+
 
             //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -28,7 +32,7 @@ namespace F12XA6_SOF_2023241.Webapp
 
             //builder.Services.AddScoped<GameLogic>();
             //builder.Services.AddScoped<F12XA6_SOF_2023241.Logic.GameLogic>();
-            
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
