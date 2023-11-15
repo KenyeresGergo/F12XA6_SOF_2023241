@@ -1,8 +1,9 @@
-namespace F12XA6_SOF_2023241.Webapp.Models;
-
-public class ErrorViewModel
+namespace F12XA6_SOF_2023241.Webapp.Models
 {
-    public string? RequestId { get; set; }
+    public class ErrorViewModel
+    {
+        public string? RequestId { get; set; }
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    }
 }
