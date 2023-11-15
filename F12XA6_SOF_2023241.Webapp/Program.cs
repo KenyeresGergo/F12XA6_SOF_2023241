@@ -1,3 +1,4 @@
+using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ namespace F12XA6_SOF_2023241.Webapp
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppDbContext>();
             builder.Services.AddControllersWithViews();
 

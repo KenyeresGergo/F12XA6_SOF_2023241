@@ -18,22 +18,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using F12XA6_SOF_2023241.Models;
 
 namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IUserStore<AppUser> _userStore;
+        private readonly IUserEmailStore<AppUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<AppUser> userManager,
+            IUserStore<AppUser> userStore,
+            SignInManager<AppUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -70,6 +71,19 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [StringLength(100)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+            
+            [Required]
+            [StringLength(100)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+
+
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -97,6 +111,8 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            [Display(Name = "Profile Picture")]
+            public IFormFile File { get; set; }
         }
 
 
@@ -114,9 +130,21 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhotoContentType = Input.File.ContentType;
+                byte[] data = new byte[Input.File.Length];
+                using (var stream = Input.File.OpenReadStream())
+                { 
+                    stream.Read(data, 0, data.Length);
+                }
+                user.PhotoData = data;
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+              
 
                 if (result.Succeeded)
                 {
@@ -154,27 +182,27 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private AppUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<AppUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(AppUser)}'. " +
+                    $"Ensure that '{nameof(AppUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<IdentityUser> GetEmailStore()
+        private IUserEmailStore<AppUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<IdentityUser>)_userStore;
+            return (IUserEmailStore<AppUser>)_userStore;
         }
     }
 }

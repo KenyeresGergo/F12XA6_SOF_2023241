@@ -20,7 +20,7 @@ namespace F12XA6_SOF_2023241.Models
         [StringLength(200)]
         public string? PhotoContentType { get; set; }
 
-        public byte[]? Data { get; set; }
+        public byte[]? PhotoData { get; set; }
         public AppUser()
         {
             Id = Guid.NewGuid().ToString();
