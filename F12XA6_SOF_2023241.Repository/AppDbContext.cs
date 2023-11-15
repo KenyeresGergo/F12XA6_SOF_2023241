@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace F12XA6_SOF_2023241.Repository
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>, IAppDbContext
+    
+    public class AppDbContext : IdentityDbContext/*, IAppDbContext*/
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -43,16 +44,20 @@ namespace F12XA6_SOF_2023241.Repository
                 Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton," +
                 " and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
                 Rating = 9,
-                OwnerId = gergo.Id,
-                Owner = gergo,
-
+                OwnerId = gergo.Id
             });
 
             builder.Entity<Game>()
-                .HasOne(t => t.Owner)
-                .WithMany()
+                .HasOne(t => t.AppUser)
+                .WithMany(t=>t.GamesOwned)
                 .HasForeignKey(t => t.OwnerId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            //builder.Entity<AppUser>()
+            //  .HasMany(t => t.GamesOwned).WithOne(t=>t.OwnerId)
+            //  .HasForeignKey(t=>t.OwnerId)
+            //  .OnDelete(DeleteBehavior.Cascade);
+              
 
             base.OnModelCreating(builder);
         }
