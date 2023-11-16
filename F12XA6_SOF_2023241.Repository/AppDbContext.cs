@@ -9,7 +9,7 @@ namespace F12XA6_SOF_2023241.Repository
 {
    
 
-    public class AppDbContext : IdentityDbContext<AppUser>/*, IAppDbContext*/
+    public class AppDbContext : IdentityDbContext/*, IAppDbContext*/
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
