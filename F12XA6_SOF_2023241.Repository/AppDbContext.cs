@@ -7,15 +7,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace F12XA6_SOF_2023241.Repository
 {
-    
-    public class AppDbContext : IdentityDbContext/*, IAppDbContext*/
+   
+
+    public class AppDbContext : IdentityDbContext<AppUser>/*, IAppDbContext*/
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
         public DbSet<Game> Games { get; set; }
-
+        public DbSet<Studios> Studios { get; set; }
         public DbSet<AppUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -47,17 +48,32 @@ namespace F12XA6_SOF_2023241.Repository
                 OwnerId = gergo.Id
             });
 
+
+            //Studios data
+            var studios = Enum.GetValues(typeof(StudioName))
+                .Cast<StudioName>()
+                .Select((studio, index) => new Studios (index + 1)).ToList();
+
+            builder.Entity<Studios>().HasData(studios);
+
+
             builder.Entity<Game>()
                 .HasOne(t => t.AppUser)
                 .WithMany(t=>t.GamesOwned)
                 .HasForeignKey(t => t.OwnerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<Game>()
+                .HasOne(t => t.Studio)
+                .WithMany(s => s.GamesOwned)
+                .HasForeignKey(t => t.StudioId) // Use a dedicated foreign key property
+                .OnDelete(DeleteBehavior.Cascade);
+
             //builder.Entity<AppUser>()
             //  .HasMany(t => t.GamesOwned).WithOne(t=>t.OwnerId)
             //  .HasForeignKey(t=>t.OwnerId)
             //  .OnDelete(DeleteBehavior.Cascade);
-              
+
 
             base.OnModelCreating(builder);
         }

@@ -45,7 +45,7 @@ namespace F12XA6_SOF_2023241.Logic
             old.Description = game.Description;
             old.Rating = game.Rating;
             old.PhotoData = game.PhotoData;
-            old.StudioName = game.StudioName;
+            old.StudioId = game.StudioId;
            
             old.OwnerId = game.OwnerId;
             old.Title = game.Title;
@@ -67,7 +67,7 @@ namespace F12XA6_SOF_2023241.Logic
         public IEnumerable<IEnumerable<Game>> GamesByStudios()
         {
             var res = from game in context.Games
-                      group game by game.StudioName
+                      group game by game.StudioId
                       into g orderby g.Key
                       select g;
             return res;

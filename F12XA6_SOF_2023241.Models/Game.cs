@@ -19,20 +19,30 @@ namespace F12XA6_SOF_2023241.Models
         [Range(0, 10)]
         public int Rating { get; set; }
 
-        public StudioName StudioName { get; set; }
+        public string? ContentType { get; set; }
+
+        public byte[]? PhotoData { get; set; }
+
+
+
+        [ForeignKey("Studios")]
+        public StudioName StudioId { get; set; }
+        [NotMapped]
+        public Studios Studio { get; set; }
+
+
 
         [ForeignKey("AppUser")]
         public string OwnerId { get; set; }
         [NotMapped]
         public AppUser AppUser { get; set; }
 
-        public string? ContentType { get; set; }
 
-        public byte[]? PhotoData { get; set; }
 
         public Game()
         {
             Id = Guid.NewGuid().ToString();
         }
     }
+
 }
