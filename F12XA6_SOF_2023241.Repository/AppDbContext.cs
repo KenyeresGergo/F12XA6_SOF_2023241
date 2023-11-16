@@ -42,7 +42,7 @@ namespace F12XA6_SOF_2023241.Repository
             //Studios data
             var studios = Enum.GetValues(typeof(StudioName))
                 .Cast<StudioName>()
-                .Select((studio, index) => new Studios((index + 1).ToString())).ToList();
+                .Select((studio, index) => new Studios((index).ToString())).ToList();
 
             builder.Entity<Studios>().HasData(studios);
 

@@ -33,7 +33,7 @@ namespace F12XA6_SOF_2023241.Models
         SquareEnix = 19,
         Ubisoft = 20,
         Valve = 21,
-        Activision = 22
+    
     }
 
     public class Studios
@@ -43,13 +43,15 @@ namespace F12XA6_SOF_2023241.Models
         [Key]
         public string Id { get; set; }
         [NotMapped]
-        public string Serial_Num { get; private set; }
+        public string Serial_Num { get; private set; }  //the int value of the StudioName enum
         [Required]
         [StringLength(200)]
         public StudioName Name { get; private set; }
         public string? LogoSvg { get; private set; }
         [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
+        [NotMapped]
+        private StudioName temp;
         public Studios()
         {
             Id = Guid.NewGuid().ToString();
@@ -67,7 +69,8 @@ namespace F12XA6_SOF_2023241.Models
             Id = Guid.NewGuid().ToString();
             this.Serial_Num = Serial_Num;
             Name = (StudioName) int.Parse(this.Serial_Num);
-            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(Serial_Num.ToString()));
+            temp = Name;
+            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
         }
         static string InsertSpaces(string input)
         {
