@@ -26,7 +26,7 @@ namespace F12XA6_SOF_2023241.Models
 
 
         [ForeignKey("Studios")]
-        public StudioName StudioId { get; set; }
+        public string StudioId { get; set; }
         [NotMapped]
         public Studios Studio { get; set; }
 
@@ -35,7 +35,7 @@ namespace F12XA6_SOF_2023241.Models
         [ForeignKey("AppUser")]
         public string OwnerId { get; set; }
         [NotMapped]
-        public AppUser AppUser { get; set; }
+        public AppUser Owner { get; set; }
 
 
 

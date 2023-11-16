@@ -52,13 +52,13 @@ namespace F12XA6_SOF_2023241.Repository
             //Studios data
             var studios = Enum.GetValues(typeof(StudioName))
                 .Cast<StudioName>()
-                .Select((studio, index) => new Studios (index + 1)).ToList();
+                .Select((studio, index) => new Studios(index + 1)).ToList();
 
             builder.Entity<Studios>().HasData(studios);
 
 
             builder.Entity<Game>()
-                .HasOne(t => t.AppUser)
+                .HasOne(t => t.Owner)
                 .WithMany(t=>t.GamesOwned)
                 .HasForeignKey(t => t.OwnerId)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -69,10 +69,10 @@ namespace F12XA6_SOF_2023241.Repository
                 .HasForeignKey(t => t.StudioId) // Use a dedicated foreign key property
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //builder.Entity<AppUser>()
-            //  .HasMany(t => t.GamesOwned).WithOne(t=>t.OwnerId)
-            //  .HasForeignKey(t=>t.OwnerId)
-            //  .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<AppUser>()
+              .HasMany(t => t.GamesOwned).WithOne(t => t.Owner)
+              .HasForeignKey(t => t.OwnerId)
+              .OnDelete(DeleteBehavior.Cascade);
 
 
             base.OnModelCreating(builder);

@@ -11,28 +11,28 @@ namespace F12XA6_SOF_2023241.Models
 {
     public enum StudioName
     {
-        Activision,
-        Bethesda,
-        Blizzard,
-        Bluehole,
-        Capcom,
-        CdProjekt,
-        Crystal,
-        ElectronicArts,
-        EpicGames,
-        FiraxisGames,
-        InsomniacGames,
-        Microsoft,
-        Mojang,
-        Nintendo,
-        ParadoxInteractive,
-        RemedyEntertainment,
-        RockstarGames,
-        Sega,
-        Sony,
-        SquareEnix,
-        Ubisoft,
-        Valve
+        Activision = 0,
+        Bethesda = 1,
+        Blizzard = 2,
+        Bluehole = 3,
+        Capcom = 4,
+        CdProjekt = 5,
+        Crystal = 6,
+        ElectronicArts = 7,
+        EpicGames = 8,
+        FiraxisGames = 9,
+        InsomniacGames = 10,
+        Microsoft = 11,
+        Mojang = 12,
+        Nintendo = 13,
+        ParadoxInteractive = 14,
+        RemedyEntertainment = 15,
+        RockstarGames = 16,
+        Sega = 17,
+        Sony = 18,
+        SquareEnix = 19,
+        Ubisoft = 20,
+        Valve = 21
     }
 
     public class Studios
@@ -40,26 +40,29 @@ namespace F12XA6_SOF_2023241.Models
         static string _path = "~/logos_in_svg/";
 
         [Key]
-        public StudioName StudioId { get; private set; }
+        public int Id { get; private set; }
         [Required]
         [StringLength(200)]
-        public string Name { get; private set; }
+        public StudioName Name { get; private set; }
         public string? LogoSvg { get; private set; }
+
+        private List<StudioName> StudioNames;
 
         [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
-        public Studios(StudioName id, string name, string logoSvg)
+        public Studios(int id, StudioName name, string logoSvg)
         {
-            StudioId = id;
+            Id = id;
             Name = name;
-            LogoSvg =  _path + logoSvg;
+            LogoSvg = _path + logoSvg;
         }
 
         public Studios(int id)
         {
-            StudioId = (StudioName)Enum.Parse(typeof(StudioName), id.ToString());
-            Name = InsertSpaces(id.ToString());
-            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(Name);
+
+            Id = id;
+            Name = InsertSpaces();
+            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(Name.ToString());
         }
         static string InsertSpaces(string input)
         {

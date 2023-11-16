@@ -15,13 +15,13 @@ namespace F12XA6_SOF_2023241.Webapp
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("F12XA6_SOF_2023241.Repository")));
+            builder.Services.AddDbContext<F12XA6_SOF_2023241.Repository.AppDbContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("F12XA6_SOF_2023241.Repository.AppDbContext")));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AppDbContext>();
+                .AddEntityFrameworkStores<F12XA6_SOF_2023241.Repository.AppDbContext>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
