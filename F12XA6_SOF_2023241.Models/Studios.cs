@@ -59,10 +59,10 @@ namespace F12XA6_SOF_2023241.Models
 
         public Studios(int id)
         {
-
+            
             Id = id;
-            Name = InsertSpaces();
-            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(Name.ToString());
+            Name = (StudioName)id;
+            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(Name.ToString()));
         }
         static string InsertSpaces(string input)
         {
