@@ -46,7 +46,7 @@ namespace F12XA6_SOF_2023241.Models
         public string Serial_Num { get; private set; }  //the int value of the StudioName enum
         [Required]
         [StringLength(200)]
-        public StudioName Name { get; private set; }
+        public StudioName Name { get; private set; } // appears as an int in the database
         public string? LogoSvg { get; private set; }
         [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
