@@ -4,6 +4,7 @@ using F12XA6_SOF_2023241.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace F12XA6_SOF_2023241.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231116180834_Studios_Key_Erros_Fix")]
+    partial class Studios_Key_Erros_Fix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
                     b.HasIndex("StudiosId");
 
-                    b.ToTable("Games", (string)null);
+                    b.ToTable("Games");
 
                     b.HasData(
                         new
@@ -88,7 +90,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Studios", (string)null);
+                    b.ToTable("Studios");
 
                     b.HasData(
                         new

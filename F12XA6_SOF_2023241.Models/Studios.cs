@@ -11,7 +11,7 @@ namespace F12XA6_SOF_2023241.Models
 {
     public enum StudioName
     {
-        Activision = 0,
+       
         Bethesda = 1,
         Blizzard = 2,
         Bluehole = 3,
@@ -32,7 +32,8 @@ namespace F12XA6_SOF_2023241.Models
         Sony = 18,
         SquareEnix = 19,
         Ubisoft = 20,
-        Valve = 21
+        Valve = 21,
+        Activision = 22
     }
 
     public class Studios
@@ -40,29 +41,33 @@ namespace F12XA6_SOF_2023241.Models
         static string _path = "~/logos_in_svg/";
 
         [Key]
-        public int Id { get; private set; }
+        public string Id { get; set; }
+        [NotMapped]
+        public string Serial_Num { get; private set; }
         [Required]
         [StringLength(200)]
         public StudioName Name { get; private set; }
         public string? LogoSvg { get; private set; }
-
-        private List<StudioName> StudioNames;
-
         [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
-        public Studios(int id, StudioName name, string logoSvg)
+        public Studios()
         {
-            Id = id;
+            Id = Guid.NewGuid().ToString();
+        }
+        public Studios(string Serial_Num, StudioName name, string logoSvg)
+        {
+            Id = Guid.NewGuid().ToString();
+            this.Serial_Num = Serial_Num;
             Name = name;
             LogoSvg = _path + logoSvg;
         }
 
-        public Studios(int id)
+        public Studios(string Serial_Num)
         {
-            
-            Id = id;
-            Name = (StudioName)id;
-            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(Name.ToString()));
+            Id = Guid.NewGuid().ToString();
+            this.Serial_Num = Serial_Num;
+            Name = (StudioName) int.Parse(this.Serial_Num);
+            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(Serial_Num.ToString()));
         }
         static string InsertSpaces(string input)
         {
