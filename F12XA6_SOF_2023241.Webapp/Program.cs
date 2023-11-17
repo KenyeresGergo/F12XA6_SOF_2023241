@@ -23,6 +23,11 @@ namespace F12XA6_SOF_2023241.Webapp
             builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<F12XA6_SOF_2023241.Repository.AppDbContext>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession(opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
+
 
             var app = builder.Build();
 
@@ -50,7 +55,7 @@ namespace F12XA6_SOF_2023241.Webapp
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-
+            app.UseSession();
             app.Run();
         }
     }

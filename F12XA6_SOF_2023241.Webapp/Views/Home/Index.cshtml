@@ -1,8 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Identity
+
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
+@model IEnumerable<Studios>
 <script src="~/js/IndexSiteScript.js" asp-append-version="true"></script>
 <link rel="stylesheet" href="~/css/indexStyle.css" asp-append-version="true" />
 
@@ -24,7 +26,27 @@
                 </div>
             </div>
         </div>
+        @foreach (var studio in Model)
+        {
         <div class="card">
+            <div class="card-content">
+                <div class="card-image">
+                    <i class="fa-duotone fa-apartment"></i>
+                </div>
+                <div class="card-info-wrapper">
+                    <div class="card-info">
+                        <i class="fa-duotone fa-apartment"></i>
+                        <div class="card-info-title">
+                            <h3>@studio.Name</h3>
+                            <h4>@studio.Name</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+   @*     <div class="card">
             <div class="card-content">
                 <div class="card-image">
                     <i class="fa-duotone fa-unicorn"></i>
@@ -103,7 +125,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 
 </main>

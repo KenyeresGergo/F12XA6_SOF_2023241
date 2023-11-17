@@ -2,6 +2,7 @@
 using F12XA6_SOF_2023241.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Linq; // Make sure to add this
 
@@ -20,6 +21,9 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
         public IActionResult Index(int page = 1)
         {
+            var user = new AppUser();
+           HttpContext.Session.SetString("appuser",JsonConvert.SerializeObject(user));
+
             int pageSize = 6;
 
             // Assuming Studios is a DbSet in your AppDbContext
@@ -28,7 +32,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             //    .Take(pageSize)
             //    .ToList();
 
-            return View(/*studios*/);
+            return View(_context.Studios);
         }
 
         public IActionResult Games()
