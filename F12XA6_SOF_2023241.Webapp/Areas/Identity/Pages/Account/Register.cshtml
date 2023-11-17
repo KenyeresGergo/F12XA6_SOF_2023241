@@ -1,12 +1,15 @@
 ﻿@page
 @model RegisterModel
 @{
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Register";
 }
+<partial name="_ValidationScriptsPartial" />
 <script src="~/js/IndexSiteScript.js" asp-append-version="true"></script>
 <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-<h1>@ViewData["Title"]</h1>
+<script src="~/js/IndexSiteScript.js" asp-append-version="true"></script>
+<link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+<h1>@ViewData["Home"]</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -81,6 +84,9 @@
     </div>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     <partial name="_ValidationScriptsPartial" />
-}
+    <script src="~/js/IndexSiteScript.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+*@}
