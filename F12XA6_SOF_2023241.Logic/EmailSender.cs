@@ -19,7 +19,7 @@ namespace F12XA6_SOF_2023241.Logic
                 Port = 587,
                 UseDefaultCredentials = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("kovacs.andras@uni-obuda.hu", "hellothere"),
+                Credentials = new NetworkCredential("keny.gergo@stud.uni-obuda.hu", "K1kelet?"),
                 TargetName = "STARTTLS/smtp.office365.com",
                 EnableSsl = true
 
@@ -27,7 +27,7 @@ namespace F12XA6_SOF_2023241.Logic
             {
                 MailMessage message = new MailMessage()
                 {
-                    From = new MailAddress("kovacs.andras@uni-obuda.hu"),
+                    From = new MailAddress("keny.gergo@stud.uni-obuda.hu"),
                     Subject = subject,
                     IsBodyHtml = true,
                     Body = htmlMessage,
