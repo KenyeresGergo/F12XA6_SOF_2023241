@@ -1,6 +1,7 @@
 using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Repository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -20,13 +21,17 @@ namespace F12XA6_SOF_2023241.Webapp
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<AppUser>(options =>
+            options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<F12XA6_SOF_2023241.Repository.AppDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession(opt =>
             {
                 opt.IdleTimeout = TimeSpan.FromMinutes(5);
             });
+
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 
             var app = builder.Build();
