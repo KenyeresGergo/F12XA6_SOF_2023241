@@ -22,16 +22,19 @@ namespace F12XA6_SOF_2023241.Webapp
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<AppUser>(options =>
-            options.SignIn.RequireConfirmedAccount = true)
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<F12XA6_SOF_2023241.Repository.AppDbContext>();
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession(opt =>
             {
                 opt.IdleTimeout = TimeSpan.FromMinutes(5);
             });
 
-            builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddTransient<IEmailSender, F12XA6_SOF_2023241.Logic.EmailSender>();
 
 
             var app = builder.Build();
