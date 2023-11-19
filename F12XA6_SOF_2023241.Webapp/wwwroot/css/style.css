@@ -38,6 +38,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     background: var(--bg-nav);
     color: var(--text);
+    z-index: 2;
 }
 .navbar-nav {
     list-style-type: none;

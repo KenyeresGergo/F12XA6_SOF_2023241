@@ -22,20 +22,14 @@ namespace F12XA6_SOF_2023241.Models
         public string? ContentType { get; set; }
 
         public byte[]? PhotoData { get; set; }
-
-
-
-        [ForeignKey("Studios")]
-        public StudioName StudioId { get; set; }
-        [NotMapped]
-        public Studios Studio { get; set; }
-
-
-
-        [ForeignKey("AppUser")]
+       
+        public string StudiosId { get; set; }
+        [ForeignKey("StudiosId")]
+        public Studios Studios { get; set; }
+        
         public string OwnerId { get; set; }
-        [NotMapped]
-        public AppUser AppUser { get; set; }
+        [ForeignKey("OwnerId")]
+        public AppUser Owner { get; set; }
 
 
 

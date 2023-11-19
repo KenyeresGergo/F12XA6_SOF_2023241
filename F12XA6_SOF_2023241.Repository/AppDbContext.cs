@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace F12XA6_SOF_2023241.Repository
 {
-   
 
-    public class AppDbContext : IdentityDbContext/*, IAppDbContext*/
+
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -39,40 +39,49 @@ namespace F12XA6_SOF_2023241.Repository
             gergo.PasswordHash = ph.HashPassword(gergo, "asd123");
             builder.Entity<AppUser>().HasData(gergo);
 
+            //Studios data
+            var studios = Enum.GetValues(typeof(StudioName))
+                .Cast<StudioName>()
+                .Select((studio, index) => new Studios((index + 1).ToString())).ToList();
+
+            builder.Entity<Studios>().HasData(studios);
+
+
             builder.Entity<Game>().HasData(new Game()
             {
                 Title = "Grand Theft Auto V",
                 Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton," +
                 " and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
                 Rating = 9,
-                OwnerId = gergo.Id
+                OwnerId = gergo.Id,
+                StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id
+
             });
 
 
-            //Studios data
-            var studios = Enum.GetValues(typeof(StudioName))
-                .Cast<StudioName>()
-                .Select((studio, index) => new Studios (index + 1)).ToList();
-
-            builder.Entity<Studios>().HasData(studios);
-
-
             builder.Entity<Game>()
-                .HasOne(t => t.AppUser)
-                .WithMany(t=>t.GamesOwned)
+                .HasOne(t => t.Owner)
+                .WithMany(t => t.GamesOwned)
                 .HasForeignKey(t => t.OwnerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Game>()
-                .HasOne(t => t.Studio)
+                .HasOne(t => t.Studios)
                 .WithMany(s => s.GamesOwned)
-                .HasForeignKey(t => t.StudioId) // Use a dedicated foreign key property
+                .HasForeignKey(t => t.StudiosId) // Use a dedicated foreign key property
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            
+            //builder.Entity<Studios>()
+            //    .HasMany(s => s.GamesOwned)
+            //    .WithOne(g => g.Studio)
+            //    .HasForeignKey(g => g.StudioId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-            //builder.Entity<AppUser>()
-            //  .HasMany(t => t.GamesOwned).WithOne(t=>t.OwnerId)
-            //  .HasForeignKey(t=>t.OwnerId)
-            //  .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<AppUser>()
+              .HasMany(t => t.GamesOwned).WithOne(t => t.Owner)
+              .HasForeignKey(t => t.OwnerId)
+              .OnDelete(DeleteBehavior.Cascade);
 
 
             base.OnModelCreating(builder);

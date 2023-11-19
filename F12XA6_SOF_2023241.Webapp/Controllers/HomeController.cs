@@ -1,9 +1,14 @@
 ﻿using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Repository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Data;
 using System.Diagnostics;
-using System.Linq; // Make sure to add this
+using System.Linq;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
@@ -11,29 +16,76 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailSender _emailSender;
 
-        public HomeController(ILogger<HomeController> logger, AppDbContext context)
+        public HomeController(ILogger<HomeController> logger, AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
         {
             _logger = logger;
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index(int page = 1)
         {
-            int pageSize = 6;
+            var user = new AppUser();
+           HttpContext.Session.SetString("appuser",JsonConvert.SerializeObject(user));
 
-            // Assuming Studios is a DbSet in your AppDbContext
+            //int pageSize = 6;
+
+            //// Assuming Studios is a DbSet in your AppDbContext
             //var studios = _context.Studios
             //    .Skip((page - 1) * pageSize)
             //    .Take(pageSize)
             //    .ToList();
 
-            return View(/*studios*/);
+            return View(_context.Studios);
         }
+
+        public async Task<IActionResult> DelegateAdmin()
+        {
+            var principal = this.User;
+            var user = await _userManager.GetUserAsync(principal);
+            var role = new IdentityRole()
+            {
+                Name = "Admin"
+            };
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                await _roleManager.CreateAsync(role);
+            }
+            await _userManager.AddToRoleAsync(user, "Admin");
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> RemoveAdmin(string uid)
+        {
+            var user = _userManager.Users.FirstOrDefault(t => t.Id == uid);
+            await _userManager.RemoveFromRoleAsync(user, "Admin");
+            return RedirectToAction(nameof(Users));
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GrantAdmin(string uid)
+        {
+            var user = _userManager.Users.FirstOrDefault(t => t.Id == uid);
+            await _userManager.AddToRoleAsync(user, "Admin");
+            return RedirectToAction(nameof(Users));
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult Users()
+        {
+            return View(_userManager.Users);
+        }
+
 
         public IActionResult Games()
         {
-            return View();
+            return View(_context.Games);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
