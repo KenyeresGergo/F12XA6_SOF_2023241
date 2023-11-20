@@ -7,6 +7,7 @@ namespace F12XA6_SOF_2023241.Models
 {
     public class Game : IGame
     {
+
         [Key]
         public string Id { get; private set; }
         [StringLength(200)]
