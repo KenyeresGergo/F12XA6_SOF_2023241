@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace F12XA6_SOF_2023241.Repository
+namespace F12XA6_SOF_2023241.Repository.DataBase
 {
 
 
@@ -70,8 +70,8 @@ namespace F12XA6_SOF_2023241.Repository
                 .WithMany(s => s.GamesOwned)
                 .HasForeignKey(t => t.StudiosId) // Use a dedicated foreign key property
                 .OnDelete(DeleteBehavior.Cascade);
-            
-            
+
+
             //builder.Entity<Studios>()
             //    .HasMany(s => s.GamesOwned)
             //    .WithOne(g => g.Studio)

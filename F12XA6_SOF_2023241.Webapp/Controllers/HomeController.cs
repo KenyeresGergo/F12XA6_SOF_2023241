@@ -1,5 +1,4 @@
 ﻿using F12XA6_SOF_2023241.Models;
-using F12XA6_SOF_2023241.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +8,7 @@ using Newtonsoft.Json;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using F12XA6_SOF_2023241.Repository.DataBase;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {

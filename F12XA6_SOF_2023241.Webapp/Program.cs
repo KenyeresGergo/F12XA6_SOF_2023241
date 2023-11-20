@@ -1,5 +1,5 @@
 using F12XA6_SOF_2023241.Models;
-using F12XA6_SOF_2023241.Repository;
+using F12XA6_SOF_2023241.Repository.DataBase;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +16,7 @@ namespace F12XA6_SOF_2023241.Webapp
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<F12XA6_SOF_2023241.Repository.AppDbContext>(options =>
+            builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("F12XA6_SOF_2023241.Repository")));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -26,7 +26,7 @@ namespace F12XA6_SOF_2023241.Webapp
                 options.SignIn.RequireConfirmedAccount = true;
             })
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<F12XA6_SOF_2023241.Repository.AppDbContext>();
+                .AddEntityFrameworkStores<AppDbContext>();
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession(opt =>
