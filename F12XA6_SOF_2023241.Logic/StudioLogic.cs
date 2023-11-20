@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Repository.Generic_Repository;
 using F12XA6_SOF_2023241.Repository.Interfaces;
 
 namespace F12XA6_SOF_2023241.Logic
 {
-    public class StudioLogic
+    public class StudioLogic : IStudioLogic
     {
         private IRepository<Studios> repository;
 
