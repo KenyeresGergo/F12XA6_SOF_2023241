@@ -50,7 +50,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             var viewModel = new HomePageViewModel(studios, page, totalPages);
             return View(viewModel);
         }
-
+        [Authorize]
         public async Task<IActionResult> MyGames()
         {
             var user = await _userManager.GetUserAsync(this.User);
