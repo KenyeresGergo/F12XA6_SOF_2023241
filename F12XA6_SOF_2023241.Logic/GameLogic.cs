@@ -37,13 +37,13 @@ namespace F12XA6_SOF_2023241.Logic
         }
         public IEnumerable<Game> Read()
         {
-            return this.repository.Read();
+            return this.repository.ReadAll();
         }
-        public Game? Read(Game game)
-        {
-            return this.repository.Read(game);
-        }
-        public Game? Read(string id)
+        //public Game Read(Game game)
+        //{
+        //    return this.repository.Read(game);
+        //}
+        public Game Read(string id)
         {
             return this.repository.Read(id);
         }
@@ -51,10 +51,10 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Update(game);
         }
-        public void Delete(Game game)
-        {
-            repository.Delete(game);
-        }
+        //public void Delete(Game game)
+        //{
+        //    repository.Delete(game);
+        //}
         public void Delete(string id)
         {
             repository.Delete(id);
