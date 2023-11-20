@@ -7,125 +7,41 @@
 @model IEnumerable<Studios>
 <script src="~/js/IndexSiteScript.js" asp-append-version="true"></script>
 <link rel="stylesheet" href="~/css/indexStyle.css" asp-append-version="true" />
-
-<main calss="index">
-    <div id="cards">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-apartment"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-apartment"></i>
-                        <div class="card-info-title">
-                            <h3>Apartments</h3>
-                            <h4>Places to be apart. Wait, what?</h4>
+<main>
+    <div>
+        <div id="cards">
+            @foreach (var studio in Model)
+            {
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-image">
+                            <i class="fa-duotone fa-apartment"></i>
+                        </div>
+                        <div class="card-info-wrapper">
+                            <div class="card-info">
+                                <i class="fa-duotone fa-apartment"></i>
+                                <div class="card-info-title">
+                                    <h3>@studio.Name</h3>
+                                    <h4>@studio.Name</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-        @foreach (var studio in Model)
-        {
-        <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-apartment"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-apartment"></i>
-                        <div class="card-info-title">
-                            <h3>@studio.Name</h3>
-                            <h4>@studio.Name</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        }
-
-   @*     <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-unicorn"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-unicorn"></i>
-                        <div class="card-info-title">
-                            <h3>Unicorns</h3>
-                            <h4>A single corn. Er, I mean horn.</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-blender-phone"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-blender-phone"></i>
-                        <div class="card-info-title">
-                            <h3>Blender Phones</h3>
-                            <h4>These absolutely deserve to exist.</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-person-to-portal"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-person-to-portal"></i>
-                        <div class="card-info-title">
-                            <h3>Adios</h3>
-                            <h4>See you...</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-person-from-portal"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-person-from-portal"></i>
-                        <div class="card-info-title">
-                            <h3>I mean hello</h3>
-                            <h4>...over here.</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <div class="card-image">
-                    <i class="fa-duotone fa-otter"></i>
-                </div>
-                <div class="card-info-wrapper">
-                    <div class="card-info">
-                        <i class="fa-duotone fa-otter"></i>
-                        <div class="card-info-title">
-                            <h3>Otters</h3>
-                            <h4>Look at me, imma cute lil fella.</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>*@
     </div>
 
+    <div>
+        <nav>
+            <div>
+                <a rel="prev" href="https://github.com/search?q=website+page+navigation&amp;type=repositories&amp;p=2" aria-label="Previous Page" class="Pagination__Page-sc-cp45c9-0 jOoUXg">Previous</a>
+                <a href="https://github.com/search?q=website+page+navigation&amp;type=repositories&amp;p=1" aria-label="Page 1" class="Pagination__Page-sc-cp45c9-0 jOoUXg">1</a>
+                <a href="https://github.com/search?q=website+page+navigation&amp;type=repositories&amp;p=2" aria-label="Page 2" class="Pagination__Page-sc-cp45c9-0 jOoUXg">2</a>
+                <a href="https://github.com/search?q=website+page+navigation&amp;type=repositories&amp;p=6" aria-label="Page 6..." class="Pagination__Page-sc-cp45c9-0 jOoUXg">6</a>
+                <span role="presentation" class="Pagination__Page-sc-cp45c9-0 jOoUXg">…</span><a href="https://github.com/search?q=website+page+navigation&amp;type=repositories&amp;p=64" aria-label="Page 64" class="Pagination__Page-sc-cp45c9-0 jOoUXg">64</a>
+                <a rel="next" href="https://github.com/search?q=website+page+navigation&amp;type=repositories&amp;p=4" aria-label="Next Page" class="Pagination__Page-sc-cp45c9-0 jOoUXg">Next</a>
+            </div>
+        </nav>
+    </div>
 </main>

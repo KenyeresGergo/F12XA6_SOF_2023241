@@ -34,15 +34,15 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             var user = new AppUser();
            HttpContext.Session.SetString("appuser",JsonConvert.SerializeObject(user));
 
-            //int pageSize = 6;
+            int pageSize = 6;
 
             //// Assuming Studios is a DbSet in your AppDbContext
-            //var studios = _context.Studios
-            //    .Skip((page - 1) * pageSize)
-            //    .Take(pageSize)
-            //    .ToList();
+            var studios = _context.Studios
+               .Skip((page - 1) * pageSize)
+               .Take(pageSize)
+               .ToList();
 
-            return View(_context.Studios);
+            return View(studios);
         }
 
         public async Task<IActionResult> DelegateAdmin()
