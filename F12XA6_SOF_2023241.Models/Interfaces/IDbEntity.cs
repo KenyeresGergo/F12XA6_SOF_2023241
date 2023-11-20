@@ -8,6 +8,6 @@ namespace F12XA6_SOF_2023241.Models.Interfaces
 {
     public interface IDbEntity
     {
-       public string Id { get; set; }
+        string Id { get; set; }
     }
 }

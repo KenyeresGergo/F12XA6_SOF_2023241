@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using F12XA6_SOF_2023241.Models.Interfaces;
 
 namespace F12XA6_SOF_2023241.Models
 {
     public enum StudioName
     {
-       
+
         Bethesda = 1,
         Blizzard = 2,
         Bluehole = 3,
@@ -33,10 +34,10 @@ namespace F12XA6_SOF_2023241.Models
         SquareEnix = 19,
         Ubisoft = 20,
         Valve = 21,
-    
+
     }
 
-    public class Studios
+    public class Studios : IStudios, IDbEntity
     {
         static string _path = "~/logos_in_svg/";
 
@@ -68,7 +69,7 @@ namespace F12XA6_SOF_2023241.Models
         {
             Id = Guid.NewGuid().ToString();
             this.Serial_Num = Serial_Num;
-            Name = (StudioName) int.Parse(this.Serial_Num);
+            Name = (StudioName)int.Parse(this.Serial_Num);
             temp = Name;
             LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
         }
@@ -104,6 +105,17 @@ namespace F12XA6_SOF_2023241.Models
 
             return result.ToString();
         }
+
+        public void CopyFrom(Studios old)
+        {
+            this.Id = old.Id;
+            this.Name = old.Name;
+            this.Serial_Num = old.Serial_Num;
+            this.LogoSvg = old.LogoSvg;
+            this.GamesOwned = old.GamesOwned;
+        }
+
+
     }
 
 }

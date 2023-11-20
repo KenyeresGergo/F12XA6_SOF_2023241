@@ -5,11 +5,11 @@ using F12XA6_SOF_2023241.Models.Interfaces;
 
 namespace F12XA6_SOF_2023241.Models
 {
-    public class Game : IGame
+    public class Game : IGame, IDbEntity
     {
 
         [Key]
-        public string Id { get; private set; }
+        public string Id { get;  set; }
         [StringLength(200)]
         [Required]
         public string Title { get; set; }
