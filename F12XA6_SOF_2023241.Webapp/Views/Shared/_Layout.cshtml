@@ -14,45 +14,43 @@
     <title>@ViewData["Title"]</title>
 </head>
 <body class="light">
-
 <!-- Navbar -->
-<header>
-    <nav class="navbar">
-        <ul class="navbar-nav">
-            <!-- Dropdown -->
-            <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            <li class="nav-item">
-                <a asp-area="" asp-controller="Home" asp-action="Games">Games</a>
-            </li>
-                <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="MyGames">My Games</a>
-                </li>
-            <li class="nav-item">
-                <partial name="_LoginPartial" />
-            </li>
-            <li class="nav-item has-dropdown">
-            <a href="#">
-                <span class="theme-circle"></span>
-            </a>
-            <ul class="dropdown navbar-nav">
-                <li class="dropdown-item">
-                    <a id="light" href="#">light</a>
-                </li>
-                <li class="dropdown-item">
-                    <a id="dark" href="#">dark</a>
-                </li>
-                <li class="dropdown-item">
-                    <a id="solar" href="#">solarize</a>
-                </li>
-            </ul>
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <!-- Dropdown -->
+        <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </li>
+        <li class="nav-item">
+            <a asp-area="" asp-controller="Home" asp-action="Games">Games</a>
+        </li>
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="MyGames">My Games</a>
+            </li>
+        <li class="nav-item">
+            <partial name="_LoginPartial" />
+        </li>
+        <li class="nav-item has-dropdown">
+        <a href="#">
+            <span class="theme-circle"></span>
+        </a>
+        <ul class="dropdown navbar-nav">
+            <li class="dropdown-item">
+                <a id="light" href="#">light</a>
+            </li>
+            <li class="dropdown-item">
+                <a id="dark" href="#">dark</a>
+            </li>
+            <li class="dropdown-item">
+                <a id="solar" href="#">solarize</a>
+            </li>
         </ul>
-    </nav>
-</header>
+    </li>
+    </ul>
+</nav>
 
 @RenderBody()
-@*@RenderSection("Scripts",required: false)
-*@</body>
+@*@RenderSection("Scripts",required: false)*@
+
+</body>
 </html>

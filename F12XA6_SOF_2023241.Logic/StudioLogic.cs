@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace F12XA6_SOF_2023241.Logic
 {
-    internal class StudioLogic
+    public class StudioLogic
     {
     }
 }
