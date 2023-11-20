@@ -2,7 +2,7 @@
 
 public interface IHomePageViewModel
 {
-    List<Studios> Studios { get; set; }
-    int CurrentPage { get; set; }
-    int TotalPages { get; set; }
+    List<Studios> Studios { get; }
+    int CurrentPage { get; }
+    int TotalPages { get; }
 }

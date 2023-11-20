@@ -18,6 +18,7 @@ a {
 }
 
 
+
 /*Scrollbar*/
 body::-webkit-scrollbar {
     width: 5px;
@@ -30,6 +31,8 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background: var(--border-color);
 }
+
+
 
 /* Navbar */
 .navbar {
@@ -56,6 +59,8 @@ body::-webkit-scrollbar-thumb {
     margin-left:auto;
 }
 
+
+
 /* Drop-down */
 .dropdown {
     position: absolute;
@@ -76,7 +81,6 @@ body::-webkit-scrollbar-thumb {
     transform: translateX(-90%);
     transition: visibility .15s ease-out;
 }
-
 .theme-circle {
     background-color: var(--bg);
     border: 2px solid var(--border-color);
@@ -121,6 +125,9 @@ body::-webkit-scrollbar-thumb {
     border-radius: 0.375rem;
     padding: 0.5rem;
 }
+
+
+
 /* Themes */
 :root {
     font-size:16px;
@@ -162,6 +169,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 
+
 #dark::before {
     background: #2a2e35;
 }
@@ -171,6 +179,8 @@ body::-webkit-scrollbar-thumb {
 #solar::before {
     background: var(--bg-solar);
 }
+
+
 
 /*Animation*/
 .logo:hover{

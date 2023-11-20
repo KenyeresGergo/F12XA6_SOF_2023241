@@ -9,9 +9,9 @@ namespace F12XA6_SOF_2023241.Models
 {
     public class HomePageViewModel : IHomePageViewModel
     {
-        public List<Studios> Studios { get; set; }
-        public int CurrentPage { get; set; }
-        public int TotalPages { get; set; }
+        public List<Studios> Studios { get; private set; }
+        public int CurrentPage { get; private set; }
+        public int TotalPages { get; private set; }
 
         public HomePageViewModel(List<Studios> studios, int currentPage, int totalPages)
         {
