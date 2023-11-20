@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
 @{
-    Layout = "_Layout";
+    //Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
 @model F12XA6_SOF_2023241.Models.HomePageViewModel
@@ -17,16 +17,11 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-image">
-                            <img src="@($"{studio.LogoSvg}.svg")" />
+                            @* <img src=@($"{studio.LogoSvg}.svg") asp-append-version="true" /> *@
                         </div>
-                        <div class="card-info-wrapper">
-                            <div class="card-info">
-                                <i class="fa-duotone fa-apartment"></i>
-                                <div class="card-info-title">
-                                    <h3>@studio.Name</h3>
-                                </div>
+                            <div class="card-info-title">
+                                <h3>@studio.Name</h3>
                             </div>
-                        </div>
                     </div>
                 </div>
             }

@@ -39,7 +39,7 @@ namespace F12XA6_SOF_2023241.Models
 
     public class Studios : IStudios, IDbEntity
     {
-        static string _path = "/logos_in_svg/";
+        static string _path = "~/wwwroot/logos_in_svg/";
 
         [Key]
         public string Id { get; set; }

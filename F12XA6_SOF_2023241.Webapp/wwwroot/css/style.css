@@ -7,11 +7,7 @@
     background: var(--bg);
     transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
-main {
-    min-height: 1000px;
-    padding: 2rem;
-    padding-top: 5rem;
-}
+
 a {
     color: currentColor;
     text-decoration: none;
@@ -69,8 +65,8 @@ body::-webkit-scrollbar-thumb {
     z-index: 2;
     background: var(--bg-dropdown);
     border-top: 2px solid var(--border-color);
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
