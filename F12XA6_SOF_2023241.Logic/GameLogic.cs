@@ -13,7 +13,7 @@ namespace F12XA6_SOF_2023241.Logic
 {
     public class GameLogic
     {
-        private IRepository<Game> repository;
+        private readonly IRepository<Game> repository;
 
         public GameLogic(IRepository<Game> repository)
         {
@@ -59,9 +59,9 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Delete(id);
         }
-        public IEnumerable<Game> MyGames() //adott felhsználóhoz tartozó játékok
+        public IEnumerable<Game> MyGames(AppUser user) //adott felhsználóhoz tartozó játékok
         {
-            return null;
+            return user.GamesOwned;
         }
 
         public IEnumerable<IEnumerable<Game>> GamesByStudios()
