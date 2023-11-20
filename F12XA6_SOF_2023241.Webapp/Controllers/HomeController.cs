@@ -9,21 +9,24 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using F12XA6_SOF_2023241.Repository.DataBase;
+using F12XA6_SOF_2023241.Logic;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context;
+        private readonly GameLogic _gamelogic;
+        private readonly StudioLogic _studiologic;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
 
-        public HomeController(ILogger<HomeController> logger, AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
+        public HomeController(ILogger<HomeController> logger, GameLogic gamelogic, StudioLogic studiologic, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
         {
             _logger = logger;
-            _context = context;
+            _gamelogic = gamelogic;
+            _studiologic = studiologic;
             _userManager = userManager;
             _roleManager = roleManager;
             _emailSender = emailSender;
@@ -36,16 +39,21 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             int pageSize = 6;
 
-            var totalStudios = _context.Studios.Count();
+            var totalStudios = _studiologic.Read().Count();
             var totalPages = (int)Math.Ceiling((double)totalStudios / pageSize);
 
-            var studios = _context.Studios
+            var studios = _studiologic.Read()
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             var viewModel = new HomePageViewModel(studios, page, totalPages);
             return View(viewModel);
+        }
+
+        public IActionResult MyGames()
+        { 
+            return View(_gamelogic.MyGames());
         }
 
         public async Task<IActionResult> DelegateAdmin()
@@ -88,7 +96,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
         public IActionResult Games()
         {
-            return View(_context.Games);
+            return View(_gamelogic.Read());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
