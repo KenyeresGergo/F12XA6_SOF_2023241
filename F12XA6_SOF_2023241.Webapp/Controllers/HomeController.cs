@@ -32,17 +32,20 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public IActionResult Index(int page = 1)
         {
             var user = new AppUser();
-           HttpContext.Session.SetString("appuser",JsonConvert.SerializeObject(user));
+            HttpContext.Session.SetString("appuser",JsonConvert.SerializeObject(user));
 
             int pageSize = 6;
 
-            //// Assuming Studios is a DbSet in your AppDbContext
-            var studios = _context.Studios
-               .Skip((page - 1) * pageSize)
-               .Take(pageSize)
-               .ToList();
+            var totalStudios = _context.Studios.Count();
+            var totalPages = (int)Math.Ceiling((double)totalStudios / pageSize);
 
-            return View(studios);
+            var studios = _context.Studios
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var viewModel = new HomePageViewModel(studios, page, totalPages);
+            return View(viewModel);
         }
 
         public async Task<IActionResult> DelegateAdmin()
