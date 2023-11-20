@@ -17,7 +17,28 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
         {
             this.context = context;
         }
-
+        public void Create(Game game)
+        {
+            var gameId = context.Games.FirstOrDefault(x => x.Id == game.Id);
+            if (gameId != null)
+            {
+                throw new ArgumentException("Game with thos name already exists!");
+            }
+            context.Games.Add(game);
+            context.SaveChanges();
+        }
+        public IEnumerable<Game> Read()
+        {
+            return this.context.Games;
+        }
+        public Game Read(Game game)
+        {
+            return this.context.Games.FirstOrDefault(t => t.Id == game.Id);
+        }
+        public Game Read(string id)
+        {
+            return this.context.Games.FirstOrDefault(t => t.Id == id);
+        }
         public override bool Update(Game item)
         {
             var sourceItem = Read(item.Id);
@@ -29,6 +50,18 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
             sourceItem.CopyFrom(item);
             context.SaveChanges();
             return true;
+        }
+        public void Delete(Game game)
+        {
+            var _game = Read(game);
+            context.Games.Remove(_game);
+            context.SaveChanges();
+        }
+        public void Delete(string id)
+        {
+            var _game = Read(id);
+            context.Games.Remove(_game);
+            context.SaveChanges();
         }
     }
 }
