@@ -9,20 +9,20 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using F12XA6_SOF_2023241.Repository.DataBase;
-using F12XA6_SOF_2023241.Logic;
+using F12XA6_SOF_2023241.Logic.Interfaces;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly GameLogic _gamelogic;
-        private readonly StudioLogic _studiologic;
+        private readonly IGameLogic _gamelogic;
+        private readonly IStudioLogic _studiologic;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
 
-        public HomeController(ILogger<HomeController> logger, GameLogic gamelogic, StudioLogic studiologic, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
+        public HomeController(ILogger<HomeController> logger, IGameLogic gamelogic, IStudioLogic studiologic, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
         {
             _logger = logger;
             _gamelogic = gamelogic;

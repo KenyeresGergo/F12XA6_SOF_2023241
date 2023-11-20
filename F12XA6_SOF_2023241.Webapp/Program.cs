@@ -1,5 +1,9 @@
+using F12XA6_SOF_2023241.Logic;
+using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Repository.DataBase;
+using F12XA6_SOF_2023241.Repository.Interfaces;
+using F12XA6_SOF_2023241.Repository.Model_Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +23,18 @@ namespace F12XA6_SOF_2023241.Webapp
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("F12XA6_SOF_2023241.Repository")));
 
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            builder.Services.AddTransient<AppDbContext>();
 
+            builder.Services.AddTransient<IRepository<Game>, GameRepository>();
+            builder.Services.AddTransient<IRepository<Studios>, StudioRepository>();
+           
+
+            builder.Services.AddTransient<IGameLogic, GameLogic>();
+            builder.Services.AddTransient<IStudioLogic, StudioLogic>();
+           
+
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+          
             builder.Services.AddDefaultIdentity<AppUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
