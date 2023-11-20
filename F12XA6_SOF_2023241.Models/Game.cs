@@ -38,6 +38,18 @@ namespace F12XA6_SOF_2023241.Models
         {
             Id = Guid.NewGuid().ToString();
         }
+
+        public void CopyFrom(Game old)
+        {
+           
+            this.Description = old.Description;
+            this.Rating = old.Rating;
+            this.PhotoData = old.PhotoData;
+            this.StudiosId = old.StudiosId;
+
+            this.OwnerId = old.OwnerId;
+            this.Title = old.Title;
+        }
     }
 
 }
