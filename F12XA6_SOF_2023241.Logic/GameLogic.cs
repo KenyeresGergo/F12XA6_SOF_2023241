@@ -59,7 +59,10 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Delete(id);
         }
-
+        public IEnumerable<Game> MyGames() //adott felhsználóhoz tartozó játékok
+        {
+            return null;
+        }
 
         public IEnumerable<IEnumerable<Game>> GamesByStudios()
         {
