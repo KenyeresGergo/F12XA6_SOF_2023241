@@ -1,5 +1,4 @@
-﻿/* Themes */
-/*:root {
+﻿:root {
     font-size: 16px;
     --gray0: #f8f8f8;
     --gray1: #dbe1e8;
@@ -13,7 +12,6 @@
     --yellow: #fff565;
 }
 
-
 .light {
     --bg: var(--gray0);
     --bg-nav: linear-gradient(to right, var(--gray1), var(--gray3));
@@ -22,6 +20,7 @@
     --border-color: var(--blue);
     --bg-solar: var(--yellow);
 }
+
 .dark {
     --bg: var(--gray5);
     --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
@@ -30,6 +29,7 @@
     --border-color: var(--purple);
     --bg-solar: var(--blue);
 }
+
 .solar {
     --gray0: #fbffd4;
     --gray1: #f7f8d0;
@@ -39,7 +39,6 @@
     --gray5: #005368;
     --gray6: #003d4c;
 }
-
 
 #dark::before {
     background: #2a2e35;
@@ -51,16 +50,12 @@
 
 #solar::before {
     background: var(--bg-solar);
-}*/
+}
 
-body{
+body {
     flex-direction: column;
     margin: 0;
     padding: 0;
-}
-:root {
-    --bg-color: rgb(20, 20, 20);
-    --card-color: rgb(23, 23, 23);
 }
 
 #cards {
@@ -71,12 +66,12 @@ body{
     width: calc(100% - 20px);
 }
 
-#cards:hover > .card::after {
-    opacity: 1;
-}
+    #cards:hover > .card::after {
+        opacity: 1;
+    }
 
 .card {
-    background-color: var(--text);
+    background-color: var(--border-color);
     border-radius: 1.5rem;
     cursor: pointer;
     display: flex;
@@ -86,40 +81,64 @@ body{
     width: 20rem;
     z-index: 1;
 }
-.card:hover::before {
-    opacity: 1;
-}
-.card::before, .card::after {
-    border-radius: inherit;
-    content: "";
-    height: 100%;
-    left: 0px;
-    opacity: 0;
-    position: absolute;
-    top: 0px;
-    transition: opacity 500ms;
-    width: 100%;
-}
 
-.card::before {
-    background: radial-gradient( 800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40% );
-    z-index: 3;
-}
-.card::after {
-    background: radial-gradient( 600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.4), transparent 40% );
-    z-index: 1;
-}
-.card > .card-content {
-    background-color: var(--card-color);
-    border-radius: inherit;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    inset: 1px;
-    padding: 10px;
-    position: absolute;
-    z-index: 2;
-}
+    .card:hover::before {
+        opacity: 1;
+    }
+
+    .card::before,
+    .card::after {
+        border-radius: inherit;
+        content: "";
+        height: 100%;
+        left: 0px;
+        opacity: 0;
+        position: absolute;
+        top: 0px;
+        transition: opacity 500ms;
+        width: 100%;
+    }
+
+    .card::before {
+        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), var(--bg) 0.06, transparent 40%);
+        z-index: 3;
+    }
+
+    .card::after {
+        background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--bg) 0.4, transparent 40%);
+        z-index: 1;
+    }
+
+    .card > .card-content {
+        background-color: var(--text);
+        border-radius: inherit;
+        display: flex;
+        flex-direction: column;
+        inset: 1px;
+        position: absolute;
+        z-index: 2;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card .title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: var(--bg);
+        padding: 10px;
+        text-align: center;
+        margin-bottom: 10px; /* Add margin-bottom for the gap */
+    }
+    .card img {
+        max-height: 180px;
+        height: auto;
+        width: 150px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 10px; /* Add margin-bottom for the gap */
+    }
 
 .inverse {
     color: var(--bg);
@@ -140,10 +159,12 @@ body{
     align-content: center;
     max-width: 66rem;
 }
-.pag-item{
-    gap: 5rem;
+
+.pag-item {
 }
-/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+
+/* Responsive styles... */
+
 @media(max-width: 1000px) {
     body {
         align-items: flex-start;
@@ -160,7 +181,7 @@ body{
 
     .card {
         flex-shrink: 1;
-        width: calc(50% -20px);
+        width: calc(50% - 20px);
     }
 }
 
