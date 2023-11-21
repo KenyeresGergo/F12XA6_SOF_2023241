@@ -93,10 +93,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View(_userManager.Users);
         }
 
-
+        [Authorize(Roles = "User")]
         public IActionResult Games(string studioId)
         {
-            var games = _gamelogic.GamesByStudioId(studioId);
+            var games = _gamelogic.GamesByStudioId(studioId).ToList();
             return View(games);
         }
 

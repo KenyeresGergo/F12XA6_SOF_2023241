@@ -1,5 +1,6 @@
 ﻿using F12XA6_SOF_2023241.Logic;
 using F12XA6_SOF_2023241.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         {
             return View(this._logic.GamesByStudios());
         }
+
         public ActionResult ListGames()
         {
             return View(this._logic.Read());
@@ -71,6 +73,12 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             var msg = exceptionHandlerPathFeature.Error.Message;
             return View("Error", msg);
+        }
+
+        [Authorize(Roles = "User")]
+        public IActionResult Games()
+        {
+            return View(_logic.Read());
         }
     }
 }
