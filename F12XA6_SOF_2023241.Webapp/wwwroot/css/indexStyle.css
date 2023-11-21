@@ -67,7 +67,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    max-width: 61rem;
+    max-width: 66rem;
     width: calc(100% - 20px);
 }
 
@@ -129,6 +129,20 @@ body{
     padding: 0.5rem;
 }
 
+
+#pagination {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    margin-top: 3rem;
+    justify-content: center;
+    align-content: center;
+    max-width: 66rem;
+}
+.pag-item{
+    gap: 5rem;
+}
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
 @media(max-width: 1000px) {
     body {
