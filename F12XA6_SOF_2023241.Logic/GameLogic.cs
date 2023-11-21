@@ -60,6 +60,11 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Delete(id);
         }
+        public IEnumerable<Game> GamesByStudioId(string studioid)
+        {
+            return repository.ReadAll().Where(g=> g.StudiosId == studioid).ToList();
+
+        }
      
         public IEnumerable<Game> MyGames(AppUser user) //adott felhsználóhoz tartozó játékok
         {
