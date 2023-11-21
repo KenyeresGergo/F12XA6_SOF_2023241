@@ -6,8 +6,6 @@
         string Id { get; set; }
         string? LogoSvg { get; }
         StudioName Name { get; }
-        byte[]? PhotoData { get; set; }
-        string PthotoContentType { get; set; }
         string Serial_Num { get; }
 
         void CopyFrom(Studios old);

@@ -37,7 +37,7 @@ namespace F12XA6_SOF_2023241.Models
 
     }
 
-    public class Studios : IDbEntity, IStudios
+    public class Studios : IStudios, IDbEntity
     {
         static string _path = "~/wwwroot/logos_in_svg/";
 
@@ -53,26 +53,9 @@ namespace F12XA6_SOF_2023241.Models
         public virtual ICollection<Game> GamesOwned { get; set; }
         [NotMapped]
         private StudioName temp;
-
-
-        [StringLength(200)]
-        public string? PthotoContentType { get; set; }
-        public byte[]? PhotoData { get; set; }
-
-
-
-
-
-
-
         public Studios()
         {
             Id = Guid.NewGuid().ToString();
-            this.PthotoContentType = "svg";
-            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
-            var path = LogoSvg;
-            path.Remove(0, 2);
-            PhotoData = File.ReadAllBytes(path + ".svg");
         }
         public Studios(string Serial_Num, StudioName name, string logoSvg)
         {
@@ -80,11 +63,6 @@ namespace F12XA6_SOF_2023241.Models
             this.Serial_Num = Serial_Num;
             Name = name;
             LogoSvg = _path + logoSvg;
-            this.PthotoContentType = "svg";
-            var path = logoSvg;
-            path.Remove(0, 2);
-            PhotoData = File.ReadAllBytes(path + ".svg");
-
         }
 
         public Studios(string Serial_Num)
@@ -94,11 +72,6 @@ namespace F12XA6_SOF_2023241.Models
             Name = (StudioName)int.Parse(this.Serial_Num);
             temp = Name;
             LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
-
-           this.PthotoContentType = "svg";
-            var path = LogoSvg;
-            path = path.Remove(0, 2);
-            PhotoData = File.ReadAllBytes(path + ".svg");
         }
         static string InsertSpaces(string input)
         {
