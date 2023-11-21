@@ -1,5 +1,8 @@
-﻿using F12XA6_SOF_2023241.Models;
-using F12XA6_SOF_2023241.Repository;
+﻿using F12XA6_SOF_2023241.Logic.Interfaces;
+using F12XA6_SOF_2023241.Models;
+using F12XA6_SOF_2023241.Repository.DataBase;
+using F12XA6_SOF_2023241.Repository.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,69 +12,70 @@ using System.Web.Mvc;
 
 namespace F12XA6_SOF_2023241.Logic
 {
-    public class GameLogic
+    public class GameLogic : IGameLogic
     {
-        AppDbContext context;
-        public GameLogic(AppDbContext context)
-        {
-            this.context = context;
-        }
+        private readonly IRepository<Game> repository;
 
+        public GameLogic(IRepository<Game> repository)
+        {
+            this.repository = repository;
+        }
         public void Create(Game game)
         {
-            var gameId = context.Games.FirstOrDefault(x => x.Id == game.Id);
-            if (gameId != null)
+            if (game == null)
             {
-                throw new ArgumentException("Game with thos name already exists!");
+                throw new InvalidDataException("The game Cannot be null!");
             }
-           context.Games.Add(game);
-           context.SaveChanges();
+            else if (game.Title == "")
+            {
+                throw new Exception("The game title cannot be an empty string!");
+            }
+            else if (game.Title == null || game.Owner == null || game.OwnerId == null || game.Rating == null || game.Studios == null || game.StudiosId == null)
+            {
+                throw new InvalidDataException();
+            }
+            this.repository.Create(game);
         }
         public IEnumerable<Game> Read()
         {
-            return this.context.Games;
+            return this.repository.ReadAll();
         }
-        public Game? Read(Game game)
+        //public Game Read(Game game)
+        //{
+        //    return this.repository.Read(game);
+        //}
+        public Game Read(string id)
         {
-            return this.context.Games.FirstOrDefault(t => t.Id == game.Id);
-        }
-        public Game? Read(string id)
-        {
-            return this.context.Games.FirstOrDefault(t => t.Id == id);
+            return this.repository.Read(id);
         }
         public void Update(Game game)
-        {   
-            var old = Read(game);
-            old.Description = game.Description;
-            old.Rating = game.Rating;
-            old.PhotoData = game.PhotoData;
-            old.StudiosId = game.StudiosId;
-           
-            old.OwnerId = game.OwnerId;
-            old.Title = game.Title;
-            context.SaveChanges();
+        {
+            repository.Update(game);
         }
-        public void Delete(Game game) 
+        //public void Delete(Game game)
+        //{
+        //    repository.Delete(game);
+        //}
+        public void Delete(string id)
         {
-            var _game = Read(game);
-            context.Games.Remove(_game);
-            context.SaveChanges();
-        } 
-        public void Delete(string id) 
+            repository.Delete(id);
+        }
+        [Authorize]
+        public IEnumerable<Game> MyGames(AppUser user) //adott felhsználóhoz tartozó játékok
         {
-            var _game = Read(id);
-            context.Games.Remove(_game);
-            context.SaveChanges();
+           
+            return user.GamesOwned;
         }
 
         public IEnumerable<IEnumerable<Game>> GamesByStudios()
         {
-            var res = from game in context.Games
+            var res = from game in repository.ReadAll()
                       group game by game.StudiosId
-                      into g orderby g.Key
+                      into g
+                      orderby g.Key
                       select g;
             return res;
-                      
+
         }
     }
 }
