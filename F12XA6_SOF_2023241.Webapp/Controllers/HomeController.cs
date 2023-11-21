@@ -53,8 +53,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         [Authorize]
         public async Task<IActionResult> MyGames()
         {
-            var user = await _userManager.GetUserAsync(this.User);
-            return View(_gamelogic.MyGames(user));
+            return View(_gamelogic.MyGames(await _userManager.GetUserAsync(this.User)));
         }
 
         public async Task<IActionResult> DelegateAdmin()
@@ -97,7 +96,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
         public IActionResult Games()
         {
-            return View(_gamelogic.Read());
+            return View(_gamelogic.Read().OrderBy(t=>t.Title));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
