@@ -1,12 +1,17 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     const track = document.getElementById("image-track");
 
-    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+    const handleOnDown = e => {
+        track.dataset.mouseDownAt = e.clientX;
+        if (!track.classList.contains('fullscreen')) {
+            toggleFullScreen();
+        }
+    };
 
     const handleOnUp = () => {
         track.dataset.mouseDownAt = "0";
         track.dataset.prevPercentage = track.dataset.percentage;
-    }
+    };
 
     const handleOnMove = e => {
         if (track.dataset.mouseDownAt === "0") return;
@@ -29,7 +34,11 @@
                 objectPosition: `${100 + nextPercentage}% center`
             }, { duration: 1200, fill: "forwards" });
         }
-    }
+    };
+
+    const toggleFullScreen = () => {
+        track.classList.toggle('fullscreen');
+    };
 
     /* -- Had to add extra lines for touch events -- */
 
