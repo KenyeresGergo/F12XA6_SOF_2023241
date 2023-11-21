@@ -94,9 +94,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
 
-        public IActionResult Games()
+        public IActionResult Games(string studioId)
         {
-            return View(_gamelogic.Read().OrderBy(t=>t.Title));
+            var games = _gamelogic.GamesByStudios(studioId);
+            return View(games);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
