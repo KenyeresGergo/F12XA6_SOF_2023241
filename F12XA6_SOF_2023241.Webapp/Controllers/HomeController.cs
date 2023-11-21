@@ -94,10 +94,18 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
         [Authorize]
-        public IActionResult Games(string studioId)
+        public IActionResult Games(string studioId = null)
         {
-            var games = _gamelogic.GamesByStudioId(studioId);
-            return View(games);
+            if (studioId == null)
+            {
+                var games = _gamelogic.Read();
+                return View(games);
+            }
+            else
+            {
+                var games = _gamelogic.GamesByStudioId(studioId);
+                return View(games);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

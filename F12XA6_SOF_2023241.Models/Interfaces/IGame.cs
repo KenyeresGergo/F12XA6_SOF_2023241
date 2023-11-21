@@ -2,10 +2,14 @@
 
 public interface IGame
 {
-    string Id { get; }
+    string Id { get; set; }
     string Title { get; set; }
     string Description { get; set; }
     int Rating { get; set; }
     string? PhotoContentType { get; set; }
     byte[]? PhotoData { get; set; }
+    string StudiosId { get; set; }
+    Studios Studios { get; set; }
+    string OwnerId { get; set; }
+    AppUser Owner { get; set; }
 }

@@ -7,15 +7,14 @@
 <link rel="stylesheet" href="~/css/gameStyle.css" asp-append-version="true" />
 <script src="~/js/GameSiteScript.js" asp-append-version="true"></script>
 
-<main>
-    <div class="col text-right">
-        <a href="#" class="inverse add-game">Add Game</a>
-    </div>
+<div class="col text-right">
+    <a href="#" class="inverse add-game">Add Game</a>
+</div>
 
-    <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-        @foreach (var game in Model.GroupBy(t => t.Id))
-        {
-            <img class="image" src="@Url.Action("GetImage", "Game", game.Key)" draggable="false">
-        } 
-    </div>
-</main>
+<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+    @foreach (var game in Model.GroupBy(t => t.Id))
+    {
+        @* <img class="image" src="@Url.Action("GetImage", "Game", game.Key)" draggable="false"> *@
+        <img class ="image " src="~/cropped-nik_inverted.jpg" draggable="false">
+    } 
+</div>

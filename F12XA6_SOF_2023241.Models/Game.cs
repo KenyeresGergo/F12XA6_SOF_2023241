@@ -5,7 +5,7 @@ using F12XA6_SOF_2023241.Models.Interfaces;
 
 namespace F12XA6_SOF_2023241.Models
 {
-    public class Game : IGame, IDbEntity
+    public class Game :  IDbEntity, IGame
     {
 
         [Key]
