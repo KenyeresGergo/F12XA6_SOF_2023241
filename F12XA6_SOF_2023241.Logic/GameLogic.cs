@@ -60,7 +60,7 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Delete(id);
         }
-        [Authorize]
+     
         public IEnumerable<Game> MyGames(AppUser user) //adott felhsználóhoz tartozó játékok
         {
            

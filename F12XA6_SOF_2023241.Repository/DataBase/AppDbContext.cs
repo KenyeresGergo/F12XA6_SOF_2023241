@@ -9,7 +9,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
 {
 
 
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -34,7 +34,8 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 UserName = "keny.gergo@gmail.com",
                 FirstName = "Kenyeres",
                 LastName = "Gergő",
-                NormalizedUserName = "KENY.GERGO@GMAIL.COM"
+                NormalizedUserName = "KENY.GERGO@GMAIL.COM",
+                GamesOwned = new List<Game>()
             };
             gergo.PasswordHash = ph.HashPassword(gergo, "asd123");
             builder.Entity<AppUser>().HasData(gergo);
@@ -46,8 +47,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
 
             builder.Entity<Studios>().HasData(studios);
 
-
-            builder.Entity<Game>().HasData(new Game()
+            var game = new Game()
             {
                 Title = "Grand Theft Auto V",
                 Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton," +
@@ -56,7 +56,9 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 OwnerId = gergo.Id,
                 StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id
 
-            });
+            };
+            //gergo.GamesOwned.Add(game);
+            builder.Entity<Game>().HasData(game);
 
 
             builder.Entity<Game>()
