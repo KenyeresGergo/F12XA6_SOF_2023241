@@ -19,8 +19,8 @@ namespace F12XA6_SOF_2023241.Models
         [DefaultValue(0)]
         [Range(0, 10)]
         public int Rating { get; set; }
-
-        public string? ContentType { get; set; }
+        [StringLength(200)]
+        public string? PhotoContentType { get; set; }
 
         public byte[]? PhotoData { get; set; }
        

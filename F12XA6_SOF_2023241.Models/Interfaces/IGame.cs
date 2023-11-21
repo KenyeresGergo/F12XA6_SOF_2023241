@@ -6,6 +6,6 @@ public interface IGame
     string Title { get; set; }
     string Description { get; set; }
     int Rating { get; set; }
-    string? ContentType { get; set; }
+    string? PhotoContentType { get; set; }
     byte[]? PhotoData { get; set; }
 }

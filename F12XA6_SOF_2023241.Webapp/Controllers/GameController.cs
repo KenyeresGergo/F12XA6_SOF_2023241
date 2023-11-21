@@ -54,9 +54,9 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public IActionResult GetImage(string id)
         {
             var game = _logic.Read(id);
-            if (game.ContentType.Length > 3)
+            if (game.PhotoContentType.Length > 3)
             {
-                return new FileContentResult(game.PhotoData, game.ContentType);
+                return new FileContentResult(game.PhotoData, game.PhotoContentType);
             }
             else
             {
