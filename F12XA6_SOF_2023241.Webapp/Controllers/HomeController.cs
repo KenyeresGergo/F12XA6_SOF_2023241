@@ -96,7 +96,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
         public IActionResult Games(string studioId)
         {
-            var games = _gamelogic.GamesByStudios(studioId);
+            var games = _gamelogic.GamesByStudioId(studioId);
             return View(games);
         }
 
