@@ -3,9 +3,9 @@
 
     const handleOnDown = e => {
         track.dataset.mouseDownAt = e.clientX;
-        if (!track.classList.contains('fullscreen')) {
+
+        if (!track.classList.contains('fullscreen'))
             toggleFullScreen();
-        }
     };
 
     const handleOnUp = () => {
@@ -14,7 +14,8 @@
     };
 
     const handleOnMove = e => {
-        if (track.dataset.mouseDownAt === "0") return;
+        if (track.dataset.mouseDownAt === "0")
+            return;
 
         const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
             maxDelta = window.innerWidth / 2;
@@ -29,7 +30,8 @@
             transform: `translate(${nextPercentage}%, -50%)`
         }, { duration: 1200, fill: "forwards" });
 
-        for (const image of track.getElementsByClassName("image")) {
+        for (const image of track.getElementsByClassName("image"))
+        {
             image.animate({
                 objectPosition: `${100 + nextPercentage}% center`
             }, { duration: 1200, fill: "forwards" });
@@ -41,7 +43,6 @@
     };
 
     /* -- Had to add extra lines for touch events -- */
-
     window.onmousedown = e => handleOnDown(e);
 
     window.ontouchstart = e => handleOnDown(e.touches[0]);

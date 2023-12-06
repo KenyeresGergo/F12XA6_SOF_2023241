@@ -20,6 +20,9 @@
     --border-color: var(--blue);
     --bg-solar: var(--yellow);
 }
+    #light::before {
+        background: #ffffff;
+    }
 
 .dark {
     --bg: var(--gray5);
@@ -29,6 +32,9 @@
     --border-color: var(--purple);
     --bg-solar: var(--blue);
 }
+    #dark::before {
+        background: #2a2e35;
+    }
 
 .solar {
     --gray0: #fbffd4;
@@ -39,18 +45,9 @@
     --gray5: #005368;
     --gray6: #003d4c;
 }
-
-#dark::before {
-    background: #2a2e35;
-}
-
-#light::before {
-    background: #ffffff;
-}
-
-#solar::before {
-    background: var(--bg-solar);
-}
+    #solar::before {
+        background: var(--bg-solar);
+    }
 
 body {
     flex-direction: column;

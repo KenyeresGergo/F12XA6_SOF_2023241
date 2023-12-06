@@ -10,7 +10,8 @@ const dropdown = dropdownParent.querySelector('.dropdown');
 const theme = localStorage.getItem('theme');
 const isSolar = localStorage.getItem('isSolar');
 
-if (theme) {
+if (theme)
+{
     body.classList.add(theme);
     isSolar && body.classList.add('solar');
 }
@@ -27,12 +28,15 @@ lightButton.onclick = () => {
 };
 
 solarButton.onclick = () => {
-    if (body.classList.contains('solar')) {
+    if (body.classList.contains('solar'))
+    {
         body.classList.remove('solar');
         solarButton.style.cssText = '--bg-solar: var(--yellow);';
         solarButton.innerText = 'solarize';
         localStorage.removeItem('isSolar');
-    } else {
+    }
+    else
+    {
         solarButton.style.cssText = '--bg-solar: white;';
         body.classList.add('solar');
         solarButton.innerText = 'normalize';

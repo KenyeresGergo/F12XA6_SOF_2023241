@@ -1,6 +1,8 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
+
     document.getElementById("cards").onmousemove = e => {
-        for (const card of document.getElementsByClassName("card")) {
+        for (const card of document.getElementsByClassName("card"))
+        {
             const rect = card.getBoundingClientRect(),
                 x = e.clientX - rect.left,
                 y = e.clientY - rect.top;
