@@ -36,23 +36,28 @@ namespace F12XA6_SOF_2023241.Models
         Valve = 21,
 
     }
-
     public class Studios : IStudios, IDbEntity
     {
         static string _path = "~/wwwroot/logos_in_svg/";
 
         [Key]
         public string Id { get; set; }
+
         [NotMapped]
         public string Serial_Num { get; private set; }  //the int value of the StudioName enum
+
         [Required]
         [StringLength(200)]
         public StudioName Name { get; private set; } // appears as an int in the database
+
         public string? LogoSvg { get; private set; }
+
         [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
+
         [NotMapped]
         private StudioName temp;
+
         public Studios()
         {
             Id = Guid.NewGuid().ToString();
@@ -64,7 +69,6 @@ namespace F12XA6_SOF_2023241.Models
             Name = name;
             LogoSvg = _path + logoSvg;
         }
-
         public Studios(string Serial_Num)
         {
             Id = Guid.NewGuid().ToString();
@@ -76,7 +80,6 @@ namespace F12XA6_SOF_2023241.Models
         static string InsertSpaces(string input)
         {
             StringBuilder result = new StringBuilder();
-
             for (int i = 0; i < input.Length; i++)
             {
                 char currentChar = input[i];
@@ -86,7 +89,6 @@ namespace F12XA6_SOF_2023241.Models
 
                 result.Append(currentChar);
             }
-
             return result.ToString();
         }
         static string ConvertToLowercaseAndReplaceSpaces(string input)
@@ -105,7 +107,6 @@ namespace F12XA6_SOF_2023241.Models
 
             return result.ToString();
         }
-
         public void CopyFrom(Studios old)
         {
             this.Id = old.Id;
@@ -114,8 +115,5 @@ namespace F12XA6_SOF_2023241.Models
             this.LogoSvg = old.LogoSvg;
             this.GamesOwned = old.GamesOwned;
         }
-
-
     }
-
 }

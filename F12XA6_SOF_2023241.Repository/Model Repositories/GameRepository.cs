@@ -20,10 +20,10 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
         public void Create(Game game)
         {
             var gameId = context.Games.FirstOrDefault(x => x.Id == game.Id);
+
             if (gameId != null)
-            {
                 throw new ArgumentException("Game with thos name already exists!");
-            }
+
             context.Games.Add(game);
             context.SaveChanges();
         }
@@ -42,13 +42,13 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
         public override bool Update(Game item)
         {
             var sourceItem = Read(item.Id);
+
             if (sourceItem == null)
-            {
                 return false;
-            }
 
             sourceItem.CopyFrom(item);
             context.SaveChanges();
+
             return true;
         }
         public void Delete(Game game)

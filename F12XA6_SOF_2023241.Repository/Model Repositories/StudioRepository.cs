@@ -22,10 +22,10 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
         public void Create(Studios studio)
         {
             var studioId = context.Studios.FirstOrDefault(x => x.Id == studio.Id);
+
             if (studioId != null)
-            {
                 throw new ArgumentException("Game with thos name already exists!");
-            }
+
             context.Studios.Add(studio);
             context.SaveChanges();
         }
@@ -44,13 +44,13 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
         public override bool Update(Studios item)
         {
             var sourceItem = Read(item.Id);
+
             if (sourceItem == null)
-            {
                 return false;
-            }
 
             sourceItem.CopyFrom(item);
             context.SaveChanges();
+
             return true;
         }
         public void Delete(Studios game)

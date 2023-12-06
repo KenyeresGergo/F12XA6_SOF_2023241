@@ -1,4 +1,4 @@
-﻿namespace F12XA6_SOF_2023241.Models
+﻿namespace F12XA6_SOF_2023241.Models.Interfaces
 {
     public interface IStudios
     {
@@ -7,7 +7,6 @@
         string? LogoSvg { get; }
         StudioName Name { get; }
         string Serial_Num { get; }
-
         void CopyFrom(Studios old);
     }
 }

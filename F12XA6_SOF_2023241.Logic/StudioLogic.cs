@@ -13,21 +13,14 @@ namespace F12XA6_SOF_2023241.Logic
     public class StudioLogic : IStudioLogic
     {
         private IRepository<Studios> repository;
-
         public StudioLogic(IRepository<Studios> repository)
         {
             this.repository = repository;
         }
-
-
         public IEnumerable<Studios> Read()
         {
             return this.repository.ReadAll();
         }
-        //public Game Read(Game game)
-        //{
-        //    return this.repository.Read(game);
-        //}
         public Studios Read(string id)
         {
             return this.repository.Read(id);
@@ -36,13 +29,17 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Update(game);
         }
-        //public void Delete(Game game)
-        //{
-        //    repository.Delete(game);
-        //}
         public void Delete(string id)
         {
             repository.Delete(id);
         }
+        //public Game Read(Game game)
+        //{
+        //    return this.repository.Read(game);
+        //}
+        //public void Delete(Game game)
+        //{
+        //    repository.Delete(game);
+        //}
     }
 }

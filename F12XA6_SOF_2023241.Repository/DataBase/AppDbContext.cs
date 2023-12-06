@@ -21,10 +21,11 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<IdentityRole>().HasData(
+            builder.Entity<IdentityRole>().HasData
+            (
               new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
               new { Id = "2", Name = "Customer", NormalizedName = "CUSTOMER" }
-              );
+            );
 
             PasswordHasher<AppUser> ph = new PasswordHasher<AppUser>();
             AppUser gergo = new AppUser
@@ -44,7 +45,6 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
             var studios = Enum.GetValues(typeof(StudioName))
                 .Cast<StudioName>()
                 .Select((studio, index) => new Studios((index + 1).ToString())).ToList();
-
             builder.Entity<Studios>().HasData(studios);
 
             var game = new Game()
@@ -59,7 +59,6 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
             };
             //gergo.GamesOwned.Add(game);
             builder.Entity<Game>().HasData(game);
-
 
             builder.Entity<Game>()
                 .HasOne(t => t.Owner)

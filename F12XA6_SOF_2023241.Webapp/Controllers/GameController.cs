@@ -39,10 +39,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public ActionResult Create(Game game)
         {
             if (!ModelState.IsValid)
-            {
                 return View(game);
-            }
+
             _gamelogic.Create(game);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -51,20 +51,19 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public ActionResult Delete(string id)
         {
             _gamelogic.Delete(id);
+
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult GetImage(string id)
         {
             var game = _gamelogic.Read(id);
+
             if (game.PhotoContentType.Length > 3)
-            {
                 return new FileContentResult(game.PhotoData, game.PhotoContentType);
-            }
+
             else
-            {
                 return BadRequest();
-            }
 
         }
 
@@ -73,6 +72,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             var exceptionHandlerPathFeature =
             HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             var msg = exceptionHandlerPathFeature.Error.Message;
+
             return View("Error", msg);
         }
     }

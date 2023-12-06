@@ -22,18 +22,15 @@ namespace F12XA6_SOF_2023241.Logic
         }
         public void Create(Game game)
         {
-            if (game == null)
-            {
+            if (game == null) 
                 throw new InvalidDataException("The game Cannot be null!");
-            }
+            
             else if (game.Title == "")
-            {
                 throw new Exception("The game title cannot be an empty string!");
-            }
+            
             else if (game.Title == null || game.Owner == null || game.OwnerId == null || game.Rating == null || game.Studios == null || game.StudiosId == null)
-            {
                 throw new InvalidDataException();
-            }
+            
             this.repository.Create(game);
         }
         public IEnumerable<Game> Read()
@@ -60,19 +57,15 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Delete(id);
         }
-       
-     
         public IEnumerable<Game> MyGames(AppUser user) //adott felhsználóhoz tartozó játékok
         {
-           
             return user.GamesOwned;
         }
-
-
         public IEnumerable<Game> GamesByStudioId(string studioid)
         {
-            return repository.ReadAll().Where(g => g.StudiosId == studioid).ToList();
-
+            return repository.ReadAll()
+                .Where(g => g.StudiosId == studioid)
+                .ToList();
         }
 
         public IEnumerable<IEnumerable<Game>> GamesByStudios()
@@ -83,7 +76,6 @@ namespace F12XA6_SOF_2023241.Logic
                       orderby g.Key
                       select g;
             return res;
-
         }
     }
 }

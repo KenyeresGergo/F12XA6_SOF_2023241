@@ -48,6 +48,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
                 .ToList();
 
             var viewModel = new HomePageViewModel(studios, page, totalPages);
+
             return View(viewModel);
         }
         [Authorize]
@@ -59,16 +60,16 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public async Task<IActionResult> DelegateAdmin()
         {
             var principal = this.User;
+
             var user = await _userManager.GetUserAsync(principal);
-            var role = new IdentityRole()
-            {
-                Name = "Admin"
-            };
+
+            var role = new IdentityRole(){ Name = "Admin"};
+
             if (!await _roleManager.RoleExistsAsync("Admin"))
-            {
                 await _roleManager.CreateAsync(role);
-            }
+
             await _userManager.AddToRoleAsync(user, "Admin");
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -77,6 +78,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         {
             var user = _userManager.Users.FirstOrDefault(t => t.Id == uid);
             await _userManager.RemoveFromRoleAsync(user, "Admin");
+
             return RedirectToAction(nameof(Users));
         }
 
@@ -85,6 +87,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         {
             var user = _userManager.Users.FirstOrDefault(t => t.Id == uid);
             await _userManager.AddToRoleAsync(user, "Admin");
+
             return RedirectToAction(nameof(Users));
         }
         [Authorize(Roles = "Admin")]
@@ -99,11 +102,13 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             if (studioId == null)
             {
                 var games = _gamelogic.Read();
+
                 return View(games);
             }
             else
             {
                 var games = _gamelogic.GamesByStudioId(studioId);
+
                 return View(games);
             }
         }
