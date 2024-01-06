@@ -36,7 +36,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
         // GET: GameController/Create
         [HttpPost]
-        public ActionResult Create(Game game)
+        public ActionResult CreateGame(Game game)
         {
             if (!ModelState.IsValid)
                 return View(game);
