@@ -59,7 +59,7 @@ namespace F12XA6_SOF_2023241.Logic
         }
         public IEnumerable<Game> MyGames(AppUser user) //adott felhsználóhoz tartozó játékok
         {
-            return user.GamesOwned;
+            return user.GamesOwned is null ? new List<Game>() : user.GamesOwned;
         }
         public IEnumerable<Game> GamesByStudioId(string studioid)
         {

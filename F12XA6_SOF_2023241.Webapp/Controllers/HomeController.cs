@@ -55,6 +55,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public async Task<IActionResult> MyGames()
         {
             return View(_gamelogic.MyGames(await _userManager.GetUserAsync(this.User)));
+         
         }
 
         public async Task<IActionResult> DelegateAdmin()

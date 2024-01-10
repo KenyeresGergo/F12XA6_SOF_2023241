@@ -57,7 +57,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id
 
             };
-            //gergo.GamesOwned.Add(game);
+           // gergo.GamesOwned.Add(game);
             builder.Entity<Game>().HasData(game);
 
             builder.Entity<Game>()
