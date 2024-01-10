@@ -36,7 +36,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
         // GET: GameController/Create
         [HttpPost]
-        public ActionResult CreateGame(Game game)
+        public ActionResult Create(Game game)
         {
             if (!ModelState.IsValid)
                 return View(game);
@@ -45,6 +45,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+       
 
 
         // GET: GameController/Delete/5

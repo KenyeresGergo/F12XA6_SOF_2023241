@@ -96,6 +96,11 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         {
             return View(_userManager.Users);
         }
+        [Authorize]
+        public IActionResult CreateGame()
+        {
+            return View();
+        }
 
         [Authorize]
         public IActionResult Games(string studioId = null)
