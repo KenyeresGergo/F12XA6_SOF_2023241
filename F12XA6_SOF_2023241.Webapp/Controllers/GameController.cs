@@ -45,7 +45,11 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-       
+        [Authorize]
+        public IActionResult CreateGame()
+        {
+            return View();
+        }
 
 
         // GET: GameController/Delete/5
