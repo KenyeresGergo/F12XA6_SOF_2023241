@@ -71,6 +71,10 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 .WithMany(s => s.GamesOwned)
                 .HasForeignKey(t => t.StudiosId) // Use a dedicated foreign key property
                 .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<Game>().
+                HasMany(g => g.Comments)
+                .WithOne(c => c.Game)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             //builder.Entity<Studios>()
