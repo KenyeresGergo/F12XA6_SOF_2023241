@@ -58,7 +58,7 @@ body {
 #cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 2.25rem;
     max-width: 66rem;
     width: calc(100% - 20px);
 }
@@ -150,19 +150,22 @@ body {
     padding: 0.5rem;
 }
 
+.pagination {
 
-#pagination {
     display: flex;
     flex-direction: row;
     margin: 0;
     padding: 0;
     margin-top: 3rem;
-    justify-content: center;
-    align-content: center;
     max-width: 66rem;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .pag-item {
+    margin: 0;
+    padding: 10px;
 }
 
 /* Responsive styles... */
