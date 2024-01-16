@@ -134,9 +134,14 @@ body {
         width: 150px;
         object-fit: cover;
         display: block;
-        margin-bottom: 10px; /* Add margin-bottom for the gap */
+        margin-bottom: 20px; /* Add margin-bottom for the gap */
+        filter: invert(1); /* Invert colors initially for light mode */
     }
 
+/* Invert the logo for dark mode */
+.dark .card img {
+    filter: invert(0);
+}
 .inverse {
     color: var(--bg);
     background: var(--text);

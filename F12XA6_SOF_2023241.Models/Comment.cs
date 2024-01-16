@@ -10,8 +10,6 @@ namespace F12XA6_SOF_2023241.Models
 {
     public class Comment : IDbEntity, IComment
     {
-
-        [Key]
         public string Id { get; set; }
         public string Content { get; set; }
         public int ReactionCounter { get; set; }
