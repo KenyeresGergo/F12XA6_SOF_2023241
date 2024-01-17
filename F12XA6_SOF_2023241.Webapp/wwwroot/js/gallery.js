@@ -54,4 +54,14 @@
     window.onmousemove = e => handleOnMove(e);
 
     window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+
+    function openFullscreen(imageSrc) {
+        document.getElementById('fullscreenImg').src = imageSrc;
+        document.getElementById('fullscreen').style.display = 'flex';
+    }
+
+    function closeFullscreen() {
+        document.getElementById('fullscreen').style.display = 'none';
+    }
 });

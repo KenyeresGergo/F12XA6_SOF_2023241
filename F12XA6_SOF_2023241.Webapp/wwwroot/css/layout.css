@@ -10,21 +10,10 @@
     color: var(--text);
     background: var(--bg);
     transition: background 500ms ease-in-out, color 1000ms ease-in-out;
+    overflow: scroll;
+    scrollbar-color:var(--bg);
+    scrollbar-width: thin;
 }
-    /*Scrollbar*/
-    body::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    body::-webkit-scrollbar-track {
-        background: var(--text);
-        S
-    }
-
-    body::-webkit-scrollbar-thumb {
-        background: var(--border-color);
-    }
-
 a {
     color: currentColor;
     text-decoration: none;
