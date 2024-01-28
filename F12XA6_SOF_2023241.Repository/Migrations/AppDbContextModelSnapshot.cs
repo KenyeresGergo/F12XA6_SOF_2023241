@@ -106,18 +106,18 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c92c1a2d-a8eb-4fec-a2ea-da08f05448b2",
+                            Id = "2cef9122-cde6-4a7f-9daa-adb3184883cc",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ba7cba9b-b1d5-400c-894f-157f3a49dca8",
+                            ConcurrencyStamp = "218c0c27-941b-494e-983c-00727e811004",
                             Email = "keny.gergo@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Kenyeres",
                             LastName = "Gergő",
                             LockoutEnabled = false,
                             NormalizedUserName = "KENY.GERGO@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP5dPVoxZaVZROLEL3Pv7U9q11fUcp0qefML4U63Q5QaELWvErXbccwfWuwnwbunRw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN7Ai8KvFfm6qcnwCPn34BsmtJuuNZiz1fQ9+O01M1Mj3SjcGphlh5P80FngYotQFw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "08df41f7-4842-49c3-b74e-00a3717072b1",
+                            SecurityStamp = "1984b42a-a9ff-4dec-9b21-ea2edb8aaff3",
                             TwoFactorEnabled = false,
                             UserName = "keny.gergo@gmail.com"
                         });
@@ -132,24 +132,27 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("GameId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ReactionCounter")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("OwnerId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
@@ -196,11 +199,11 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3ce36891-6c9a-4aea-ad6a-7c421e1885f8",
+                            Id = "42d3b068-26c3-4bc2-b89f-3ae4c4d5d7ca",
                             Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
-                            OwnerId = "c92c1a2d-a8eb-4fec-a2ea-da08f05448b2",
+                            OwnerId = "2cef9122-cde6-4a7f-9daa-adb3184883cc",
                             Rating = 9,
-                            StudiosId = "17702228-3689-4623-94c7-838c4f8b618b",
+                            StudiosId = "25cd7b1b-3554-4fc2-8b7c-cfbf698346ec",
                             Title = "Grand Theft Auto V"
                         });
                 });
@@ -224,127 +227,127 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "90b5be9e-efe0-4874-a1a2-f5c12550249e",
+                            Id = "1afbe55d-0fe7-478b-8c31-f054b26b7a58",
                             LogoSvg = "~/wwwroot/logos_in_svg/bethesda",
                             Name = 1
                         },
                         new
                         {
-                            Id = "036c203a-85af-4d9a-bb97-8ec7746479d3",
+                            Id = "07d4da67-d29c-42a6-b04c-613f05392974",
                             LogoSvg = "~/wwwroot/logos_in_svg/blizzard",
                             Name = 2
                         },
                         new
                         {
-                            Id = "b829f7e6-f13c-4119-807d-377b0d432604",
+                            Id = "75b7f8d5-bfef-44bf-918d-56c85baf52ac",
                             LogoSvg = "~/wwwroot/logos_in_svg/bluehole",
                             Name = 3
                         },
                         new
                         {
-                            Id = "aefbe325-a2eb-4975-86d8-9f07c1a348fb",
+                            Id = "ef20a3b1-220d-4769-9a04-1c79813eba0d",
                             LogoSvg = "~/wwwroot/logos_in_svg/capcom",
                             Name = 4
                         },
                         new
                         {
-                            Id = "e577657b-3b67-4f9a-8f35-c2c5645c5c05",
+                            Id = "28ac21ce-bb79-45f9-8625-bfc456849ede",
                             LogoSvg = "~/wwwroot/logos_in_svg/cd-projekt",
                             Name = 5
                         },
                         new
                         {
-                            Id = "66c75c95-9767-45e5-85c6-f4f5a196e545",
+                            Id = "aafa7b69-e5d5-4262-9921-cdd94735c4aa",
                             LogoSvg = "~/wwwroot/logos_in_svg/crystal",
                             Name = 6
                         },
                         new
                         {
-                            Id = "8ad4c39e-f8e5-4013-949e-201fb9c6f615",
+                            Id = "15a9fe86-676b-4406-a0d4-f7a8e895711c",
                             LogoSvg = "~/wwwroot/logos_in_svg/electronic-arts",
                             Name = 7
                         },
                         new
                         {
-                            Id = "18ea3c62-fee5-48d9-87c4-1aa0384d5caf",
+                            Id = "888af383-6b05-48b4-90fe-103b40c1b537",
                             LogoSvg = "~/wwwroot/logos_in_svg/epic-games",
                             Name = 8
                         },
                         new
                         {
-                            Id = "711579b2-8462-4fc4-a3a6-901e75746007",
+                            Id = "827716f7-ce13-426e-a16e-1a43e442bc7b",
                             LogoSvg = "~/wwwroot/logos_in_svg/firaxis-games",
                             Name = 9
                         },
                         new
                         {
-                            Id = "9b252cf3-8771-45dc-82ce-c112ab06cec1",
+                            Id = "2cdcfbe3-965a-4a3e-ac2c-7df7ee76466c",
                             LogoSvg = "~/wwwroot/logos_in_svg/insomniac-games",
                             Name = 10
                         },
                         new
                         {
-                            Id = "163859ef-22f2-4b7c-a7ff-fd4a77d652f0",
+                            Id = "aaf2af19-1fc2-409d-94c5-5dd80921163f",
                             LogoSvg = "~/wwwroot/logos_in_svg/microsoft",
                             Name = 11
                         },
                         new
                         {
-                            Id = "ee9784be-e6f5-48c6-80e7-7441e0c4c82c",
+                            Id = "6bffffc0-9045-4533-b9c5-170fa01bd4f5",
                             LogoSvg = "~/wwwroot/logos_in_svg/mojang",
                             Name = 12
                         },
                         new
                         {
-                            Id = "88eaa27d-bfae-4d3e-bf93-0160e8610dd7",
+                            Id = "e170bac4-c88f-4e79-a20c-3de9e21e174e",
                             LogoSvg = "~/wwwroot/logos_in_svg/nintendo",
                             Name = 13
                         },
                         new
                         {
-                            Id = "95106fb7-9d9f-4e0a-808b-ce541a66204f",
+                            Id = "bb20a8b8-264e-4449-8f0b-ae2d5dfa3543",
                             LogoSvg = "~/wwwroot/logos_in_svg/paradox-interactive",
                             Name = 14
                         },
                         new
                         {
-                            Id = "15bae70f-2c5a-4a48-96a8-919dfcf1ee37",
+                            Id = "042e34a1-4c26-4439-9a96-516744f92a61",
                             LogoSvg = "~/wwwroot/logos_in_svg/remedy-entertainment",
                             Name = 15
                         },
                         new
                         {
-                            Id = "17702228-3689-4623-94c7-838c4f8b618b",
+                            Id = "25cd7b1b-3554-4fc2-8b7c-cfbf698346ec",
                             LogoSvg = "~/wwwroot/logos_in_svg/rockstar-games",
                             Name = 16
                         },
                         new
                         {
-                            Id = "f559eb47-a146-4fe5-b902-bdd7bfc309e7",
+                            Id = "72c67440-4c54-4bd7-b259-f09e26eace43",
                             LogoSvg = "~/wwwroot/logos_in_svg/sega",
                             Name = 17
                         },
                         new
                         {
-                            Id = "a71fd032-e942-449a-878c-651dbd127a32",
+                            Id = "04c87a34-e55c-4000-b17b-5b33acb01b8c",
                             LogoSvg = "~/wwwroot/logos_in_svg/sony",
                             Name = 18
                         },
                         new
                         {
-                            Id = "75278aa7-07f4-426d-b770-c7e5061db9f9",
+                            Id = "3d392f2a-5663-4c04-9ad6-a9b03ee70063",
                             LogoSvg = "~/wwwroot/logos_in_svg/square-enix",
                             Name = 19
                         },
                         new
                         {
-                            Id = "05f91778-357c-4d83-bae3-c6c26c829621",
+                            Id = "143ff734-1633-41c6-a659-ee1b3f5c1899",
                             LogoSvg = "~/wwwroot/logos_in_svg/ubisoft",
                             Name = 20
                         },
                         new
                         {
-                            Id = "285102e4-5326-467b-ab93-abbfcb78003e",
+                            Id = "7784bf16-d552-499b-811e-ae5bd8aada90",
                             LogoSvg = "~/wwwroot/logos_in_svg/valve",
                             Name = 21
                         });
@@ -504,20 +507,20 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Comment", b =>
                 {
                     b.HasOne("F12XA6_SOF_2023241.Models.Game", "Game")
-                        .WithMany("Comments")
+                        .WithMany("Commenst")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", "Owner")
+                        .WithMany("Commenst")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Game");
 
-                    b.Navigation("User");
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
@@ -525,13 +528,13 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasOne("F12XA6_SOF_2023241.Models.AppUser", "Owner")
                         .WithMany("GamesOwned")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("F12XA6_SOF_2023241.Models.Studios", "Studios")
                         .WithMany("GamesOwned")
                         .HasForeignKey("StudiosId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Owner");
@@ -592,12 +595,14 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.AppUser", b =>
                 {
+                    b.Navigation("Commenst");
+
                     b.Navigation("GamesOwned");
                 });
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("Commenst");
                 });
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Studios", b =>

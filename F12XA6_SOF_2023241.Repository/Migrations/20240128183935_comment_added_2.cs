@@ -1,13 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace F12XA6_SOF_2023241.Repository.Migrations
 {
-    public partial class newpc : Migration
+    public partial class comment_added_2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comment_Games_GameId",
+                table: "Comment");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Games_AspNetUsers_OwnerId",
+                table: "Games");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Games_Studios_StudiosId",
+                table: "Games");
+
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Comment",
+                table: "Comment");
+
             migrationBuilder.DeleteData(
                 table: "Games",
                 keyColumn: "Id",
@@ -123,193 +140,268 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                 keyColumn: "Id",
                 keyValue: "afdd6339-053e-48a8-afb6-ca6a4d381958");
 
+            migrationBuilder.RenameTable(
+                name: "Comment",
+                newName: "Comments");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Comment_GameId",
+                table: "Comments",
+                newName: "IX_Comments_GameId");
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreatedOn",
+                table: "Comments",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
             migrationBuilder.AddColumn<string>(
-                name: "UserId",
-                table: "Comment",
+                name: "OwnerId",
+                table: "Comments",
                 type: "nvarchar(450)",
                 nullable: false,
                 defaultValue: "");
 
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Comments",
+                table: "Comments",
+                column: "Id");
+
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhotoContentType", "PhotoData", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "c92c1a2d-a8eb-4fec-a2ea-da08f05448b2", 0, "ba7cba9b-b1d5-400c-894f-157f3a49dca8", "keny.gergo@gmail.com", true, "Kenyeres", "Gergő", false, null, null, "KENY.GERGO@GMAIL.COM", "AQAAAAEAACcQAAAAEP5dPVoxZaVZROLEL3Pv7U9q11fUcp0qefML4U63Q5QaELWvErXbccwfWuwnwbunRw==", null, false, null, null, "08df41f7-4842-49c3-b74e-00a3717072b1", false, "keny.gergo@gmail.com" });
+                values: new object[] { "2cef9122-cde6-4a7f-9daa-adb3184883cc", 0, "218c0c27-941b-494e-983c-00727e811004", "keny.gergo@gmail.com", true, "Kenyeres", "Gergő", false, null, null, "KENY.GERGO@GMAIL.COM", "AQAAAAEAACcQAAAAEN7Ai8KvFfm6qcnwCPn34BsmtJuuNZiz1fQ9+O01M1Mj3SjcGphlh5P80FngYotQFw==", null, false, null, null, "1984b42a-a9ff-4dec-9b21-ea2edb8aaff3", false, "keny.gergo@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Studios",
                 columns: new[] { "Id", "LogoSvg", "Name" },
                 values: new object[,]
                 {
-                    { "036c203a-85af-4d9a-bb97-8ec7746479d3", "~/wwwroot/logos_in_svg/blizzard", 2 },
-                    { "05f91778-357c-4d83-bae3-c6c26c829621", "~/wwwroot/logos_in_svg/ubisoft", 20 },
-                    { "15bae70f-2c5a-4a48-96a8-919dfcf1ee37", "~/wwwroot/logos_in_svg/remedy-entertainment", 15 },
-                    { "163859ef-22f2-4b7c-a7ff-fd4a77d652f0", "~/wwwroot/logos_in_svg/microsoft", 11 },
-                    { "17702228-3689-4623-94c7-838c4f8b618b", "~/wwwroot/logos_in_svg/rockstar-games", 16 },
-                    { "18ea3c62-fee5-48d9-87c4-1aa0384d5caf", "~/wwwroot/logos_in_svg/epic-games", 8 },
-                    { "285102e4-5326-467b-ab93-abbfcb78003e", "~/wwwroot/logos_in_svg/valve", 21 },
-                    { "66c75c95-9767-45e5-85c6-f4f5a196e545", "~/wwwroot/logos_in_svg/crystal", 6 },
-                    { "711579b2-8462-4fc4-a3a6-901e75746007", "~/wwwroot/logos_in_svg/firaxis-games", 9 },
-                    { "75278aa7-07f4-426d-b770-c7e5061db9f9", "~/wwwroot/logos_in_svg/square-enix", 19 },
-                    { "88eaa27d-bfae-4d3e-bf93-0160e8610dd7", "~/wwwroot/logos_in_svg/nintendo", 13 },
-                    { "8ad4c39e-f8e5-4013-949e-201fb9c6f615", "~/wwwroot/logos_in_svg/electronic-arts", 7 },
-                    { "90b5be9e-efe0-4874-a1a2-f5c12550249e", "~/wwwroot/logos_in_svg/bethesda", 1 },
-                    { "95106fb7-9d9f-4e0a-808b-ce541a66204f", "~/wwwroot/logos_in_svg/paradox-interactive", 14 },
-                    { "9b252cf3-8771-45dc-82ce-c112ab06cec1", "~/wwwroot/logos_in_svg/insomniac-games", 10 },
-                    { "a71fd032-e942-449a-878c-651dbd127a32", "~/wwwroot/logos_in_svg/sony", 18 },
-                    { "aefbe325-a2eb-4975-86d8-9f07c1a348fb", "~/wwwroot/logos_in_svg/capcom", 4 },
-                    { "b829f7e6-f13c-4119-807d-377b0d432604", "~/wwwroot/logos_in_svg/bluehole", 3 },
-                    { "e577657b-3b67-4f9a-8f35-c2c5645c5c05", "~/wwwroot/logos_in_svg/cd-projekt", 5 },
-                    { "ee9784be-e6f5-48c6-80e7-7441e0c4c82c", "~/wwwroot/logos_in_svg/mojang", 12 },
-                    { "f559eb47-a146-4fe5-b902-bdd7bfc309e7", "~/wwwroot/logos_in_svg/sega", 17 }
+                    { "042e34a1-4c26-4439-9a96-516744f92a61", "~/wwwroot/logos_in_svg/remedy-entertainment", 15 },
+                    { "04c87a34-e55c-4000-b17b-5b33acb01b8c", "~/wwwroot/logos_in_svg/sony", 18 },
+                    { "07d4da67-d29c-42a6-b04c-613f05392974", "~/wwwroot/logos_in_svg/blizzard", 2 },
+                    { "143ff734-1633-41c6-a659-ee1b3f5c1899", "~/wwwroot/logos_in_svg/ubisoft", 20 },
+                    { "15a9fe86-676b-4406-a0d4-f7a8e895711c", "~/wwwroot/logos_in_svg/electronic-arts", 7 },
+                    { "1afbe55d-0fe7-478b-8c31-f054b26b7a58", "~/wwwroot/logos_in_svg/bethesda", 1 },
+                    { "25cd7b1b-3554-4fc2-8b7c-cfbf698346ec", "~/wwwroot/logos_in_svg/rockstar-games", 16 },
+                    { "28ac21ce-bb79-45f9-8625-bfc456849ede", "~/wwwroot/logos_in_svg/cd-projekt", 5 },
+                    { "2cdcfbe3-965a-4a3e-ac2c-7df7ee76466c", "~/wwwroot/logos_in_svg/insomniac-games", 10 },
+                    { "3d392f2a-5663-4c04-9ad6-a9b03ee70063", "~/wwwroot/logos_in_svg/square-enix", 19 },
+                    { "6bffffc0-9045-4533-b9c5-170fa01bd4f5", "~/wwwroot/logos_in_svg/mojang", 12 },
+                    { "72c67440-4c54-4bd7-b259-f09e26eace43", "~/wwwroot/logos_in_svg/sega", 17 },
+                    { "75b7f8d5-bfef-44bf-918d-56c85baf52ac", "~/wwwroot/logos_in_svg/bluehole", 3 },
+                    { "7784bf16-d552-499b-811e-ae5bd8aada90", "~/wwwroot/logos_in_svg/valve", 21 },
+                    { "827716f7-ce13-426e-a16e-1a43e442bc7b", "~/wwwroot/logos_in_svg/firaxis-games", 9 },
+                    { "888af383-6b05-48b4-90fe-103b40c1b537", "~/wwwroot/logos_in_svg/epic-games", 8 },
+                    { "aaf2af19-1fc2-409d-94c5-5dd80921163f", "~/wwwroot/logos_in_svg/microsoft", 11 },
+                    { "aafa7b69-e5d5-4262-9921-cdd94735c4aa", "~/wwwroot/logos_in_svg/crystal", 6 },
+                    { "bb20a8b8-264e-4449-8f0b-ae2d5dfa3543", "~/wwwroot/logos_in_svg/paradox-interactive", 14 },
+                    { "e170bac4-c88f-4e79-a20c-3de9e21e174e", "~/wwwroot/logos_in_svg/nintendo", 13 },
+                    { "ef20a3b1-220d-4769-9a04-1c79813eba0d", "~/wwwroot/logos_in_svg/capcom", 4 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Games",
                 columns: new[] { "Id", "Description", "OwnerId", "PhotoContentType", "PhotoData", "Rating", "StudiosId", "Title" },
-                values: new object[] { "3ce36891-6c9a-4aea-ad6a-7c421e1885f8", "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...", "c92c1a2d-a8eb-4fec-a2ea-da08f05448b2", null, null, 9, "17702228-3689-4623-94c7-838c4f8b618b", "Grand Theft Auto V" });
+                values: new object[] { "42d3b068-26c3-4bc2-b89f-3ae4c4d5d7ca", "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...", "2cef9122-cde6-4a7f-9daa-adb3184883cc", null, null, 9, "25cd7b1b-3554-4fc2-8b7c-cfbf698346ec", "Grand Theft Auto V" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_UserId",
-                table: "Comment",
-                column: "UserId");
+                name: "IX_Comments_OwnerId",
+                table: "Comments",
+                column: "OwnerId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Comment_AspNetUsers_UserId",
-                table: "Comment",
-                column: "UserId",
+                name: "FK_Comments_AspNetUsers_OwnerId",
+                table: "Comments",
+                column: "OwnerId",
                 principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comments_Games_GameId",
+                table: "Comments",
+                column: "GameId",
+                principalTable: "Games",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Games_AspNetUsers_OwnerId",
+                table: "Games",
+                column: "OwnerId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Games_Studios_StudiosId",
+                table: "Games",
+                column: "StudiosId",
+                principalTable: "Studios",
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Comment_AspNetUsers_UserId",
-                table: "Comment");
+                name: "FK_Comments_AspNetUsers_OwnerId",
+                table: "Comments");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comments_Games_GameId",
+                table: "Comments");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Games_AspNetUsers_OwnerId",
+                table: "Games");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Games_Studios_StudiosId",
+                table: "Games");
+
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Comments",
+                table: "Comments");
 
             migrationBuilder.DropIndex(
-                name: "IX_Comment_UserId",
-                table: "Comment");
+                name: "IX_Comments_OwnerId",
+                table: "Comments");
 
             migrationBuilder.DeleteData(
                 table: "Games",
                 keyColumn: "Id",
-                keyValue: "3ce36891-6c9a-4aea-ad6a-7c421e1885f8");
+                keyValue: "42d3b068-26c3-4bc2-b89f-3ae4c4d5d7ca");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "036c203a-85af-4d9a-bb97-8ec7746479d3");
+                keyValue: "042e34a1-4c26-4439-9a96-516744f92a61");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "05f91778-357c-4d83-bae3-c6c26c829621");
+                keyValue: "04c87a34-e55c-4000-b17b-5b33acb01b8c");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "15bae70f-2c5a-4a48-96a8-919dfcf1ee37");
+                keyValue: "07d4da67-d29c-42a6-b04c-613f05392974");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "163859ef-22f2-4b7c-a7ff-fd4a77d652f0");
+                keyValue: "143ff734-1633-41c6-a659-ee1b3f5c1899");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "18ea3c62-fee5-48d9-87c4-1aa0384d5caf");
+                keyValue: "15a9fe86-676b-4406-a0d4-f7a8e895711c");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "285102e4-5326-467b-ab93-abbfcb78003e");
+                keyValue: "1afbe55d-0fe7-478b-8c31-f054b26b7a58");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "66c75c95-9767-45e5-85c6-f4f5a196e545");
+                keyValue: "28ac21ce-bb79-45f9-8625-bfc456849ede");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "711579b2-8462-4fc4-a3a6-901e75746007");
+                keyValue: "2cdcfbe3-965a-4a3e-ac2c-7df7ee76466c");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "75278aa7-07f4-426d-b770-c7e5061db9f9");
+                keyValue: "3d392f2a-5663-4c04-9ad6-a9b03ee70063");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "88eaa27d-bfae-4d3e-bf93-0160e8610dd7");
+                keyValue: "6bffffc0-9045-4533-b9c5-170fa01bd4f5");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "8ad4c39e-f8e5-4013-949e-201fb9c6f615");
+                keyValue: "72c67440-4c54-4bd7-b259-f09e26eace43");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "90b5be9e-efe0-4874-a1a2-f5c12550249e");
+                keyValue: "75b7f8d5-bfef-44bf-918d-56c85baf52ac");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "95106fb7-9d9f-4e0a-808b-ce541a66204f");
+                keyValue: "7784bf16-d552-499b-811e-ae5bd8aada90");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "9b252cf3-8771-45dc-82ce-c112ab06cec1");
+                keyValue: "827716f7-ce13-426e-a16e-1a43e442bc7b");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "a71fd032-e942-449a-878c-651dbd127a32");
+                keyValue: "888af383-6b05-48b4-90fe-103b40c1b537");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "aefbe325-a2eb-4975-86d8-9f07c1a348fb");
+                keyValue: "aaf2af19-1fc2-409d-94c5-5dd80921163f");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "b829f7e6-f13c-4119-807d-377b0d432604");
+                keyValue: "aafa7b69-e5d5-4262-9921-cdd94735c4aa");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "e577657b-3b67-4f9a-8f35-c2c5645c5c05");
+                keyValue: "bb20a8b8-264e-4449-8f0b-ae2d5dfa3543");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "ee9784be-e6f5-48c6-80e7-7441e0c4c82c");
+                keyValue: "e170bac4-c88f-4e79-a20c-3de9e21e174e");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "f559eb47-a146-4fe5-b902-bdd7bfc309e7");
+                keyValue: "ef20a3b1-220d-4769-9a04-1c79813eba0d");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "c92c1a2d-a8eb-4fec-a2ea-da08f05448b2");
+                keyValue: "2cef9122-cde6-4a7f-9daa-adb3184883cc");
 
             migrationBuilder.DeleteData(
                 table: "Studios",
                 keyColumn: "Id",
-                keyValue: "17702228-3689-4623-94c7-838c4f8b618b");
+                keyValue: "25cd7b1b-3554-4fc2-8b7c-cfbf698346ec");
 
             migrationBuilder.DropColumn(
-                name: "UserId",
-                table: "Comment");
+                name: "CreatedOn",
+                table: "Comments");
+
+            migrationBuilder.DropColumn(
+                name: "OwnerId",
+                table: "Comments");
+
+            migrationBuilder.RenameTable(
+                name: "Comments",
+                newName: "Comment");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Comments_GameId",
+                table: "Comment",
+                newName: "IX_Comment_GameId");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Comment",
+                table: "Comment",
+                column: "Id");
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
@@ -348,6 +440,30 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                 table: "Games",
                 columns: new[] { "Id", "Description", "OwnerId", "PhotoContentType", "PhotoData", "Rating", "StudiosId", "Title" },
                 values: new object[] { "0b3f8640-0091-4c2b-ac75-c77a63e6b58d", "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...", "b25cebef-195a-4fc2-99da-7790d5371533", null, null, 9, "afdd6339-053e-48a8-afb6-ca6a4d381958", "Grand Theft Auto V" });
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comment_Games_GameId",
+                table: "Comment",
+                column: "GameId",
+                principalTable: "Games",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Games_AspNetUsers_OwnerId",
+                table: "Games",
+                column: "OwnerId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Games_Studios_StudiosId",
+                table: "Games",
+                column: "StudiosId",
+                principalTable: "Studios",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
     }
 }
