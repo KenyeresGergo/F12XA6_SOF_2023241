@@ -4,18 +4,35 @@
     Layout = "_Layout";
     ViewData["Title"] = "Games";
 }
-<link rel="stylesheet" href="~/css/gameStyle.css" asp-append-version="true" />
-<script src="~/js/GameSiteScript.js" asp-append-version="true"></script>
+<!--CSS-->
+<link rel="stylesheet" href="~/css/gallery.css" asp-append-version="true" />
 
-<div class="col text-right">
-   @* <a href="/Home/CreateGame" class="inverse add-game">Add Game</a>*@
-   <a asp-area="" asp-controller="Game" asp-action="CreateGame">Add Game</a>
-</div>
+<!--JS-->
+<script defer src="~/js/gallery.js" asp-append-version="true"></script>
 
-<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-    @foreach (var game in Model.GroupBy(t => t.Id))
+
+<div class="photo-grid">
+    @for (int i = 0; i < 30; i++)
     {
-        @* <img class="image" src="@Url.Action("GetImage", "Game", game.Key)" draggable="false"> *@
-        <img class ="image " src="~/cropped-nik_inverted.jpg" draggable="false">
-    } 
+        <div class="card @GetSizeClass(i)"
+             style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg')">
+        </div>
+    }
 </div>
+
+@functions {
+    string GetSizeClass(int index)
+    {
+        switch (index + 1 % 7)
+        {
+            case 1:
+                return "card-tall card-wide";
+            case 2:
+                return "card-wide";
+            case 5:
+                return "card-tall";
+            default:
+                return "";
+        }
+    }
+}

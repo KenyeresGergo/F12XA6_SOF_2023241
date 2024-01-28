@@ -12,7 +12,6 @@ namespace F12XA6_SOF_2023241.Models
 {
     public enum StudioName
     {
-
         Bethesda = 1,
         Blizzard = 2,
         Bluehole = 3,
@@ -34,12 +33,9 @@ namespace F12XA6_SOF_2023241.Models
         SquareEnix = 19,
         Ubisoft = 20,
         Valve = 21,
-
     }
     public class Studios : IStudios, IDbEntity
     {
-        static string _path = "~/wwwroot/logos_in_svg/";
-
         [Key]
         public string Id { get; set; }
 
@@ -67,7 +63,7 @@ namespace F12XA6_SOF_2023241.Models
             Id = Guid.NewGuid().ToString();
             this.Serial_Num = Serial_Num;
             Name = name;
-            LogoSvg = _path + logoSvg;
+            LogoSvg = logoSvg;
         }
         public Studios(string Serial_Num)
         {
@@ -75,7 +71,7 @@ namespace F12XA6_SOF_2023241.Models
             this.Serial_Num = Serial_Num;
             Name = (StudioName)int.Parse(this.Serial_Num);
             temp = Name;
-            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
+            LogoSvg = ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
         }
         static string InsertSpaces(string input)
         {
@@ -84,8 +80,8 @@ namespace F12XA6_SOF_2023241.Models
             {
                 char currentChar = input[i];
 
-                if (char.IsUpper(currentChar) && i > 0)
-                    result.Append(' ');
+                if (char.IsUpper(currentChar) && i > 0) 
+                    result.Append(' ');     //Puts space infront of Upper case, if it's not first char
 
                 result.Append(currentChar);
             }
@@ -97,14 +93,13 @@ namespace F12XA6_SOF_2023241.Models
 
             for (int i = 0; i < input.Length; i++)
             {
-                char currentChar = input[i];
+                char currentChar = input[i]; //Current character
 
                 if (char.IsWhiteSpace(currentChar))
-                    result.Append('-');
+                    result.Append('-'); //Replaces space with '-'
                 else
-                    result.Append(char.ToLower(currentChar));
+                    result.Append(char.ToLower(currentChar)); //Lowers all letters
             }
-
             return result.ToString();
         }
         public void CopyFrom(Studios old)
