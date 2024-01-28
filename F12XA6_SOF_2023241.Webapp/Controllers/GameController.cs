@@ -65,7 +65,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
         public IActionResult GameReview(string gameid)
         {
-            return View(_gamelogic.Read(gameid));
+            return View(_gamelogic.Read().First(g=>g.Title == "Grand Theft Auto V"));
         }
 
         public IActionResult GetImage(string id)
