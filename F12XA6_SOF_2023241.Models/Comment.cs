@@ -16,7 +16,7 @@ namespace F12XA6_SOF_2023241.Models
         public int ReactionCounter { get; set; }
         public DateTime CreatedOn { get; set; }
         public Game Game { get; set; }
-        public AppUser User { get; set; }
+        public AppUser Owner { get; set; }
         public Comment()
         {
             Id = Guid.NewGuid().ToString();

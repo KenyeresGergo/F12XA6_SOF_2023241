@@ -18,6 +18,8 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
         public DbSet<Game> Games { get; set; }
         public DbSet<Studios> Studios { get; set; }
         public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
        
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -72,10 +74,16 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 .WithMany(s => s.GamesOwned)
                 .HasForeignKey(t => t.StudiosId) // Use a dedicated foreign key property
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.Entity<Game>().
-                HasMany(g => g.Comments)
-                .WithOne(c => c.Game)
-                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.Owner); 
+            builder.Entity<Comment>()
+                .HasOne(c => c.Game);
+                
+            //builder.Entity<Game>().
+            //    HasMany(g => g.Comments)
+            //    .WithOne(c => c.Game)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
 
             //builder.Entity<Studios>()

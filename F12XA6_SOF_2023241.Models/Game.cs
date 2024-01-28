@@ -37,12 +37,10 @@ namespace F12XA6_SOF_2023241.Models
         [ForeignKey("OwnerId")]
         public AppUser Owner { get; set; }
 
-        public List<Comment> Comments { get; set; }
 
         public Game()
         {
-            Id = Guid.NewGuid().ToString();
-            this.Comments = new List<Comment>();
+            Id = Guid.NewGuid().ToString();          
         }
         public void CopyFrom(Game old)
         {

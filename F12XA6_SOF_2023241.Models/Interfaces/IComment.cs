@@ -7,6 +7,6 @@
         Game Game { get; set; }
         string Id { get; set; }
         int ReactionCounter { get; set; }
-        AppUser User { get; set; }
+        AppUser Owner { get; set; }
     }
 }
