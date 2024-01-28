@@ -59,6 +59,14 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult CreateComment()
+        { 
+            return View(); 
+        }
+        public IActionResult GameReview(string gameid)
+        {
+            return View(_gamelogic.Read(gameid));
+        }
 
         public IActionResult GetImage(string id)
         {

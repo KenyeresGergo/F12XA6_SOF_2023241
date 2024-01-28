@@ -18,6 +18,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
         public DbSet<Game> Games { get; set; }
         public DbSet<Studios> Studios { get; set; }
         public DbSet<AppUser> Users { get; set; }
+       
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -87,6 +88,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
               .HasMany(t => t.GamesOwned).WithOne(t => t.Owner)
               .HasForeignKey(t => t.OwnerId)
               .OnDelete(DeleteBehavior.Cascade);
+                
 
 
             base.OnModelCreating(builder);
