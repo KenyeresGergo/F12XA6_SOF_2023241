@@ -15,8 +15,22 @@ namespace F12XA6_SOF_2023241.Logic
         {
             this.repository = repository;
         }
-
-
+        public void Create(Comment comment)
+        {
+            this.repository.Create(comment);    
+        }
+        public Comment Read(string id)
+        {
+            return this.repository.Read(id);
+        }
+        public void Update(Comment game)
+        {
+            repository.Update(game);
+        }
+        public void Delete(string id)
+        {
+            repository.Delete(id);
+        }
 
     }
 }
