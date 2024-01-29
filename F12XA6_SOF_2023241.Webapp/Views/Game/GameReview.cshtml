@@ -6,12 +6,106 @@
 }
 <link rel="stylesheet" href="~/css/gameStyle.css" asp-append-version="true" />
 <script src="~/js/GameSiteScript.js" asp-append-version="true"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<h1>@Model.Title</h1>
-<a>@Model.Description</a>
+<div class="container">
+    <h1 class="game-title">@Model.Title</h1>
+
+    <div class="row game-details">
+        <div class="col-sm-6">
+            <p class="game-description">@Model.Description</p>
+        </div>
+        <div class="col-sm-6">
+            <!-- Replace 'game_image.jpg' with the path to your game's image -->
+            <img src="game_image.jpg" alt="@Model.Title" class="img-responsive game-image" />
+        </div>
+    </div>
+
+    <div class="user-comment-section">
+        <h3 class="page-title">User Comment</h3>
+
+        <div id="comments">
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="thumbnail">
+                            <img class="img-responsive user-photo"
+                                 src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>@comment.Content</p>
+                                <p>Posted by: @comment.Owner.UserName on @comment.CreatedOn.ToString("g")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="thumbnail">
+                    <img class="img-responsive user-photo"
+                         src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="commentForm">
+                            <textarea class="form-control comment-input"
+                                      cols="15"
+                                      id="commentInput"></textarea>
+                            <button type="button" id="submitComment" class="submit-button">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#submitComment").click(function(){
+        var comment = $("#commentInput").val();
+        $.ajax({
+            url: '/Game/CreateComment',
+            type: 'POST',
+            data: { comment: comment },
+            success: function(data){
+                // Code to update your comment section
+                var commentHtml = '<div class="row">' +
+                    '<div class="col-sm-1">' +
+                        '<div class="thumbnail">' +
+                            '<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-sm-6">' +
+                        '<div class="panel panel-default">' +
+                            '<div class="panel-body">' +
+                                '<p>' + data.comment + '</p>' +
+                                '<p>Posted by: ' + data.userName + ' on ' + data.createdOn + '</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+                $('#comments').append(commentHtml);
+                $('#commentInput').val('');
+            }
+        });
+    });
+});
+</script>
 
 
-<div class="row">
+@* <div class="row">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -45,3 +139,4 @@
         </div>
     </div>
 </div>
+ *@

@@ -37,7 +37,7 @@ namespace F12XA6_SOF_2023241.Models
         [ForeignKey("OwnerId")]
         public AppUser Owner { get; set; }
         [NotMapped]
-        public virtual ICollection<Comment> Commenst { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
         public Game()
         {

@@ -4,7 +4,9 @@ using F12XA6_SOF_2023241.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
@@ -59,10 +61,8 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult CreateComment()
-        { 
-            return View(); 
-        }
+       
+
         public IActionResult GameReview(string gameid)
         {
             return View(_gamelogic.Read().First(g=>g.Title == "Grand Theft Auto V"));

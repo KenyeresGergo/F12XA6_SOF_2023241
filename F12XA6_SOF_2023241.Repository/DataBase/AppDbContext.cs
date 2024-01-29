@@ -95,7 +95,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
 
             builder.Entity<Comment>()
                 .HasOne(c => c.Game)
-                .WithMany(g => g.Commenst)
+                .WithMany(g => g.Comments)
                 .HasForeignKey(c => c.GameId)
                 .OnDelete(DeleteBehavior.NoAction);
 
