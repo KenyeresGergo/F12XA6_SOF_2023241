@@ -1,15 +1,20 @@
-﻿using F12XA6_SOF_2023241.Models;
+﻿using F12XA6_SOF_2023241.Logic;
+using F12XA6_SOF_2023241.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
-    public class CommentController
+    public class CommentController : Controller
     {
-        public CommentController()
+        private readonly UserManager<AppUser> _userManager;
+        private readonly ICommentLogic _commentLogic;
+        public CommentController(ICommentLogic commentLogic, UserManager<AppUser> userManager)
         {
-            
+            _commentLogic = commentLogic;
+            _userManager = userManager;
+
         }
 
 
@@ -28,8 +33,8 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             };
 
             // Add the comment to the database
-            _context.Comments.Add(comment);
-            await _context.SaveChangesAsync();
+            _commentLogic.Create(comment);           
+           
 
             // Return a JSON result
             return Json(new { success = true, comment = comment.Content, userName = user.UserName, createdOn = comment.CreatedOn.ToString("g") });

@@ -8,6 +8,7 @@
 <script src="~/js/GameSiteScript.js" asp-append-version="true"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
 <div class="container">
     <h1 class="game-title">@Model.Title</h1>
 
@@ -76,9 +77,9 @@ $(document).ready(function(){
     $("#submitComment").click(function(){
         var comment = $("#commentInput").val();
         $.ajax({
-            url: '/Game/CreateComment',
+            url: '/Comment/CreateComment',
             type: 'POST',
-            data: { comment: comment },
+            data: { gameId: '@Model.Id', content: comment },
             success: function(data){
                 // Code to update your comment section
                 var commentHtml = '<div class="row">' +
@@ -103,6 +104,7 @@ $(document).ready(function(){
     });
 });
 </script>
+
 
 
 @* <div class="row">

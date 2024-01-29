@@ -18,9 +18,52 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
             this.context = context;
         }
 
+        public void Create(Comment game)
+        {
+            var gameId = context.Games.FirstOrDefault(x => x.Id == game.Id);
+
+            if (gameId != null)
+                throw new ArgumentException("Game with thos name already exists!");
+
+            context.Comments.Add(game);
+            context.SaveChanges();
+        }
+        public IEnumerable<Comment> Read()
+        {
+            return this.context.Comments;
+        }
+        public Comment Read(Comment game)
+        {
+            return this.context.Comments.FirstOrDefault(t => t.Id == game.Id);
+        }
+        public Comment Read(string id)
+        {
+            return this.context.Comments.FirstOrDefault(t => t.Id == id);
+        }
         public override bool Update(Comment item)
         {
-            throw new NotImplementedException();
+            //var sourceItem = Read(item.Id);
+
+            //if (sourceItem == null)
+            //    return false;
+
+            //sourceItem.CopyFrom(item);
+            //context.SaveChanges();
+
+            return true;
         }
+        public void Delete(Comment game)
+        {
+            var _game = Read(game);
+            context.Comments.Remove(_game);
+            context.SaveChanges();
+        }
+        public void Delete(string id)
+        {
+            var _game = Read(id);
+            context.Comments.Remove(_game);
+            context.SaveChanges();
+        }
+
     }
 }

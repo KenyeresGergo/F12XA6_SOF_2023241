@@ -22,7 +22,7 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
             var gameId = context.Games.FirstOrDefault(x => x.Id == game.Id);
 
             if (gameId != null)
-                throw new ArgumentException("Game with thos name already exists!");
+                throw new ArgumentException("Game with this name already exists!");
 
             context.Games.Add(game);
             context.SaveChanges();

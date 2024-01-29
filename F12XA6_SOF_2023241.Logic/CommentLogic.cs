@@ -8,20 +8,26 @@ using System.Threading.Tasks;
 
 namespace F12XA6_SOF_2023241.Logic
 {
-    public class CommentLogic
+    public class CommentLogic : ICommentLogic
     {
         private IRepository<Comment> repository;
         public CommentLogic(IRepository<Comment> repository)
         {
             this.repository = repository;
         }
+
+
         public void Create(Comment comment)
         {
-            this.repository.Create(comment);    
+            this.repository.Create(comment);
         }
         public Comment Read(string id)
         {
             return this.repository.Read(id);
+        }
+        public IEnumerable<Comment> Read()
+        {
+            return this.repository.ReadAll();
         }
         public void Update(Comment game)
         {
@@ -31,6 +37,8 @@ namespace F12XA6_SOF_2023241.Logic
         {
             repository.Delete(id);
         }
+
+
 
     }
 }
