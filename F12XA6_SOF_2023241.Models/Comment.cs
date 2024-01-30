@@ -10,24 +10,27 @@ using System.Threading.Tasks;
 
 namespace F12XA6_SOF_2023241.Models
 {
-    [Table("Comments")]
-    public class Comment : IDbEntity, IComment
+
+    public class Comment : IComment
     {
-        [System.ComponentModel.DataAnnotations.Key]
+
         public string Id { get; set; }
         public string Content { get; set; }
         public int ReactionCounter { get; set; }
-        public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public DateTime CreatedOn { get; set; }
         public string GameId { get; set; }
-
-        // [ForeignKey("GameId")]
-        [NotMapped]
-        public Game Game { get; set; }
-        public string OwnerId { get; set; }
-
-        //[ForeignKey("OwnerId")]
         [NotMapped]
         public AppUser Owner { get; set; }
+
+        public Comment(string content, int reactionCounter, DateTime createdOn, string gameId, AppUser owner)
+        {
+            Id = Guid.NewGuid().ToString();
+            Content = content;
+            ReactionCounter = reactionCounter;
+            CreatedOn = createdOn;
+            GameId = gameId;
+            Owner = owner;
+        }
         public Comment()
         {
             Id = Guid.NewGuid().ToString();

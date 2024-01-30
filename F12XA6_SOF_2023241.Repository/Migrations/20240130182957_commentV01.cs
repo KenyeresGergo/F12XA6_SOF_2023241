@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace F12XA6_SOF_2023241.Repository.Migrations
 {
-    public partial class CommentsV01 : Migration
+    public partial class commentV01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -200,29 +200,24 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
+                name: "Comment",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReactionCounter = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GameId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    GameId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.PrimaryKey("PK_Comment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Comments_Games_GameId",
+                        name: "FK_Comment_Games_GameId",
                         column: x => x.GameId,
                         principalTable: "Games",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -237,40 +232,40 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhotoContentType", "PhotoData", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "5c568283-5ea3-4bbb-a66d-29fd14fa7e19", 0, "e961aef4-234b-4f39-aa50-5e8f3a20daf6", "keny.gergo@gmail.com", true, "Kenyeres", "Gergő", false, null, null, "KENY.GERGO@GMAIL.COM", "AQAAAAEAACcQAAAAEFg1tLF0wmLt+Vf31rpb90FSTknLAFkgYNvpnhgoFZo4uQ4ojbFuv44LDyo8y6MaVg==", null, false, null, null, "6587b784-1274-47b8-aa6b-7101067d35dc", false, "keny.gergo@gmail.com" });
+                values: new object[] { "4d6cfb52-5dfd-4d64-9407-5c7a65963ead", 0, "e91d2d83-c6ac-4c20-9949-5fb895d43584", "keny.gergo@gmail.com", true, "Kenyeres", "Gergő", false, null, null, "KENY.GERGO@GMAIL.COM", "AQAAAAEAACcQAAAAEHFf6ivUTU23wAX7mjHeITfeLIyoHPc2xJI7xKFwjn8SzRjB/J71pSyiQrAJyAG6GQ==", null, false, null, null, "84e69b79-03da-48e3-a30e-66736eaa0996", false, "keny.gergo@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Studios",
                 columns: new[] { "Id", "LogoSvg", "Name" },
                 values: new object[,]
                 {
-                    { "00c91e34-e5ef-4729-8aab-b0c2972e1606", "paradox-interactive", 14 },
-                    { "257c3ccd-4933-43ad-b762-3739bb772dbe", "bethesda", 1 },
-                    { "285ef51f-84fe-44ad-a67f-6dc0e5195ae6", "microsoft", 11 },
-                    { "2ba1f6af-5682-4746-bbb4-7a90913b5d7e", "electronic-arts", 7 },
-                    { "345a0039-d9ef-4b34-84c8-faa554df3947", "cd-projekt", 5 },
-                    { "44616225-57eb-4e29-a2d3-9b0fd3c8561b", "firaxis-games", 9 },
-                    { "5e594a08-9d17-4da8-a647-e2092d95b409", "bluehole", 3 },
-                    { "69e1a878-5643-49ea-b1f7-0b7f2996b3bc", "sony", 18 },
-                    { "76883a39-0041-47dc-b5fe-a71b94608413", "capcom", 4 },
-                    { "79f227a0-bdd7-420e-bb58-b65e45ce8526", "square-enix", 19 },
-                    { "90de324c-0ae1-436d-abfa-bc41c629bc6c", "crystal", 6 },
-                    { "98aa0a02-faae-49b6-b0eb-7ef0d58510ed", "epic-games", 8 },
-                    { "ada1a697-6a5f-428d-9d32-e77b39dde516", "sega", 17 },
-                    { "bbbf5bdf-3f4a-45a0-9e76-cf4fa53c7c73", "blizzard", 2 },
-                    { "c3420e62-e2ee-402c-b17b-3b4dbeea6336", "insomniac-games", 10 },
-                    { "cda18588-d35d-487e-b1c1-f229cf1dc8ad", "ubisoft", 20 },
-                    { "d913b45a-a608-4e4b-abaf-120ab5675ebd", "rockstar-games", 16 },
-                    { "dba9df21-d5fc-45f3-8706-1b1c647d9649", "mojang", 12 },
-                    { "e1de7a80-4953-45a9-a730-e806489c75da", "nintendo", 13 },
-                    { "f2b137b1-3b65-435b-8579-798943eed6ea", "remedy-entertainment", 15 },
-                    { "fffd6105-bec7-44ea-9a52-a7e55e4c6b95", "valve", 21 }
+                    { "0a10062e-fe11-4e10-a9d5-31c3d42f4350", "bethesda", 1 },
+                    { "1b7fcbf7-d2cb-4c4b-b23a-ec0ab790ca53", "paradox-interactive", 14 },
+                    { "1de2cec5-0323-49ae-87c3-77c0727c0dc3", "blizzard", 2 },
+                    { "4e9e943d-560b-4465-bfd3-ae35c1778d95", "sega", 17 },
+                    { "54afc4c2-0b15-4c60-b0e9-7ec183746dde", "capcom", 4 },
+                    { "554d6d5d-0b88-4264-b46b-b2be2941a90e", "bluehole", 3 },
+                    { "5b15a45f-488b-40ba-987b-bf9b130b6a08", "rockstar-games", 16 },
+                    { "7c098c2d-086c-4627-893e-0b09be92271c", "cd-projekt", 5 },
+                    { "7c1f9d45-bd28-4710-b707-bfa73c10ec9d", "microsoft", 11 },
+                    { "7fedfaf6-fc61-4119-ae3c-465075a46a36", "square-enix", 19 },
+                    { "7ff3709f-60aa-4e7d-994e-0b22c75100ae", "remedy-entertainment", 15 },
+                    { "8742d28b-0478-49dd-ae95-d62061ae144d", "crystal", 6 },
+                    { "a2497774-5607-4b38-b635-728b3bf5edce", "ubisoft", 20 },
+                    { "bb7eecd0-0566-433f-afd8-31a5d5833b1b", "mojang", 12 },
+                    { "bdd2b543-1d9d-4090-ba12-16b4e03f87f6", "nintendo", 13 },
+                    { "ca8eeebe-8710-4cac-9478-26f873985175", "insomniac-games", 10 },
+                    { "cbdff79a-c046-4abe-932e-a1a4d81e2816", "sony", 18 },
+                    { "d3401c6e-9d3c-4704-9129-fa48be57f929", "epic-games", 8 },
+                    { "e0b9c753-fea7-4559-b36d-ddb24a043a33", "valve", 21 },
+                    { "e1c9a99d-e66c-4bc0-9ea3-a2c416efc417", "firaxis-games", 9 },
+                    { "efc67ad0-540b-4134-9e99-cc24af2147e3", "electronic-arts", 7 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Games",
                 columns: new[] { "Id", "Description", "OwnerId", "PhotoContentType", "PhotoData", "Rating", "StudiosId", "Title" },
-                values: new object[] { "971161e0-d782-430d-8de6-afc3c1ac70c8", "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...", "5c568283-5ea3-4bbb-a66d-29fd14fa7e19", null, null, 9, "d913b45a-a608-4e4b-abaf-120ab5675ebd", "Grand Theft Auto V" });
+                values: new object[] { "130f0b67-f862-4072-b65f-b4991fea499c", "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...", "4d6cfb52-5dfd-4d64-9407-5c7a65963ead", null, null, 9, "5b15a45f-488b-40ba-987b-bf9b130b6a08", "Grand Theft Auto V" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -312,14 +307,9 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_GameId",
-                table: "Comments",
+                name: "IX_Comment_GameId",
+                table: "Comment",
                 column: "GameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_OwnerId",
-                table: "Comments",
-                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Games_OwnerId",
@@ -350,7 +340,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

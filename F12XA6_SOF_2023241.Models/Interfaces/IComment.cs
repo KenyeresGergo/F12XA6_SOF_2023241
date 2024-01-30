@@ -4,9 +4,9 @@
     {
         string Content { get; set; }
         DateTime CreatedOn { get; set; }
-        Game Game { get; set; }
+        string GameId { get; set; }
         string Id { get; set; }
-        int ReactionCounter { get; set; }
         AppUser Owner { get; set; }
+        int ReactionCounter { get; set; }
     }
 }

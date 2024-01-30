@@ -1,5 +1,4 @@
-﻿using F12XA6_SOF_2023241.Logic;
-using F12XA6_SOF_2023241.Logic.Interfaces;
+﻿using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
@@ -14,11 +13,11 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
     {
         private readonly IGameLogic _gamelogic;
         private readonly UserManager<AppUser> _userManager;
-        private readonly ICommentLogic _commentLogic;
-        public GameController(IGameLogic gamelogic, ICommentLogic commentLogic, UserManager<AppUser> usermanager)
+       
+        public GameController(IGameLogic gamelogic, UserManager<AppUser> usermanager)
         {
             _gamelogic = gamelogic;
-            _commentLogic = commentLogic;
+           
             _userManager = usermanager;
 
         }
@@ -97,15 +96,13 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public async Task<IActionResult> CreateComment(string gameId, string content)
         {
             var user = await _userManager.GetUserAsync(User);
-
-            var comment = _commentLogic.Create(gameId, content, user);
-            _commentLogic.AddToGameList(comment.Id);
-            var game = _gamelogic.Read(gameId);
+          
+            _gamelogic.CreateComment(gameId, content, user);
 
             // Return a JSON result
             //return Json(new { success = true, comment = comment.Content, userName = user.UserName, createdOn = comment.CreatedOn.ToString("g") });
             //return PartialView("_CommentsPartial", _commentLogic.AddToGameList(comment.Id));
-            return View("GameReview",game );
+            return View("GameReview",_gamelogic.Read(gameId));
           //return RedirectToAction(nameof(Asd));
         }
         //public IActionResult Asd(in string gameId)

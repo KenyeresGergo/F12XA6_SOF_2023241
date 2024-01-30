@@ -17,8 +17,6 @@ namespace F12XA6_SOF_2023241.Models
 
         
         public virtual ICollection<Game> GamesOwned { get; set; } 
-        
-        public virtual ICollection<Comment> Commenst { get; set; }
 
         [StringLength(200)]
         public string? PhotoContentType { get; set; }

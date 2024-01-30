@@ -81,6 +81,15 @@ namespace F12XA6_SOF_2023241.Logic
                       select g;
             return res;
         }
+        public void CreateComment(string gameId, string content, AppUser user)
+        {
+            Comment comment = new Comment(content, 0, DateTime.Now, gameId, user);
+
+            Game tmp = repository.Read(gameId) as Game;
+            tmp.Comments.Add(comment);
+            repository.Update(tmp);
+
+        }
 
     }
 }

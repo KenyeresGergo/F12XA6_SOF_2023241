@@ -40,11 +40,11 @@ namespace F12XA6_SOF_2023241.Models
         [NotMapped]
         public AppUser Owner { get; set; }
         
-        public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<Comment> Comments { get; set; }
 
         public Game()
         {
-            Id = Guid.NewGuid().ToString();          
+            Id = Guid.NewGuid().ToString();               
         }
         public void CopyFrom(Game old)
         {

@@ -6,6 +6,7 @@ namespace F12XA6_SOF_2023241.Logic.Interfaces
     {
         void AddToCommentList(Comment comment, in Game game);
         void Create(Game game);
+        void CreateComment(string gameId, string content, AppUser user);
         void Delete(string id);
         IEnumerable<Game> GamesByStudioId(string studioid);
         IEnumerable<IEnumerable<Game>> GamesByStudios();
