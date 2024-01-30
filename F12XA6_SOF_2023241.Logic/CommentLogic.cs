@@ -1,6 +1,7 @@
 ﻿using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Repository.Interfaces;
+using F12XA6_SOF_2023241.Repository.Model_Repositories;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ namespace F12XA6_SOF_2023241.Logic
 {
     public class CommentLogic : ICommentLogic
     {
-        private IRepository<Comment> repository;
+        private ICommentRepository repository;
         private IRepository<Game> gamerepo;
         private readonly UserManager<AppUser> _userManager;
 
-        public CommentLogic(IRepository<Comment> repository, IRepository<Game> gamerepo, UserManager<AppUser> userManager)
+        public CommentLogic(ICommentRepository repository, IRepository<Game> gamerepo, UserManager<AppUser> userManager)
         {
             this.repository = repository;
             this.gamerepo = gamerepo;
@@ -67,6 +68,15 @@ namespace F12XA6_SOF_2023241.Logic
             Game game = gamerepo.Read(comment.GameId);
             game.Comments.Add(comment);
             return game;
+        }
+
+        public IEnumerable<Comment> GetCommentsForGame(string gameId, int page, int pageSize)
+        {
+            return repository.GetCommentsForGame(gameId, page, pageSize);
+        }
+        public int GetTotalPagesForGame(string gameId, int pageSize)
+        {
+            return repository.GetTotalPagesForGame(gameId, pageSize);
         }
 
     }

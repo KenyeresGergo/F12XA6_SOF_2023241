@@ -1,12 +1,14 @@
-﻿using F12XA6_SOF_2023241.Logic;
-using F12XA6_SOF_2023241.Logic.Interfaces;
+﻿using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
+using F12XA6_SOF_2023241.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
@@ -66,16 +68,52 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-        public async Task<IActionResult> GameReview(string gameid)
+        public IActionResult GameReview(string gameId, int page = 1, int pageSize = 10)
         {
-            var user = await _userManager.GetUserAsync(User);
-            var viewModel = new CommentViewModel();
-            viewModel.Game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
-           // viewModel.Comments = _commentLogic.Read().Where(c => c.GameId == viewModel.Game.Id).OrderBy(c => c.CreatedOn).ToList();
-            viewModel.CommentOwner = user;
+            var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
+
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            var comments = _commentLogic.Read().Where(c => c.GameId == game.Id).OrderBy(c => c.CreatedOn).ToList();
+
+            var viewModel = new CommentViewModel
+            {
+                Game = game,
+                Comments = comments,
+                CommentOwner = _userManager.GetUserAsync(User).Result,
+                TotalPages = _commentLogic.GetTotalPagesForGame(gameId, pageSize),
+                PageSize = pageSize
+            };
+
             return View(viewModel);
         }
+
+        //public async Task<IActionResult> GameReview(string gameid, int page = 1, int pageSize = 2)
+        //{
+        //    var user = await _userManager.GetUserAsync(User);
+
+        //    var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
+        //    var comments = _commentLogic.Read().Where(c => c.GameId == game.Id).OrderBy(c => c.CreatedOn).ToList();
+        //  //  var comments = _commentLogic.Read().Where(c => c.GameId == gameid).OrderBy(c => c.CreatedOn).ToList();
+
+
+        //    var paginatedComments = comments.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+        //    var viewModel = new CommentViewModel
+        //    {
+        //        Game = game,
+        //        Comments = paginatedComments,
+        //        PageNumber = page,
+        //        PageSize = pageSize,
+        //        TotalComments = comments.Count(),
+        //         CommentOwner = user
+        //    };
+
+        //    return View(viewModel);
+        //}
 
         public IActionResult GetImage(string id)
         {
@@ -111,13 +149,8 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             viewModel.Comments = _commentLogic.Read().Where( c=> c.GameId == gameId).OrderBy(c=> c.CreatedOn).ToList();
             viewModel.CommentOwner = user;
             return View("GameReview", viewModel);
-          //return RedirectToAction(nameof(Asd));
+         
         }
-        //public IActionResult Asd(in string gameId)
-        //{
-        //    var game = _gamelogic.Read(gameId);
-        //    return View("GameReview", game);
-        //}
-
+        
     }
 }

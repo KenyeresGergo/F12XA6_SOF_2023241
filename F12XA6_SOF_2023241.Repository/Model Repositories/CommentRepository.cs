@@ -2,6 +2,7 @@
 using F12XA6_SOF_2023241.Repository.DataBase;
 using F12XA6_SOF_2023241.Repository.Generic_Repository;
 using F12XA6_SOF_2023241.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace F12XA6_SOF_2023241.Repository.Model_Repositories
 {
-    public class CommentRepository : Repository<Comment>, IRepository<Comment>
+    public class CommentRepository : Repository<Comment>, IRepository<Comment>, ICommentRepository
     {
         private readonly AppDbContext context;
         public CommentRepository(AppDbContext context) : base(context)
@@ -63,6 +64,23 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
             var _game = Read(id);
             context.Comments.Remove(_game);
             context.SaveChanges();
+        }
+        public IEnumerable<Comment> GetCommentsForGame(string gameId, int page, int pageSize)
+        {
+            // Assuming you have a DbSet<Comment> in your context called Comments
+            // and you want to order by CreatedOn in descending order
+            return context.Comments
+                .Where(c => c.GameId == gameId)
+                .OrderByDescending(c => c.CreatedOn)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public int GetTotalPagesForGame(string gameId, int pageSize)
+        {
+            int totalComments = context.Comments.Count(c => c.GameId == gameId);
+            return (int)Math.Ceiling((double)totalComments / pageSize);
         }
 
     }

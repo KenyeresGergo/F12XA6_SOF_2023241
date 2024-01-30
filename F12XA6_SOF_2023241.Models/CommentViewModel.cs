@@ -12,6 +12,11 @@ namespace F12XA6_SOF_2023241.Models
 
         public List<Comment> Comments { get; set;}
         public AppUser CommentOwner { get; set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public int TotalComments { get; set; }
+
+        public int TotalPages { get; set; } 
         public CommentViewModel()
         {
             Comments = new List<Comment>();
