@@ -4,13 +4,12 @@
     height: 100vh;
     justify-content: center;
     margin: 0px;
-    overflow: hidden;
+    overflow:visible;
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
     color: var(--text);
     background: var(--bg);
     transition: background 500ms ease-in-out, color 1000ms ease-in-out;
-    overflow: scroll;
     scrollbar-color:var(--bg);
     scrollbar-width: thin;
 }
@@ -185,3 +184,73 @@ a {
         filter:hue-rotate(360deg);
     }
 }
+
+.user-photo {
+    width: 20px;
+    height: auto; /* or omit this line for automatic adjustment */
+    object-fit: cover; /* or contain, depending on your preference */
+}
+#commentsSection {
+    margin-top: 5rem; /* Adjust this to match the height of your navbar */
+    padding: 1rem;
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    height: calc(100vh - 5rem); /* Adjust height based on navbar height */
+}
+
+#comments {
+    max-height: 100%; /* Adjust this if needed */
+}
+
+/* Add the following to your existing .pagination styling */
+.pagination {
+    margin-top: 1rem;
+}
+
+    .pagination a {
+        margin-right: 0.5rem;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: bold;
+    }
+/* Add these styles to the end of your existing layout.css */
+
+.container {
+    margin-top: 5rem; /* Adjust this to match the height of your navbar */
+    padding: 1rem;
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    height: calc(100vh - 5rem); /* Adjust height based on navbar height */
+}
+
+.game-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.game-details {
+    margin-bottom: 1rem;
+}
+
+.game-description {
+    font-size: 16px;
+}
+
+.game-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* Add the following to your existing .pagination styling */
+.pagination {
+    margin-top: 1rem;
+}
+
+    .pagination a {
+        margin-right: 0.5rem;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: bold;
+    }

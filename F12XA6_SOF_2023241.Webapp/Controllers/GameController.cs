@@ -36,12 +36,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View(this._gamelogic.Read());
         }
 
-        //// GET: GameController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
+     
         // GET: GameController/Create
         [HttpPost]
         public ActionResult Create(Game game)
@@ -91,29 +86,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View(viewModel);
         }
 
-        //public async Task<IActionResult> GameReview(string gameid, int page = 1, int pageSize = 2)
-        //{
-        //    var user = await _userManager.GetUserAsync(User);
-
-        //    var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
-        //    var comments = _commentLogic.Read().Where(c => c.GameId == game.Id).OrderBy(c => c.CreatedOn).ToList();
-        //  //  var comments = _commentLogic.Read().Where(c => c.GameId == gameid).OrderBy(c => c.CreatedOn).ToList();
-
-
-        //    var paginatedComments = comments.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
-        //    var viewModel = new CommentViewModel
-        //    {
-        //        Game = game,
-        //        Comments = paginatedComments,
-        //        PageNumber = page,
-        //        PageSize = pageSize,
-        //        TotalComments = comments.Count(),
-        //         CommentOwner = user
-        //    };
-
-        //    return View(viewModel);
-        //}
+       
 
         public IActionResult GetImage(string id)
         {

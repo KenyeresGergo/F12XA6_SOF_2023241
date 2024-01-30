@@ -5,6 +5,7 @@
     ViewData["Title"] = "Games";
 }
 <link rel="stylesheet" href="~/css/gameStyle.css" asp-append-version="true" />
+
 <script src="~/js/GameSiteScript.js" asp-append-version="true"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -24,80 +25,6 @@
     </div>
 
 
-<div id="commentsSection">
-    <div class="user-comment-section">
-        <h3 class="page-title">User Comment</h3>
-
-        <div id="comments">
-            @foreach (var comment in Model.Comments)
-            {
-                <div class="row">
-                    <div class="col-sm-1">
-                        <div class="thumbnail">
-                            <img class="img-responsive user-photo"
-                                 src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <p>@comment.Content</p>
-                                <p>Posted by: @Model.CommentOwner.UserName on @comment.CreatedOn.ToString("g")</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-
-            <!-- Pagination controls -->
-            <div class="pagination">
-                @for (var i = 1; i <= Model.TotalPages; i++)
-                {
-                    <a href="@Url.Action("GameReview", new { gameId = Model.Game.Id, page = i, pageSize = Model.PageSize })">@i</a>
-                }
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-1">
-                <div class="thumbnail">
-                    <img class="img-responsive user-photo"
-                         src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <form id="commentForm" asp-area="" asp-controller="Game" asp-action="CreateComment" method="post">
-                            <input type="hidden" name="gameId" value="@Model.Game.Id" />
-                            <textarea class="form-control comment-input" cols="15" id="commentInput" name="content"></textarea>
-                            <button type="submit" class="submit-button">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-@* <div class="container">
-    <h1 class="game-title">@Model.Game.Title</h1>
-
-    <div class="row game-details">
-        <div class="col-sm-6">
-            <p class="game-description">@Model.Game.Description</p>
-        </div>
-        <div class="col-sm-6">
-            <img src="game_image.jpg" alt="@Model.Game.Title" class="img-responsive game-image" />
-        </div>
-    </div>
-
     <div id="commentsSection">
         <div class="user-comment-section">
             <h3 class="page-title">User Comment</h3>
@@ -108,8 +35,11 @@
                     <div class="row">
                         <div class="col-sm-1">
                             <div class="thumbnail">
-                                <img class="img-responsive user-photo"
+                                <img class="user-photo"
                                      src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                               
+                                    Posted by: @Model.CommentOwner.UserName on @comment.CreatedOn.ToString("g")
+                                
                             </div>
                         </div>
 
@@ -117,12 +47,20 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <p>@comment.Content</p>
-                                    <p>Posted by: @Model.CommentOwner.UserName on @comment.CreatedOn.ToString("g")</p>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
+
+                <!-- Pagination controls -->
+                <div class="pagination">
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <a href="@Url.Action("GameReview", new { gameId = Model.Game.Id, page = i, pageSize = Model.PageSize })">@i</a>
+                    }
+                </div>
             </div>
 
             <div class="row">
@@ -147,6 +85,8 @@
             </div>
         </div>
     </div>
-</div>
- *@
+
+
+
+
 
