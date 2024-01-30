@@ -52,6 +52,8 @@ namespace F12XA6_SOF_2023241.Models
      //   [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
 
+        private string _path = "/wwwroot/logos_in_svg/";
+
         [NotMapped]
         private StudioName temp;
 
@@ -64,7 +66,7 @@ namespace F12XA6_SOF_2023241.Models
             Id = Guid.NewGuid().ToString();
             this.Serial_Num = Serial_Num;
             Name = name;
-            LogoSvg = logoSvg;
+            LogoSvg = _path + logoSvg;
         }
         public Studios(string Serial_Num)
         {
@@ -72,7 +74,7 @@ namespace F12XA6_SOF_2023241.Models
             this.Serial_Num = Serial_Num;
             Name = (StudioName)int.Parse(this.Serial_Num);
             temp = Name;
-            LogoSvg = ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
+            LogoSvg = _path + ConvertToLowercaseAndReplaceSpaces(InsertSpaces(temp.ToString()));
         }
         static string InsertSpaces(string input)
         {

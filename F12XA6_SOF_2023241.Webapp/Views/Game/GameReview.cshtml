@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model Game
+@model CommentViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Games";
@@ -12,14 +12,14 @@
 
 
 <div class="container">
-    <h1 class="game-title">@Model.Title</h1>
+    <h1 class="game-title">@Model.Game.Title</h1>
 
     <div class="row game-details">
         <div class="col-sm-6">
-            <p class="game-description">@Model.Description</p>
+            <p class="game-description">@Model.Game.Description</p>
         </div>
         <div class="col-sm-6">
-            <img src="game_image.jpg" alt="@Model.Title" class="img-responsive game-image" />
+            <img src="game_image.jpg" alt="@Model.Game.Title" class="img-responsive game-image" />
         </div>
     </div>
 
@@ -42,7 +42,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <p>@comment.Content</p>
-                                    <p>Posted by: @comment.OwnerId on @comment.CreatedOn.ToString("g")</p>
+                                    <p>Posted by: @Model.CommentOwner.UserName on @comment.CreatedOn.ToString("g")</p>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form id="commentForm" asp-area="" asp-controller="Game" asp-action="CreateComment" method="post">
-                                <input type="hidden" name="gameId" value="@Model.Id" />
+                                <input type="hidden" name="gameId" value="@Model.Game.Id" />
                                 <textarea class="form-control comment-input" cols="15" id="commentInput" name="content"></textarea>
                                 <button type="submit" class="submit-button">Submit</button>
                             </form>

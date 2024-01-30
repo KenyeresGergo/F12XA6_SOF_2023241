@@ -65,11 +65,16 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-       
 
-        public IActionResult GameReview(string gameid)
+
+        public async Task<IActionResult> GameReview(string gameid)
         {
-            return View(_gamelogic.Read().First(g=>g.Title == "Grand Theft Auto V"));
+            var user = await _userManager.GetUserAsync(User);
+            var viewModel = new CommentViewModel();
+            viewModel.Game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
+           // viewModel.Comments = _commentLogic.Read().Where(c => c.GameId == viewModel.Game.Id).OrderBy(c => c.CreatedOn).ToList();
+            viewModel.CommentOwner = user;
+            return View(viewModel);
         }
 
         public IActionResult GetImage(string id)
@@ -102,10 +107,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             _commentLogic.AddToGameList(comment.Id);
             var game = _gamelogic.Read(gameId);
 
-            // Return a JSON result
-            //return Json(new { success = true, comment = comment.Content, userName = user.UserName, createdOn = comment.CreatedOn.ToString("g") });
-            //return PartialView("_CommentsPartial", _commentLogic.AddToGameList(comment.Id));
-            return View("GameReview",game );
+           var viewModel = new CommentViewModel(game);
+            viewModel.Comments = _commentLogic.Read().Where( c=> c.GameId == gameId).OrderBy(c=> c.CreatedOn).ToList();
+            viewModel.CommentOwner = user;
+            return View("GameReview", viewModel);
           //return RedirectToAction(nameof(Asd));
         }
         //public IActionResult Asd(in string gameId)
