@@ -18,14 +18,14 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
             this.context = context;
         }
 
-        public void Create(Comment game)
+        public void Create(Comment comment)
         {
-            var gameId = context.Games.FirstOrDefault(x => x.Id == game.Id);
+            var commId = context.Comments.FirstOrDefault(x => x.Id == comment.Id);
 
-            if (gameId != null)
+            if (commId != null)
                 throw new ArgumentException("Game with thos name already exists!");
 
-            context.Comments.Add(game);
+            context.Comments.Add(comment);
             context.SaveChanges();
         }
         public IEnumerable<Comment> Read()

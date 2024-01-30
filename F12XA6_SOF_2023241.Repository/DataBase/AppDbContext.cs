@@ -56,7 +56,9 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 " and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
                 Rating = 9,
                 OwnerId = gergo.Id,
-                StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id
+                //Owner = gergo,
+                StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id,
+                //Studios = studios.FirstOrDefault(t => t.Serial_Num == "16") as Studios
 
             };
            // gergo.GamesOwned.Add(game);

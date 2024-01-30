@@ -9,6 +9,89 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
+
+
+<div class="container">
+    <h1 class="game-title">@Model.Title</h1>
+
+    <div class="row game-details">
+        <div class="col-sm-6">
+            <p class="game-description">@Model.Description</p>
+        </div>
+        <div class="col-sm-6">
+            <img src="game_image.jpg" alt="@Model.Title" class="img-responsive game-image" />
+        </div>
+    </div>
+
+    <div id="commentsSection">
+        @await Html.PartialAsync("_CommentsPartial", Model)
+    </div>
+</div>
+
+
+
+@* <div class="container">
+    <h1 class="game-title">@Model.Title</h1>
+
+    <div class="row game-details">
+        <div class="col-sm-6">
+            <p class="game-description">@Model.Description</p>
+        </div>
+        <div class="col-sm-6">
+            <img src="game_image.jpg" alt="@Model.Title" class="img-responsive game-image" />
+        </div>
+    </div>
+
+    <div class="user-comment-section">
+        <h3 class="page-title">User Comment</h3>
+
+        <div id="comments">
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="thumbnail">
+                            <img class="img-responsive user-photo"
+                                 src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>@comment.Content</p>
+                                <p>Posted by: @comment.Owner.UserName on @comment.CreatedOn.ToString("g")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-1">
+                <div class="thumbnail">
+                    <img class="img-responsive user-photo"
+                         src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form asp-area="" asp-controller="Comment" asp-action="CreateComment" method="post">
+                            <input type="hidden" name="gameId" value="@Model.Id" />
+                            <textarea class="form-control comment-input" cols="15" id="commentInput" name="content"></textarea>
+                            <button type="submit" class="submit-button">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+
+
+@* 
 <div class="container">
     <h1 class="game-title">@Model.Title</h1>
 
@@ -59,11 +142,13 @@
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form id="commentForm">
+                        @* <form id="commentForm"> 
                             <textarea class="form-control comment-input"
                                       cols="15"
                                       id="commentInput"></textarea>
-                            <button type="button" id="submitComment" class="submit-button">Submit</button>
+                        <a asp-area="" asp-controller="Comment" asp-action="CreateComment">Submit</a>
+                       
+                           @*  <button type="submit" id="submitComment" class="submit-button">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -72,7 +157,7 @@
     </div>
 </div>
 
-<script>
+@* <script>
 $(document).ready(function(){
     $("#submitComment").click(function(){
         var comment = $("#commentInput").val();
@@ -104,41 +189,5 @@ $(document).ready(function(){
     });
 });
 </script>
-
-
-
-@* <div class="row">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h3 class="page-title">User Comment</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1">
-                <div class="thumbnail">
-                    <img class="img-responsive user-photo"
-                         src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                </div>
-            </div>
-            <br>
-                <div class="col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <textarea class="form-control"
-                                      cols="15"
-                                      id="commentInput"></textarea>
-                        </div>
-                        <div class="panel-heading comment-action">
-                            <div class="submit-comment">
-                                <a asp-area="" asp-controller="Game" asp-action="CreateComment">Submit</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-            
-        </div>
-    </div>
-</div>
  *@
+  

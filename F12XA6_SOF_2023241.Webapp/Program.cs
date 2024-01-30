@@ -28,10 +28,12 @@ namespace F12XA6_SOF_2023241.Webapp
 
             builder.Services.AddTransient<IRepository<Game>, GameRepository>();
             builder.Services.AddTransient<IRepository<Studios>, StudioRepository>();
+            builder.Services.AddTransient<IRepository<Comment>, CommentRepository>();
            
 
             builder.Services.AddTransient<IGameLogic, GameLogic>();
             builder.Services.AddTransient<IStudioLogic, StudioLogic>();
+            builder.Services.AddTransient<ICommentLogic, CommentLogic>();
            
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();

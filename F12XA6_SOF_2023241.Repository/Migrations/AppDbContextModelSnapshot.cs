@@ -152,7 +152,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
@@ -194,7 +194,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
                     b.HasIndex("StudiosId");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
 
                     b.HasData(
                         new
@@ -222,7 +222,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Studios");
+                    b.ToTable("Studios", (string)null);
 
                     b.HasData(
                         new

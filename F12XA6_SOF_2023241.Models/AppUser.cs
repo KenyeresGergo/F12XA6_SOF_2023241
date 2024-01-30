@@ -28,6 +28,7 @@ namespace F12XA6_SOF_2023241.Models
         public AppUser()
         {
             Id = Guid.NewGuid().ToString();
+            this.UserName = (FirstName + LastName).ToLower();
         }
     }
 }

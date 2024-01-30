@@ -1,5 +1,4 @@
-﻿using F12XA6_SOF_2023241.Logic;
-using F12XA6_SOF_2023241.Logic.Interfaces;
+﻿using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
