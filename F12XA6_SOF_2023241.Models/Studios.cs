@@ -34,6 +34,7 @@ namespace F12XA6_SOF_2023241.Models
         Ubisoft = 20,
         Valve = 21,
     }
+    [Table("Studios")]
     public class Studios : IStudios, IDbEntity
     {
         [Key]
@@ -48,7 +49,7 @@ namespace F12XA6_SOF_2023241.Models
 
         public string? LogoSvg { get; private set; }
 
-        [NotMapped]
+     //   [NotMapped]
         public virtual ICollection<Game> GamesOwned { get; set; }
 
         [NotMapped]

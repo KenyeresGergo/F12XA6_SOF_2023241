@@ -24,7 +24,53 @@
     </div>
 
     <div id="commentsSection">
-        @await Html.PartialAsync("_CommentsPartial", Model)
+        <div class="user-comment-section">
+            <h3 class="page-title">User Comment</h3>
+
+            <div id="comments">
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="thumbnail">
+                                <img class="img-responsive user-photo"
+                                     src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p>@comment.Content</p>
+                                    <p>Posted by: @comment.OwnerId on @comment.CreatedOn.ToString("g")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="thumbnail">
+                        <img class="img-responsive user-photo"
+                             src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form id="commentForm" asp-area="" asp-controller="Game" asp-action="CreateComment" method="post">
+                                <input type="hidden" name="gameId" value="@Model.Id" />
+                                <textarea class="form-control comment-input" cols="15" id="commentInput" name="content"></textarea>
+                                <button type="submit" class="submit-button">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

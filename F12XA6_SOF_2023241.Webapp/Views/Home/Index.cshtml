@@ -20,7 +20,7 @@
                     <div class="card-content">
                         <div class="card-image">
                             @* <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" asp-append-version="true" /> *@
-                            <img src="@(studio.LogoSvg.Substring(10)).svg" asp-append-version="true" />
+                            <img src="@(studio.LogoSvg@* .Substring(10) *@).svg" asp-append-version="true" />
                         </div>
                         <div class="title">
                             <h3>@studio.Name</h3>

@@ -18,7 +18,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p>@comment.Content</p>
-                            <p>Posted by: @comment.Owner.UserName on @comment.CreatedOn.ToString("g")</p>
+                            <p>Posted by: @comment.OwnerId on @comment.CreatedOn.ToString("g")</p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form id="commentForm" asp-area="" asp-controller="Comment" asp-action="CreateComment" method="post">
+                    <form id="commentForm" asp-area="" asp-controller="Game" asp-action="CreateComment" method="post">
                         <input type="hidden" name="gameId" value="@Model.Id" />
                         <textarea class="form-control comment-input" cols="15" id="commentInput" name="content"></textarea>
                         <button type="submit" class="submit-button">Submit</button>

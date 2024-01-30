@@ -21,5 +21,9 @@
   <ItemGroup>
     <ProjectReference Include="..\F12XA6_SOF_2023241.Models\F12XA6_SOF_2023241.Models.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>

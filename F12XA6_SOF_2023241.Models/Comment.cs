@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace F12XA6_SOF_2023241.Models
 {
+    [Table("Comments")]
     public class Comment : IDbEntity, IComment
     {
         [System.ComponentModel.DataAnnotations.Key]
@@ -19,10 +20,13 @@ namespace F12XA6_SOF_2023241.Models
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public string GameId { get; set; }
 
-        [ForeignKey("GameId")]
+        // [ForeignKey("GameId")]
+        [NotMapped]
         public Game Game { get; set; }
         public string OwnerId { get; set; }
-        [ForeignKey("OwnerId")]
+
+        //[ForeignKey("OwnerId")]
+        [NotMapped]
         public AppUser Owner { get; set; }
         public Comment()
         {

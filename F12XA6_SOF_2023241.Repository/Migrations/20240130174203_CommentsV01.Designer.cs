@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace F12XA6_SOF_2023241.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231116180834_Studios_Key_Erros_Fix")]
-    partial class Studios_Key_Erros_Fix
+    [Migration("20240130174203_CommentsV01")]
+    partial class CommentsV01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,13 +24,143 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ContentType")
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhotoContentType")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<byte[]>("PhotoData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5c568283-5ea3-4bbb-a66d-29fd14fa7e19",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e961aef4-234b-4f39-aa50-5e8f3a20daf6",
+                            Email = "keny.gergo@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Kenyeres",
+                            LastName = "Gergő",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "KENY.GERGO@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFg1tLF0wmLt+Vf31rpb90FSTknLAFkgYNvpnhgoFZo4uQ4ojbFuv44LDyo8y6MaVg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6587b784-1274-47b8-aa6b-7101067d35dc",
+                            TwoFactorEnabled = false,
+                            UserName = "keny.gergo@gmail.com"
+                        });
+                });
+
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Comment", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GameId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ReactionCounter")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -40,6 +170,10 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PhotoContentType")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<byte[]>("PhotoData")
                         .HasColumnType("varbinary(max)");
@@ -67,11 +201,11 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "52bdbd06-a971-4a93-9b5a-98a6ceb81c27",
+                            Id = "971161e0-d782-430d-8de6-afc3c1ac70c8",
                             Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
-                            OwnerId = "3032f327-4d04-477c-9ffe-30db909028d9",
+                            OwnerId = "5c568283-5ea3-4bbb-a66d-29fd14fa7e19",
                             Rating = 9,
-                            StudiosId = "a35a4439-7d92-4008-892d-628889268e41",
+                            StudiosId = "d913b45a-a608-4e4b-abaf-120ab5675ebd",
                             Title = "Grand Theft Auto V"
                         });
                 });
@@ -95,135 +229,129 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "46050e5f-7875-434e-82d3-b59556312de8",
-                            LogoSvg = "~/logos_in_svg/bethesda",
+                            Id = "257c3ccd-4933-43ad-b762-3739bb772dbe",
+                            LogoSvg = "bethesda",
                             Name = 1
                         },
                         new
                         {
-                            Id = "25f02099-461e-445a-92b4-a3f46dcccde8",
-                            LogoSvg = "~/logos_in_svg/blizzard",
+                            Id = "bbbf5bdf-3f4a-45a0-9e76-cf4fa53c7c73",
+                            LogoSvg = "blizzard",
                             Name = 2
                         },
                         new
                         {
-                            Id = "7b302064-4685-489a-ba8d-8b859743f208",
-                            LogoSvg = "~/logos_in_svg/bluehole",
+                            Id = "5e594a08-9d17-4da8-a647-e2092d95b409",
+                            LogoSvg = "bluehole",
                             Name = 3
                         },
                         new
                         {
-                            Id = "61cd55c6-4a5e-4ff6-bddb-a4e3a86980ee",
-                            LogoSvg = "~/logos_in_svg/capcom",
+                            Id = "76883a39-0041-47dc-b5fe-a71b94608413",
+                            LogoSvg = "capcom",
                             Name = 4
                         },
                         new
                         {
-                            Id = "e3ee77fc-f667-46fb-b0f7-08b3231c4f59",
-                            LogoSvg = "~/logos_in_svg/cd-projekt",
+                            Id = "345a0039-d9ef-4b34-84c8-faa554df3947",
+                            LogoSvg = "cd-projekt",
                             Name = 5
                         },
                         new
                         {
-                            Id = "1351fc00-1488-48ae-bc60-a2a0fcbd512a",
-                            LogoSvg = "~/logos_in_svg/crystal",
+                            Id = "90de324c-0ae1-436d-abfa-bc41c629bc6c",
+                            LogoSvg = "crystal",
                             Name = 6
                         },
                         new
                         {
-                            Id = "1078aa23-a08c-4852-bca8-064185ebd18b",
-                            LogoSvg = "~/logos_in_svg/electronic-arts",
+                            Id = "2ba1f6af-5682-4746-bbb4-7a90913b5d7e",
+                            LogoSvg = "electronic-arts",
                             Name = 7
                         },
                         new
                         {
-                            Id = "dbaa7a3c-bc39-4792-b69a-4e8916c25a80",
-                            LogoSvg = "~/logos_in_svg/epic-games",
+                            Id = "98aa0a02-faae-49b6-b0eb-7ef0d58510ed",
+                            LogoSvg = "epic-games",
                             Name = 8
                         },
                         new
                         {
-                            Id = "691dc219-3463-4d1a-b887-8574bdd6eae5",
-                            LogoSvg = "~/logos_in_svg/firaxis-games",
+                            Id = "44616225-57eb-4e29-a2d3-9b0fd3c8561b",
+                            LogoSvg = "firaxis-games",
                             Name = 9
                         },
                         new
                         {
-                            Id = "8fab579a-332e-45f1-b748-313ad1f4f9f6",
-                            LogoSvg = "~/logos_in_svg/insomniac-games",
+                            Id = "c3420e62-e2ee-402c-b17b-3b4dbeea6336",
+                            LogoSvg = "insomniac-games",
                             Name = 10
                         },
                         new
                         {
-                            Id = "721f515e-a213-47bc-8000-a65f900af13f",
-                            LogoSvg = "~/logos_in_svg/microsoft",
+                            Id = "285ef51f-84fe-44ad-a67f-6dc0e5195ae6",
+                            LogoSvg = "microsoft",
                             Name = 11
                         },
                         new
                         {
-                            Id = "10721950-4c72-4750-90d8-fb2f1fb29741",
-                            LogoSvg = "~/logos_in_svg/mojang",
+                            Id = "dba9df21-d5fc-45f3-8706-1b1c647d9649",
+                            LogoSvg = "mojang",
                             Name = 12
                         },
                         new
                         {
-                            Id = "ae94423c-f1f3-48eb-b95c-76ddea922183",
-                            LogoSvg = "~/logos_in_svg/nintendo",
+                            Id = "e1de7a80-4953-45a9-a730-e806489c75da",
+                            LogoSvg = "nintendo",
                             Name = 13
                         },
                         new
                         {
-                            Id = "39f7698a-768d-4972-bd0c-e947d433e31f",
-                            LogoSvg = "~/logos_in_svg/paradox-interactive",
+                            Id = "00c91e34-e5ef-4729-8aab-b0c2972e1606",
+                            LogoSvg = "paradox-interactive",
                             Name = 14
                         },
                         new
                         {
-                            Id = "73dc74b1-f997-4b32-bfa5-e93994660016",
-                            LogoSvg = "~/logos_in_svg/remedy-entertainment",
+                            Id = "f2b137b1-3b65-435b-8579-798943eed6ea",
+                            LogoSvg = "remedy-entertainment",
                             Name = 15
                         },
                         new
                         {
-                            Id = "a35a4439-7d92-4008-892d-628889268e41",
-                            LogoSvg = "~/logos_in_svg/rockstar-games",
+                            Id = "d913b45a-a608-4e4b-abaf-120ab5675ebd",
+                            LogoSvg = "rockstar-games",
                             Name = 16
                         },
                         new
                         {
-                            Id = "c8447167-cff6-4ce0-ad3d-9f83baf34cf7",
-                            LogoSvg = "~/logos_in_svg/sega",
+                            Id = "ada1a697-6a5f-428d-9d32-e77b39dde516",
+                            LogoSvg = "sega",
                             Name = 17
                         },
                         new
                         {
-                            Id = "089bfff7-5fc4-457c-b63f-65b860ce7f5f",
-                            LogoSvg = "~/logos_in_svg/sony",
+                            Id = "69e1a878-5643-49ea-b1f7-0b7f2996b3bc",
+                            LogoSvg = "sony",
                             Name = 18
                         },
                         new
                         {
-                            Id = "2ba54d44-3f4b-4084-a7e7-ca7eb3743d84",
-                            LogoSvg = "~/logos_in_svg/square-enix",
+                            Id = "79f227a0-bdd7-420e-bb58-b65e45ce8526",
+                            LogoSvg = "square-enix",
                             Name = 19
                         },
                         new
                         {
-                            Id = "2754cb7d-f8fd-4fb2-9468-e48dfcb914b4",
-                            LogoSvg = "~/logos_in_svg/ubisoft",
+                            Id = "cda18588-d35d-487e-b1c1-f229cf1dc8ad",
+                            LogoSvg = "ubisoft",
                             Name = 20
                         },
                         new
                         {
-                            Id = "5e05cd0b-0615-48a9-974e-7af2cc9ec4bd",
-                            LogoSvg = "~/logos_in_svg/valve",
+                            Id = "fffd6105-bec7-44ea-9a52-a7e55e4c6b95",
+                            LogoSvg = "valve",
                             Name = 21
-                        },
-                        new
-                        {
-                            Id = "3c5e37e1-62e6-497d-b705-791556e50e0f",
-                            LogoSvg = "~/logos_in_svg/activision",
-                            Name = 22
                         });
                 });
 
@@ -291,77 +419,6 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -449,47 +506,23 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("F12XA6_SOF_2023241.Models.AppUser", b =>
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Comment", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+                    b.HasOne("F12XA6_SOF_2023241.Models.Game", "Game")
+                        .WithMany("Comments")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", "Owner")
+                        .WithMany("Commenst")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Navigation("Game");
 
-                    b.Property<string>("PhotoContentType")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<byte[]>("PhotoData")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasDiscriminator().HasValue("AppUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3032f327-4d04-477c-9ffe-30db909028d9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "a8c29b77-040a-478e-950c-9d540eedbb7c",
-                            Email = "keny.gergo@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedUserName = "KENY.GERGO@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIA+mnUUSO96EfKPryu5KQR3DXoC5YUP4/AI6Mt8VO5cKGrX5e7peAm6Tp7jrmef9Q==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3de27807-e330-422d-a7dc-308c4b57e994",
-                            TwoFactorEnabled = false,
-                            UserName = "keny.gergo@gmail.com",
-                            FirstName = "Kenyeres",
-                            LastName = "Gergő"
-                        });
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
@@ -497,13 +530,13 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasOne("F12XA6_SOF_2023241.Models.AppUser", "Owner")
                         .WithMany("GamesOwned")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("F12XA6_SOF_2023241.Models.Studios", "Studios")
                         .WithMany("GamesOwned")
                         .HasForeignKey("StudiosId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Owner");
@@ -522,7 +555,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -531,7 +564,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -546,7 +579,7 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -555,19 +588,26 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("F12XA6_SOF_2023241.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Studios", b =>
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.AppUser", b =>
                 {
+                    b.Navigation("Commenst");
+
                     b.Navigation("GamesOwned");
                 });
 
-            modelBuilder.Entity("F12XA6_SOF_2023241.Models.AppUser", b =>
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Game", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("F12XA6_SOF_2023241.Models.Studios", b =>
                 {
                     b.Navigation("GamesOwned");
                 });

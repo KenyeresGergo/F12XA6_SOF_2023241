@@ -5,6 +5,7 @@ using F12XA6_SOF_2023241.Models.Interfaces;
 
 namespace F12XA6_SOF_2023241.Models
 {
+    [Table("Games")]
     public class Game :  IDbEntity, IGame
     {
         [Key]
@@ -29,14 +30,16 @@ namespace F12XA6_SOF_2023241.Models
 
         public string StudiosId { get; set; }
 
-        [ForeignKey("StudiosId")]
+        // [ForeignKey("StudiosId")]
+        [NotMapped]
         public Studios Studios { get; set; }
 
         public string OwnerId { get; set; }
 
-        [ForeignKey("OwnerId")]
-        public AppUser Owner { get; set; }
+        // [ForeignKey("OwnerId")]
         [NotMapped]
+        public AppUser Owner { get; set; }
+        
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
         public Game()
