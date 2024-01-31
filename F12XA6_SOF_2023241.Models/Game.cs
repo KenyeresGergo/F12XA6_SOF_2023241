@@ -42,7 +42,7 @@ namespace F12XA6_SOF_2023241.Models
         [NotMapped]
         [ValidateNever]
         public Studios Studios { get; set; }
-
+        [ValidateNever]
         public string OwnerId { get; set; }
 
         [ForeignKey("OwnerId")]

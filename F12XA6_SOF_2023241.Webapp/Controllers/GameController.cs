@@ -40,24 +40,6 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
 
-        // GET: GameController/Create
-        //[HttpPost]
-        //public ActionResult Create(Game game)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(game);
-
-        //    _gamelogic.Create(game);
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-        //[Authorize]
-        //public IActionResult CreateGame()
-        //{
-        //    return View();
-        //}
-
-
         // GET: GameController/Delete/5
         public ActionResult Delete(string id)
         {
@@ -128,6 +110,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             var viewModel = new CommentViewModel(game);
             viewModel.Comments = _commentLogic.Read().Where(c => c.GameId == gameId).OrderBy(c => c.CreatedOn).ToList();
             viewModel.CommentOwner = user;
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(GameReview), gameId);
+            }
             return View("GameReview", viewModel);
 
         }
@@ -157,14 +143,12 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
                 }
             }
             var user = await _userManager.GetUserAsync(User);
-            //game.Owner = user;
             game.OwnerId = user.Id.ToString();
-          //  game.Studios = _studioLogic.Read(game.StudiosId);
-            //if (!ModelState.IsValid)
-            //{
-            //    ViewBag.Studios = GetStudios();
-            //    return View("CreateGame", game);
-            //}
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Studios = GetStudios();
+                return View("CreateGame", game);
+            }
 
             _gamelogic.Create(game);
 
