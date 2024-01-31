@@ -1,7 +1,8 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
 body {
-    margin-top: 48px;
+    margin-top: 120px;
+    min-height: 100vh;
 }
 
 .card {
@@ -28,14 +29,13 @@ body {
         transform: translateY(-3px) scale(1.1);
     }
 
-
 .photo-grid {
     display: grid;
     gap: 1rem;
-    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));*/
-    grid-template-columns: repeat(4, 1fr); /* Set the number of columns to 4 */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-auto-rows: 240px;
-    width: 80%;
+    width: 90%;
+    margin-top: auto;
 }
 
 /* Medium screens */

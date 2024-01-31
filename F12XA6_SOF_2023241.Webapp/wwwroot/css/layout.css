@@ -23,8 +23,8 @@ a {
 
 /* Navbar */
 .navbar {
-    top: 0;
     position: fixed;
+    top: 0;
     height: 5rem;
     width: 100%;
     background: var(--bg-nav);

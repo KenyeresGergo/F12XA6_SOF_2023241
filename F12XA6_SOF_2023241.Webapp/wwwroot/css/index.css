@@ -108,7 +108,7 @@
 
 /* Responsive styles... */
 
-@media(max-width: 1000px) {
+@media(max-width: 920px) {
     body {
         align-items: flex-start;
         overflow: auto;
