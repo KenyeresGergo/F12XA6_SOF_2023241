@@ -1,4 +1,6 @@
-﻿using F12XA6_SOF_2023241.Logic.Interfaces;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using F12XA6_SOF_2023241.Logic.Interfaces;
 using F12XA6_SOF_2023241.Models;
 using F12XA6_SOF_2023241.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -7,8 +9,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing.Printing;
+using F12XA6_SOF_2023241.Webapp.Services;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
@@ -18,13 +22,67 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly ICommentLogic _commentLogic;
         private readonly IStudioLogic _studioLogic;
-        public GameController(IGameLogic gamelogic, ICommentLogic commentLogic, UserManager<AppUser> usermanager, IStudioLogic studioLogic)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private BlobService _blobStorageService = new BlobService();
+
+        BlobContainerClient ContainerClient;
+        public GameController(IGameLogic gamelogic, ICommentLogic commentLogic, UserManager<AppUser> usermanager, IStudioLogic studioLogic, IWebHostEnvironment webHostEnvironment)
         {
             _gamelogic = gamelogic;
             _commentLogic = commentLogic;
             _userManager = usermanager;
             _studioLogic = studioLogic;
+            _webHostEnvironment = webHostEnvironment;
+            UploadSvgFromFolder();
         }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> UploadSvgFromFolder()
+        {
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logos_in_svg");
+            var svgFiles = Directory.GetFiles(folderPath, "*.svg");
+
+            if (svgFiles.Any())
+            {
+                var files = new List<IFormFile>();
+
+                foreach (var filePath in svgFiles)
+                {
+                    var fileName = Path.GetFileName(filePath);
+                    var fileContent = await System.IO.File.ReadAllTextAsync(filePath);
+                    var memoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(fileContent));
+
+                    var formFile = new FormFile(memoryStream, 0, memoryStream.Length, "file", fileName)
+                    {
+                        Headers = new HeaderDictionary(),
+                        ContentType = "image/svg+xml"
+                    };
+
+                    files.Add(formFile);
+                }
+
+                return UploadSvg(files);
+            }
+
+            return BadRequest("No SVG files found in the folder.");
+        }
+
+
+
+
+        [HttpPost]
+        public IActionResult UploadSvg(List<IFormFile> files)
+        {
+            foreach (var file in files)
+            {
+                _blobStorageService.UploadSvgToBlobStorageAsync(file);
+            }
+            return Ok();
+        }
+
 
         // GET: GameController
         public ActionResult Index()
