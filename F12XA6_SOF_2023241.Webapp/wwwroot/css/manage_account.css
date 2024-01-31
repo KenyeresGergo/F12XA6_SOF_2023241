@@ -1,0 +1,127 @@
+﻿body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.manage-card {
+    height: 600px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: var(--text);
+    border-radius: 1.5rem;
+    color: var(--bg);
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-grow: 2;
+}
+.column-1 {
+    height: 75%;
+    display: flex;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.column-2 {
+    flex-grow: 3;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.input {
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.save-button {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--border-color);
+    color: var(--text);
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.social-facebook {
+    background-color: #1877F2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    font-size: 14px;
+}
+/* Themes */
+:root {
+    font-size: 16px;
+    --gray0: #f8f8f8;
+    --gray1: #dbe1e8;
+    --gray2: #b2becd;
+    --gray3: #6c7983;
+    --gray4: #454e56;
+    --gray5: #2a2e35;
+    --gray6: #12181b;
+    --blue: #0084a5;
+    --purple: #a82dd1;
+    --yellow: #fff565;
+}
+
+.light {
+    --bg: var(--gray0);
+    --bg-nav: linear-gradient(to right, var(--gray1), var(--gray3));
+    --bg-dropdown: var(--gray0);
+    --text: var(--gray6);
+    --border-color: var(--blue);
+    --bg-solar: var(--yellow);
+}
+
+#light::before {
+    background: #ffffff;
+}
+
+.dark {
+    --bg: var(--gray5);
+    --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
+    --bg-dropdown: var(--gray6);
+    --text: var(--gray0);
+    --border-color: var(--purple);
+    --bg-solar: var(--blue);
+}
+
+#dark::before {
+    background: #2a2e35;
+}
+
+.solar {
+    --gray0: #fbffd4;
+    --gray1: #f7f8d0;
+    --gray2: #b6f880;
+    --gray3: #5ec72d;
+    --gray4: #3ea565;
+    --gray5: #005368;
+    --gray6: #003d4c;
+}
+
+#solar::before {
+    background: var(--bg-solar);
+}

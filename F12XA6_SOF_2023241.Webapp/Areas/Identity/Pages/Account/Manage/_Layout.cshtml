@@ -9,16 +9,17 @@
     }
 }
 
-<h1>Manage your account</h1>
+<link rel="stylesheet" href="~/css/manage_account.css" asp-append-version="true" />
 
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
+<div class="manage-card">
+    <div class="title">
+        <h1>Manage your account</h1>
+    </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="column-1">
             <partial name="_ManageNav" />
         </div>
-        <div class="col-md-9">
+        <div class="column-2">
             @RenderBody()
         </div>
     </div>

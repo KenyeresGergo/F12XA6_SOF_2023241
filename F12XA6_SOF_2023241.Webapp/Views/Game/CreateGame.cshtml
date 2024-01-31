@@ -1,45 +1,50 @@
 ﻿@model F12XA6_SOF_2023241.Models.Game
 
-<h2>Create Game</h2>
+<link rel="stylesheet" href="~/css/create_game.css" asp-append-version="true" />
 
-<form asp-controller="Game" asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" required />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
+<div class="create-game-card">
 
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control" required></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
+    <h2 class="title">Create Game</h2>
+    <div class="row">
+    <form asp-controller="Game" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group create-row">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control input" required />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Rating"></label>
-        <input asp-for="Rating" type="number" class="form-control" min="0" max="10" required />
-        <span asp-validation-for="Rating" class="text-danger"></span>
-    </div>
+        <div class="form-group create-row">
+            <label asp-for="Description"></label>
+            <br><textarea asp-for="Description" class="form-control input" required></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="PhotoFile"></label>
-        <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*" />
-        <span asp-validation-for="PhotoFile" class="text-danger"></span>
-    </div>
+            <div class="form-group create-row">
+            <label asp-for="Rating"></label>
+            <input asp-for="Rating" type="number" class="form-control" min="0" max="10" required />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="StudiosId"></label>
-        <select asp-for="StudiosId" asp-items="@(new SelectList(ViewBag.Studios, "Id", "Name"))" class="form-control" required>
-            <option value="">Select Studio</option>
-        </select>
-        <span asp-validation-for="StudiosId" class="text-danger"></span>
-    </div>
+            <div class="form-group create-row">
+            <label asp-for="PhotoFile"></label>
+            <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*" />
+            <span asp-validation-for="PhotoFile" class="text-danger"></span>
+        </div>
+
+            <div class="form-group create-row">
+            <label asp-for="StudiosId"></label>
+            <select asp-for="StudiosId" asp-items="@(new SelectList(ViewBag.Studios, "Id", "Name"))" class="form-control" required>
+                <option value="">Select Studio</option>
+            </select>
+            <span asp-validation-for="StudiosId" class="text-danger"></span>
+        </div>
 
    
 
-    <button type="submit" class="btn btn-primary">Create Game</button>
-</form>
-
+        <button type="submit" class="btn btn-primary create-button">Create Game</button>
+    </form>
+    </div>
+</div>
 
 
 
