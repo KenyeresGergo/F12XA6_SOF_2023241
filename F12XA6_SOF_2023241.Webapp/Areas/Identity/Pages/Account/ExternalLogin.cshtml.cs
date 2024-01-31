@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using F12XA6_SOF_2023241.Models;
+using System.Net;
 
 namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
 {
@@ -85,6 +86,14 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            [Required]
+            [StringLength(100)]
+            public string FirstName { get; set; }
+            [Required]
+            [StringLength(100)]
+            public string LastName { get; set; }
+
+            public string PictureUrl { get; set; }
         }
         
         public IActionResult OnGet() => RedirectToPage("./Login");
@@ -132,8 +141,12 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                        FirstName = info.Principal.FindFirstValue(ClaimTypes.Surname),
+                        LastName = info.Principal.FindFirstValue(ClaimTypes.GivenName),
+                        PictureUrl = "https://graph.facebook.com/" + info.Principal.FindFirstValue(ClaimTypes.NameIdentifier) + "/picture?type=large"
                     };
+
                 }
                 return Page();
             }
@@ -153,6 +166,15 @@ namespace F12XA6_SOF_2023241.Webapp.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+
+                var wc = new WebClient();
+                user.PhotoData = wc.DownloadData(Input.PictureUrl);
+                user.PhotoContentType = wc.ResponseHeaders["Content-Type"];
+
+
+
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
