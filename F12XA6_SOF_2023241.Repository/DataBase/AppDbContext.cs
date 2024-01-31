@@ -70,7 +70,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 .HasOne(t => t.Owner)
                 .WithMany(t => t.GamesOwned)
                 .HasForeignKey(t => t.OwnerId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Game>()
                 .HasOne(t => t.Studios)
@@ -101,7 +101,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
               .HasMany(t => t.GamesOwned)
               .WithOne(t => t.Owner)
               .HasForeignKey(t => t.OwnerId)
-              .OnDelete(DeleteBehavior.NoAction);
+              .OnDelete(DeleteBehavior.Cascade);
                 
 
 

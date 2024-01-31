@@ -35,16 +35,18 @@ namespace F12XA6_SOF_2023241.Webapp
             builder.Services.AddTransient<IGameLogic, GameLogic>();
             builder.Services.AddTransient<IStudioLogic, StudioLogic>();
             builder.Services.AddTransient<ICommentLogic, CommentLogic>();
-           
+
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-          
+
             builder.Services.AddDefaultIdentity<AppUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
+          
+
 
             builder.Services.AddAuthentication().AddFacebook(opt =>
             {

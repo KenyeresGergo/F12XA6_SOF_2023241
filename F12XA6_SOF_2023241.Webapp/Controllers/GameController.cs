@@ -34,9 +34,9 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View("~/Views/Home/Index.cshtml", model);
         }
 
-        public ActionResult ListGames()
+        public ActionResult Games()
         {
-            return View(this._gamelogic.Read());
+            return View("~/Views/Home/Games.cshtml", this._gamelogic.Read());
         }
 
 
@@ -47,6 +47,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize]
         [Authorize]
         public IActionResult GameReview(string gameId, int page = 1, int pageSize = 10)
         {
@@ -127,9 +128,6 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         [Authorize]
         public async Task<IActionResult> Create(Game game)
         {
-           
-
-          
 
             if (game.PhotoFile != null && game.PhotoFile.Length > 0)
             {
@@ -152,7 +150,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             _gamelogic.Create(game);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Games));
         }
         [Authorize]
         public IActionResult CreateGame()
@@ -160,6 +158,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             ViewBag.Studios = GetStudios();
             return View();
         }
+        [Authorize]
         public IActionResult DeleteComment(string commentId, string gameid)
         {
             var item = _commentLogic.Read(commentId);

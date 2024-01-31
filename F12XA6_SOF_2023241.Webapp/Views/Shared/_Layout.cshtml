@@ -6,51 +6,54 @@
 
     <!--CSS-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true"/>
-    
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+
     <!--JS-->
     <script defer src="~/js/layout.js" asp-append-version="true"></script>
 
     <title>@ViewData["Title"]</title>
 </head>
 <body class="light">
-<!-- Navbar -->
-<nav class="navbar">
-    <ul class="navbar-nav">
-        <!-- Dropdown -->
-        <li class="nav-item">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <!-- Dropdown -->
+            <li class="nav-item">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="" asp-controller="Home" asp-action="Games">Games</a>
-        </li>
+            </li>
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="Games">Games</a>
+            </li>
             <li class="nav-item">
                 <a asp-area="" asp-controller="Home" asp-action="MyGames">My Games</a>
             </li>
-        <li class="nav-item">
-            <partial name="_LoginPartial" />
-        </li>
-        <li class="nav-item has-dropdown">
-        <a href="#">
-            <span class="theme-circle"></span>
-        </a>
-        <ul class="dropdown navbar-nav">
-            <li class="dropdown-item">
-                <a id="light" href="#">light</a>
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="Users">Admin Page</a>
             </li>
-            <li class="dropdown-item">
-                <a id="dark" href="#">dark</a>
+            <li class="nav-item">
+                <partial name="_LoginPartial" />
             </li>
-            <li class="dropdown-item">
-                <a id="solar" href="#">solarize</a>
+            <li class="nav-item has-dropdown">
+                <a href="#">
+                    <span class="theme-circle"></span>
+                </a>
+                <ul class="dropdown navbar-nav">
+                    <li class="dropdown-item">
+                        <a id="light" href="#">light</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a id="dark" href="#">dark</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a id="solar" href="#">solarize</a>
+                    </li>
+                </ul>
             </li>
         </ul>
-    </li>
-    </ul>
-</nav>
+    </nav>
 
-@RenderBody()
-@RenderSection("Scripts",required: false)
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>

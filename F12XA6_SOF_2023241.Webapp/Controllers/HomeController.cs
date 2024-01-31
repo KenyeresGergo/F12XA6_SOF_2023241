@@ -123,9 +123,47 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
         public IActionResult GetImage(string userid)
         {
-           
-            var user =  _userManager.Users.FirstOrDefault(t=> t.Id == userid);
-            return new FileContentResult(user.PhotoData, user.PhotoContentType);
+
+            var user = _userManager.FindByIdAsync(userid).Result;
+
+            if (user == null)
+            {
+              
+                return File("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg", "image/png");
+            }
+
+            if (user.PhotoData != null && user.PhotoContentType != null)
+            {
+                return new FileContentResult(user.PhotoData, user.PhotoContentType);
+            }
+            else
+            {
+                return File("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg", "image/png");
+            }
+
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")] // Restrict access to admins only
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(); 
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Users");
+            }
+            else
+            {
+                
+                return View("Error");
+            }
         }
     }
 }
