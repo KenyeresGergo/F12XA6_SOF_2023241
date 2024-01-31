@@ -19,7 +19,7 @@ namespace F12XA6_SOF_2023241.Webapp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+            var connectionString = builder.Configuration.GetConnectionString("AzureConnection") ??
                                    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("F12XA6_SOF_2023241.Repository")));
