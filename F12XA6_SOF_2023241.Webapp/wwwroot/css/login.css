@@ -1,0 +1,87 @@
+﻿body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    overflow: hidden;
+}
+
+.login-card{
+    height: 500px;
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    border: 2px solid;
+    border-color: var(--text);
+    border-radius: 1.5rem;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Themes */
+:root {
+    font-size: 16px;
+    --gray0: #f8f8f8;
+    --gray1: #dbe1e8;
+    --gray2: #b2becd;
+    --gray3: #6c7983;
+    --gray4: #454e56;
+    --gray5: #2a2e35;
+    --gray6: #12181b;
+    --blue: #0084a5;
+    --purple: #a82dd1;
+    --yellow: #fff565;
+}
+
+.light {
+    --bg: var(--gray0);
+    --bg-nav: linear-gradient(to right, var(--gray1), var(--gray3));
+    --bg-dropdown: var(--gray0);
+    --text: var(--gray6);
+    --border-color: var(--blue);
+    --bg-solar: var(--yellow);
+}
+
+#light::before {
+    background: #ffffff;
+}
+
+.dark {
+    --bg: var(--gray5);
+    --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
+    --bg-dropdown: var(--gray6);
+    --text: var(--gray0);
+    --border-color: var(--purple);
+    --bg-solar: var(--blue);
+}
+
+#dark::before {
+    background: #2a2e35;
+}
+
+.solar {
+    --gray0: #fbffd4;
+    --gray1: #f7f8d0;
+    --gray2: #b6f880;
+    --gray3: #5ec72d;
+    --gray4: #3ea565;
+    --gray5: #005368;
+    --gray6: #003d4c;
+}
+
+#solar::before {
+    background: var(--bg-solar);
+}
