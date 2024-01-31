@@ -58,6 +58,8 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 OwnerId = gergo.Id,
                 //Owner = gergo,
                 StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id,
+                PhotoContentType = "image/jpeg",
+                PhotoData = new byte[10]
                 //Studios = studios.FirstOrDefault(t => t.Serial_Num == "16") as Studios
 
             };

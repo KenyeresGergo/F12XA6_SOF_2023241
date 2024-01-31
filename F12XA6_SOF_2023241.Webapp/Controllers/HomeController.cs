@@ -121,10 +121,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public async Task<IActionResult> GetImage(string userid)
+        public IActionResult GetImage(string userid)
         {
-            var principal = this.User;
-            var user = await _userManager.GetUserAsync(principal);
+           
+            var user =  _userManager.Users.FirstOrDefault(t=> t.Id == userid);
             return new FileContentResult(user.PhotoData, user.PhotoContentType);
         }
     }

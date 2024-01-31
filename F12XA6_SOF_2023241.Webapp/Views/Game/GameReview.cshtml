@@ -20,7 +20,7 @@
             <p class="game-description">@Model.Game.Description</p>
         </div>
         <div class="col-sm-6">
-            <img src="game_image.jpg" alt="@Model.Game.Title" class="img-responsive game-image" />
+            <img src="@Url.Action("GetImage", "Game", new {id = Model.Game.Id})" alt="@Model.Game.Title" class="img-responsive game-image" />
         </div>
     </div>
 
