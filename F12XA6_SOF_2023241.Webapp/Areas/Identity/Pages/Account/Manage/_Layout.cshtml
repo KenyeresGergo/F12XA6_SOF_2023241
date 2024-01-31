@@ -12,17 +12,15 @@
 <link rel="stylesheet" href="~/css/manage_account.css" asp-append-version="true" />
 
 <div class="manage-card">
-    <h1 class="row">Manage your account</h1>
-
-    <div>
-        <hr />
-        <div class="row">
-            <div class="col-md-3">
-                <partial name="_ManageNav" />
-            </div>
-            <div class="col-md-9">
-                @RenderBody()
-            </div>
+    <div class="title">
+        <h1>Manage your account</h1>
+    </div>
+    <div class="row">
+        <div class="column-1">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="column-2">
+            @RenderBody()
         </div>
     </div>
 </div>

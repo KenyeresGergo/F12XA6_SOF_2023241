@@ -6,8 +6,8 @@
 }
 
 .manage-card {
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,9 +17,29 @@
     color: var(--bg);
 }
 
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
 .row {
     display: flex;
     justify-content: center;
+    flex-grow: 2;
+}
+.column-1 {
+    height: 75%;
+    display: flex;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.column-2 {
+    flex-grow: 3;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .input {

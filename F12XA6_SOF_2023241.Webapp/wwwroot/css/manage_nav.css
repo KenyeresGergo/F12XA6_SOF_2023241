@@ -1,0 +1,14 @@
+﻿.manage-nav{
+    display: flex;
+    height: 100%;
+    flex-direction:column;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.manage-nav-item {
+    align-content: center;
+    padding-top:10px;
+    padding-bottom:10px;
+
+}
