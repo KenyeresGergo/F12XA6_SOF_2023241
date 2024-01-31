@@ -1,5 +1,7 @@
 ﻿using Castle.Components.DictionaryAdapter;
 using F12XA6_SOF_2023241.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,13 +17,16 @@ namespace F12XA6_SOF_2023241.Models
     {
         [System.ComponentModel.DataAnnotations.Key]
         public string Id { get; set; }
+        [Required(ErrorMessage = "Content is required.")]
         public string Content { get; set; }
         public int ReactionCounter { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public string GameId { get; set; }
 
-        // [ForeignKey("GameId")]
+        [ForeignKey("GameId")]
+        [JsonIgnore]
         [NotMapped]
+        [ValidateNever]
         public Game Game { get; set; }
         public string OwnerId { get; set; }
         public string OwnerName { get; set; }

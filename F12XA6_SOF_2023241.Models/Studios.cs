@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using F12XA6_SOF_2023241.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Newtonsoft.Json;
 
 namespace F12XA6_SOF_2023241.Models
 {
@@ -40,20 +42,24 @@ namespace F12XA6_SOF_2023241.Models
         [Key]
         public string Id { get; set; }
 
+        [JsonIgnore]
         [NotMapped]
+        [ValidateNever]
         public string Serial_Num { get; private set; }  //the int value of the StudioName enum
 
-        [Required]
+        [Required(ErrorMessage = "Content is required.")]
         [StringLength(200)]
         public StudioName Name { get; private set; } // appears as an int in the database
 
         public string? LogoSvg { get; private set; }
 
-     //   [NotMapped]
+        [NotMapped]
+        [ValidateNever]
         public virtual ICollection<Game> GamesOwned { get; set; }
 
         private string _path = "/wwwroot/logos_in_svg/";
 
+        [JsonIgnore]
         [NotMapped]
         private StudioName temp;
 
