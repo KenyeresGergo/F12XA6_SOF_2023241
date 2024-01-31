@@ -176,6 +176,16 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             ViewBag.Studios = GetStudios();
             return View();
         }
+        public IActionResult DeleteComment(string commentId, string gameid)
+        {
+            var item = _commentLogic.Read(commentId);
+            if (item != null && item.OwnerId == _userManager.GetUserId(this.User)) 
+            {
+                _commentLogic.Delete(commentId);
+            }
+
+            return RedirectToAction(nameof(GameReview), new { gameId = gameid });
+        }
 
 
     }
