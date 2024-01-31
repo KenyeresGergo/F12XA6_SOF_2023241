@@ -1,5 +1,51 @@
 ﻿@model F12XA6_SOF_2023241.Models.Game
 
+<h2>Create Game</h2>
+
+<form asp-controller="Game" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" required />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" required></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" type="number" class="form-control" min="0" max="10" required />
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhotoFile"></label>
+        <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*" />
+        <span asp-validation-for="PhotoFile" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudiosId"></label>
+        <select asp-for="StudiosId" asp-items="@(new SelectList(ViewBag.Studios, "Id", "Name"))" class="form-control" required>
+            <option value="">Select Studio</option>
+        </select>
+        <span asp-validation-for="StudiosId" class="text-danger"></span>
+    </div>
+
+   
+
+    <button type="submit" class="btn btn-primary">Create Game</button>
+</form>
+
+
+
+
+
+@* @model F12XA6_SOF_2023241.Models.Game
+
 @{
     Layout = "_Layout";
     ViewData["Title"] = "CreateGame";
@@ -8,7 +54,7 @@
 @*<h1>CreateGame</h1>
 
 <h4>Game</h4>*@
-<hr />
+@* <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateGame">
@@ -29,25 +75,12 @@
                 <input asp-for="Rating" class="form-control" />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PhotoContentType" class="control-label"></label>
-                <input asp-for="PhotoContentType" class="form-control" />
-                <span asp-validation-for="PhotoContentType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhotoData" class="control-label"></label>
-                <input asp-for="PhotoData" class="form-control" />
-                <span asp-validation-for="PhotoData" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label asp-for="StudiosId" class="control-label"></label>
                 <select asp-for="StudiosId" class="form-control" asp-items="ViewBag.StudiosId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="OwnerId" class="control-label"></label>
-                <input asp-for="OwnerId" class="form-control" />
-                <span asp-validation-for="OwnerId" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -64,3 +97,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+ *@ 

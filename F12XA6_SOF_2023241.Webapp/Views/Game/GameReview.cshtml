@@ -19,8 +19,8 @@
         <div class="col-sm-6">
             <p class="game-description">@Model.Game.Description</p>
         </div>
-        <div class="col-sm-6">
-            <img src="@Url.Action("GetImage", "Game", new {id = Model.Game.Id})" alt="@Model.Game.Title" class="img-responsive game-image" />
+        <div class="game-image">
+            <img src="@Url.Action("GetImage", "Game", new {id = Model.Game.Id})" alt="@Model.Game.Title" class="img-responsive game-image" style="width: 80px; height: 80px;" />
         </div>
     </div>
 

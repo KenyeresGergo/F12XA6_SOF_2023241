@@ -41,21 +41,21 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
 
         // GET: GameController/Create
-        [HttpPost]
-        public ActionResult Create(Game game)
-        {
-            if (!ModelState.IsValid)
-                return View(game);
+        //[HttpPost]
+        //public ActionResult Create(Game game)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(game);
 
-            _gamelogic.Create(game);
+        //    _gamelogic.Create(game);
 
-            return RedirectToAction(nameof(Index));
-        }
-        [Authorize]
-        public IActionResult CreateGame()
-        {
-            return View();
-        }
+        //    return RedirectToAction(nameof(Index));
+        //}
+        //[Authorize]
+        //public IActionResult CreateGame()
+        //{
+        //    return View();
+        //}
 
 
         // GET: GameController/Delete/5
@@ -68,7 +68,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         [Authorize]
         public IActionResult GameReview(string gameId, int page = 1, int pageSize = 10)
         {
-            var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
+            var game = _gamelogic.Read().First(g => g.Id == gameId);
 
             if (game == null)
             {
@@ -135,6 +135,46 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public List<Studios> GetStudios()
         {
             return _studioLogic.Read().ToList();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Create(Game game)
+        {
+           
+
+          
+
+            if (game.PhotoFile != null && game.PhotoFile.Length > 0)
+            {
+                // Process the uploaded image and set properties in the game model
+                game.PhotoContentType = game.PhotoFile.ContentType;
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    await game.PhotoFile.CopyToAsync(memoryStream);
+                    game.PhotoData = memoryStream.ToArray();
+                }
+            }
+            var user = await _userManager.GetUserAsync(User);
+            //game.Owner = user;
+            game.OwnerId = user.Id.ToString();
+          //  game.Studios = _studioLogic.Read(game.StudiosId);
+            //if (!ModelState.IsValid)
+            //{
+            //    ViewBag.Studios = GetStudios();
+            //    return View("CreateGame", game);
+            //}
+
+            _gamelogic.Create(game);
+
+            return RedirectToAction(nameof(Index));
+        }
+        [Authorize]
+        public IActionResult CreateGame()
+        {
+            ViewBag.Studios = GetStudios();
+            return View();
         }
 
 
