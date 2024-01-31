@@ -108,27 +108,34 @@
 
 /* Responsive styles... */
 
-@media(max-width: 920px) {
+@media(max-width: 1080px) {
     body {
-        align-items: flex-start;
         overflow: auto;
     }
 
     #cards {
-        max-width: 1000px;
-        padding: 10px 0px;
-        margin-top: 100px;
+        justify-content: center;
+        max-width: 50rem;
         scroll-margin-top: 100px;
+        width: calc(100% - 20px);
         z-index: 1;
     }
 
     .card {
         flex-shrink: 1;
-        width: calc(50% - 20px);
+        width: 12rem;
+        height: 15rem;
+    }
+    .card img{
+        height: 120px;
+        width: auto;
     }
 }
 
 @media(max-width: 500px) {
+    #cards {
+        justify-content: center;
+    }
     .card {
         height: 180px;
     }
@@ -157,14 +164,10 @@
         font-size: 0.8em;
         margin-top: 4px;
     }
-}
-
-@media(max-width: 320px) {
-    .card {
-        width: 100%;
+    .title{
+        color: var(--text);
     }
 }
-
 
 
 :root {
