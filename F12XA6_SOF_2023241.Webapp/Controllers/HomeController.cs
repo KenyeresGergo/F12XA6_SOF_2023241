@@ -92,7 +92,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Users));
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Users()
         {
             return View(_userManager.Users);
@@ -128,8 +128,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             if (user == null)
             {
-                // User not found, return a default image or handle it as needed
-                // For example, return a placeholder image
+              
                 return File("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg", "image/png");
             }
 
@@ -139,34 +138,31 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             }
             else
             {
-                // Photo data or content type is null, return a default image or handle it as needed
-                // For example, return a placeholder image
                 return File("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg", "image/png");
             }
 
         }
         [HttpPost]
-        [Authorize] // Restrict access to admins only
+        [Authorize(Roles = "Admin")] // Restrict access to admins only
         public async Task<IActionResult> DeleteUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
-                return NotFound(); // User not found
+                return NotFound(); 
             }
 
             var result = await _userManager.DeleteAsync(user);
 
             if (result.Succeeded)
             {
-                // Successful deletion, you can redirect to a success page or perform additional actions
                 return RedirectToAction("Users");
             }
             else
             {
-                // Failed to delete user, handle accordingly (e.g., display an error message)
-                return View("Error"); // Provide an appropriate error view
+                
+                return View("Error");
             }
         }
     }
