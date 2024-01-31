@@ -84,6 +84,15 @@
             margin-bottom: 20px; /* Add margin-bottom for the gap */
             filter: invert(1); /* Invert colors initially for light mode */
         }
+    .card-image {
+        max-height: 180px;
+        height: auto;
+        width: 150px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 20px; /* Add margin-bottom for the gap */
+        filter: invert(1); /* Invert colors initially for light mode */
+    }
 
 /* Invert the logo for dark mode */
 .dark .card img {
