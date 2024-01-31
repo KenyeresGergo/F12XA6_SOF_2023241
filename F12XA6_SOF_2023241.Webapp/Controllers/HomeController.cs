@@ -52,6 +52,16 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return View(viewModel);
         }
+        public IActionResult GetLogo(string studioId)
+        {
+            string path = "https://soffelevesblob.blob.core.windows.net/logosblob/";
+
+            string logoUrl = path + _studiologic.Read(studioId).LogoSvg + ".svg";
+
+            return Content(logoUrl, "text/plain");
+        }
+
+
         [Authorize]
         public async Task<IActionResult> MyGames()
         {
