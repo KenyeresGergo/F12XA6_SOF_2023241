@@ -68,7 +68,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         [Authorize]
         public IActionResult GameReview(string gameId, int page = 1, int pageSize = 10)
         {
-            var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
+            var game = _gamelogic.Read().First(g => g.Id == gameId);
 
             if (game == null)
             {
