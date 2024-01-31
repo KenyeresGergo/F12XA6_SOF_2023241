@@ -56,7 +56,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         {
             string path = "https://soffelevesblob.blob.core.windows.net/logosblob/";
 
-            string logoUrl = path + _studiologic.Read(studioId).LogoSvg + ".svg";
+            string logoUrl = path + _studiologic.Read(studioId).LogoSvg.Substring(22) + ".svg";
 
             return Content(logoUrl, "text/plain");
         }

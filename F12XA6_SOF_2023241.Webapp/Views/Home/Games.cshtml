@@ -14,14 +14,13 @@
     @{int i = 1;}
     @foreach(var game in @Model)
     {
-        for(int j = 1; j < 25; j++)
-        {
+       
             <a href="@Url.Action("GameReview", "Game", new { gameId = game.Id})">
-                <div class="card @GetSizeClass(j)">
-                    <img class="card-image" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Game Image">
+                <div class="card @GetSizeClass(i)">
+                    <img class="card-image" src="@Url.Action("GetImage", "Home", new {userid = game.OwnerId})" alt="Game Image">
                 </div>
             </a>
-        }
+        
          
         i++;
     }
