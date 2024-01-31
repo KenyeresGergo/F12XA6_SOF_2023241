@@ -17,18 +17,21 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         private readonly IGameLogic _gamelogic;
         private readonly UserManager<AppUser> _userManager;
         private readonly ICommentLogic _commentLogic;
-        public GameController(IGameLogic gamelogic, ICommentLogic commentLogic, UserManager<AppUser> usermanager)
+        private readonly IStudioLogic _studioLogic;
+        public GameController(IGameLogic gamelogic, ICommentLogic commentLogic, UserManager<AppUser> usermanager, IStudioLogic studioLogic)
         {
             _gamelogic = gamelogic;
             _commentLogic = commentLogic;
             _userManager = usermanager;
-
+            _studioLogic = studioLogic;
         }
 
         // GET: GameController
         public ActionResult Index() //TODO: Studiok megjelentitese
         {
-            return View(this._gamelogic.GamesByStudios());
+            //  return RedirectToAction(nameof(HomeController.Index), this._gamelogic.GamesByStudios());
+          var model = new HomePageViewModel(this.GetStudios(), 1, 6);
+            return View("~/Views/Home/Index.cshtml", model);
         }
 
         public ActionResult ListGames()
@@ -62,7 +65,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize]
         public IActionResult GameReview(string gameId, int page = 1, int pageSize = 10)
         {
             var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
@@ -82,12 +85,15 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
                 TotalPages = _commentLogic.GetTotalPagesForGame(gameId, pageSize),
                 PageSize = pageSize
             };
+            
+
+           
 
             return View(viewModel);
         }
 
        
-
+       
         public IActionResult GetImage(string id)
         {
             var game = _gamelogic.Read(id);
@@ -110,6 +116,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateComment(string gameId, string content)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -124,6 +131,12 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View("GameReview", viewModel);
          
         }
-        
+
+        public List<Studios> GetStudios()
+        {
+            return _studioLogic.Read().ToList();
+        }
+      
+
     }
 }

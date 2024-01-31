@@ -58,6 +58,8 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 OwnerId = gergo.Id,
                 //Owner = gergo,
                 StudiosId = studios.FirstOrDefault(t => t.Serial_Num == "16").Id,
+                PhotoContentType = "image/jpeg",
+                PhotoData = new byte[10]
                 //Studios = studios.FirstOrDefault(t => t.Serial_Num == "16") as Studios
 
             };
@@ -77,11 +79,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 .OnDelete(DeleteBehavior.NoAction);
 
 
-            //builder.Entity<Game>()
-            //   .HasMany(g=>g.Commenst)
-            //   .WithOne(c=>c.Game)
-            //   .HasForeignKey(c=>c.GameId)
-            //   .OnDelete(DeleteBehavior.Cascade);  
+            
 
             builder.Entity<Comment>()
                 .HasOne(c => c.Owner)
@@ -89,11 +87,7 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 .HasForeignKey(c => c.OwnerId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            //builder.Entity<AppUser>()
-            //    .HasMany(a => a.Commenst)
-            //    .WithOne(c => c.Owner)
-            //    .HasForeignKey(c => c.OwnerId)
-            //    .OnDelete(DeleteBehavior.NoAction);
+          
 
             builder.Entity<Comment>()
                 .HasOne(c => c.Game)
@@ -102,18 +96,6 @@ namespace F12XA6_SOF_2023241.Repository.DataBase
                 .OnDelete(DeleteBehavior.NoAction);
 
 
-
-            //builder.Entity<Game>().
-            //    HasMany(g => g.Comments)
-            //    .WithOne(c => c.Game)
-            //    .OnDelete(DeleteBehavior.Cascade);
-
-
-            //builder.Entity<Studios>()
-            //    .HasMany(s => s.GamesOwned)
-            //    .WithOne(g => g.Studio)
-            //    .HasForeignKey(g => g.StudioId)
-            //    .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<AppUser>()
               .HasMany(t => t.GamesOwned)

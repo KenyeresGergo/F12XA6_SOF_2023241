@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using F12XA6_SOF_2023241.Repository.DataBase;
 using F12XA6_SOF_2023241.Logic.Interfaces;
+using System.Reflection.Metadata.Ecma335;
 
 namespace F12XA6_SOF_2023241.Webapp.Controllers
 {
@@ -119,6 +120,12 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult GetImage(string userid)
+        {
+           
+            var user =  _userManager.Users.FirstOrDefault(t=> t.Id == userid);
+            return new FileContentResult(user.PhotoData, user.PhotoContentType);
         }
     }
 }

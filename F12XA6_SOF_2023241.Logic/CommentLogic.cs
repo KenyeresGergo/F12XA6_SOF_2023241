@@ -24,7 +24,7 @@ namespace F12XA6_SOF_2023241.Logic
             _userManager = userManager;
         }
 
-
+        
         public Comment Create(string gameId, string content, AppUser user)
         {
 
@@ -78,6 +78,8 @@ namespace F12XA6_SOF_2023241.Logic
         {
             return repository.GetTotalPagesForGame(gameId, pageSize);
         }
+
+
 
     }
 }
