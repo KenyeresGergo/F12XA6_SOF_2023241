@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<AppUser>
+<!--JS-->
+<script src="~/js/index.js" asp-append-version="true"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" asp-append-version="true"></script>
+<script src="~/js/pacman.js" asp-append-version="true"></script>
+
+<!--CSS-->
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+
+
+@foreach (var user in Model)
+{
+    <div class="user-container">
+        <img src="@Url.Action("GetImage", "Home", new { userid = user.Id })" alt="User Profile Picture" class="user-profile-picture" style="width: 80px; height: 80px; margin: 5px;" />
+        <span class="user-username">@user.UserName</span>
+
+       @*  @if (User.IsInRole("Admin"))
+        { *@
+            <form method="post" asp-action="DeleteUser" asp-controller="Home">
+                <input type="hidden" name="userId" value="@user.Id" />
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        @* } *@
+    </div>
+}

@@ -92,7 +92,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Users));
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public IActionResult Users()
         {
             return View(_userManager.Users);
@@ -123,9 +123,51 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
         public IActionResult GetImage(string userid)
         {
-           
-            var user =  _userManager.Users.FirstOrDefault(t=> t.Id == userid);
-            return new FileContentResult(user.PhotoData, user.PhotoContentType);
+
+            var user = _userManager.FindByIdAsync(userid).Result;
+
+            if (user == null)
+            {
+                // User not found, return a default image or handle it as needed
+                // For example, return a placeholder image
+                return File("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg", "image/png");
+            }
+
+            if (user.PhotoData != null && user.PhotoContentType != null)
+            {
+                return new FileContentResult(user.PhotoData, user.PhotoContentType);
+            }
+            else
+            {
+                // Photo data or content type is null, return a default image or handle it as needed
+                // For example, return a placeholder image
+                return File("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg", "image/png");
+            }
+
+        }
+        [HttpPost]
+        [Authorize] // Restrict access to admins only
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(); // User not found
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                // Successful deletion, you can redirect to a success page or perform additional actions
+                return RedirectToAction("Users");
+            }
+            else
+            {
+                // Failed to delete user, handle accordingly (e.g., display an error message)
+                return View("Error"); // Provide an appropriate error view
+            }
         }
     }
 }
