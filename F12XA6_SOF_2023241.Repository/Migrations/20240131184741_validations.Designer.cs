@@ -4,6 +4,7 @@ using F12XA6_SOF_2023241.Repository.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace F12XA6_SOF_2023241.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240131184741_validations")]
+    partial class validations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,18 +108,18 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cc447fdb-026b-43c8-98ca-449090502734",
+                            Id = "9d708ec1-f1c1-4106-bb87-237419502975",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "545dcd86-b230-41e9-adcd-24335f517840",
+                            ConcurrencyStamp = "a2902770-d5ac-4fba-be9b-63578a4cfac9",
                             Email = "keny.gergo@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Kenyeres",
                             LastName = "Gergő",
                             LockoutEnabled = false,
                             NormalizedUserName = "KENY.GERGO@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPZYRnWYAWPoxkDtDAKvQGjWHYgRk8gKDDrmIbsUskeQwtd5V3DqMlF5iRmuS5o0wA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOiGrgk7XBumc25bhVAad1e3mMEtL29A8CNX48ISwGsoehqSq/yTQoUklQKXQnql1Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52f53a87-4aea-4f84-9d06-bc58d08c9535",
+                            SecurityStamp = "1c7d9230-056f-4cc0-89bf-9b9def49eca1",
                             TwoFactorEnabled = false,
                             UserName = "keny.gergo@gmail.com"
                         });
@@ -203,13 +205,13 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c10113e7-ea25-48cd-93c1-9bbd83d7c505",
+                            Id = "dc0060b9-3f4e-4a52-9bdf-4dd81975a729",
                             Description = "Set within the fictional state of San Andreas, based on Southern California, the single-player story follows three protagonists—retired bank robber Michael De Santa, street gangster Franklin Clinton, and drug dealer and gunrunner Trevor Philips—and their attempts to commit heists while under pressure from a corrupt ...",
-                            OwnerId = "cc447fdb-026b-43c8-98ca-449090502734",
+                            OwnerId = "9d708ec1-f1c1-4106-bb87-237419502975",
                             PhotoContentType = "image/jpeg",
                             PhotoData = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                             Rating = 9,
-                            StudiosId = "2b12910b-a886-4f28-86e3-e4367dd9fb18",
+                            StudiosId = "644a5a5f-293f-403f-bdb2-e2b898ee9beb",
                             Title = "Grand Theft Auto V"
                         });
                 });
@@ -233,127 +235,127 @@ namespace F12XA6_SOF_2023241.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8b596415-0b2f-4a6a-9526-ccb8ce6277ae",
+                            Id = "6eeca7d0-a8a7-483f-b4a3-93d6f49cc6f6",
                             LogoSvg = "/wwwroot/logos_in_svg/bethesda",
                             Name = 1
                         },
                         new
                         {
-                            Id = "94aafa66-61cf-497f-9318-3fece9bf353d",
+                            Id = "8d54f150-3507-4845-8d21-05d96b3fe312",
                             LogoSvg = "/wwwroot/logos_in_svg/blizzard",
                             Name = 2
                         },
                         new
                         {
-                            Id = "ab4fb532-63c9-4226-859f-891558940088",
+                            Id = "94b57841-ff32-4491-b86a-783263c17687",
                             LogoSvg = "/wwwroot/logos_in_svg/bluehole",
                             Name = 3
                         },
                         new
                         {
-                            Id = "2c7e1a46-c9ef-41c2-ba96-dac8e99823dd",
+                            Id = "ac70181c-543c-45b5-918e-00f528d263cc",
                             LogoSvg = "/wwwroot/logos_in_svg/capcom",
                             Name = 4
                         },
                         new
                         {
-                            Id = "69a13fd3-566f-4036-b768-a94fa1b43178",
+                            Id = "7bed5c9e-3d8e-46e4-ba38-6b98d04a0c95",
                             LogoSvg = "/wwwroot/logos_in_svg/cd-projekt",
                             Name = 5
                         },
                         new
                         {
-                            Id = "5510a973-ae70-4429-95b7-9044ca509b6a",
+                            Id = "6dba5e49-c1ab-453a-90dd-7de70579af65",
                             LogoSvg = "/wwwroot/logos_in_svg/crystal",
                             Name = 6
                         },
                         new
                         {
-                            Id = "9aada492-0615-494b-903b-e32ef5415b57",
+                            Id = "ba1d66d5-f2a7-4155-8493-88651bddcd1b",
                             LogoSvg = "/wwwroot/logos_in_svg/electronic-arts",
                             Name = 7
                         },
                         new
                         {
-                            Id = "76bb694f-aadf-499b-8ddf-9999925a4bab",
+                            Id = "755f8cfd-a35a-4bbd-8e7b-1cff0a9c9224",
                             LogoSvg = "/wwwroot/logos_in_svg/epic-games",
                             Name = 8
                         },
                         new
                         {
-                            Id = "7bf9c229-f49a-4e86-8777-d72e124a3a25",
+                            Id = "e60ff26d-a0fe-498e-ae38-aa32918faa96",
                             LogoSvg = "/wwwroot/logos_in_svg/firaxis-games",
                             Name = 9
                         },
                         new
                         {
-                            Id = "5e8b870c-38b4-458d-bec2-beb81d95f5f8",
+                            Id = "35e37d2b-7ca9-41ee-989c-723434608e97",
                             LogoSvg = "/wwwroot/logos_in_svg/insomniac-games",
                             Name = 10
                         },
                         new
                         {
-                            Id = "f2ce7682-de2e-4943-b2d8-df0dde1d71e5",
+                            Id = "7c398392-f469-4a48-b941-2d67892e2d4b",
                             LogoSvg = "/wwwroot/logos_in_svg/microsoft",
                             Name = 11
                         },
                         new
                         {
-                            Id = "90f6db3e-acc2-45ad-a497-2465463975dd",
+                            Id = "4580284b-b4af-4c6b-aef3-4b28301b408e",
                             LogoSvg = "/wwwroot/logos_in_svg/mojang",
                             Name = 12
                         },
                         new
                         {
-                            Id = "09532fc4-4257-4dee-bfe3-bafb5b6ff740",
+                            Id = "ecd164ba-45f2-461c-83e0-b41ef95f8786",
                             LogoSvg = "/wwwroot/logos_in_svg/nintendo",
                             Name = 13
                         },
                         new
                         {
-                            Id = "f183a3c8-c08d-42d8-b290-0d5f24b3d02b",
+                            Id = "2340fa8e-f5cc-4e64-bd53-7bc751eaba81",
                             LogoSvg = "/wwwroot/logos_in_svg/paradox-interactive",
                             Name = 14
                         },
                         new
                         {
-                            Id = "db473d19-e499-458e-a568-c7171234703a",
+                            Id = "6ac43fc6-a67d-4457-ae2a-46c8f1dfe63b",
                             LogoSvg = "/wwwroot/logos_in_svg/remedy-entertainment",
                             Name = 15
                         },
                         new
                         {
-                            Id = "2b12910b-a886-4f28-86e3-e4367dd9fb18",
+                            Id = "644a5a5f-293f-403f-bdb2-e2b898ee9beb",
                             LogoSvg = "/wwwroot/logos_in_svg/rockstar-games",
                             Name = 16
                         },
                         new
                         {
-                            Id = "745bea17-8db5-401b-a872-29c4732550ae",
+                            Id = "c5f5d919-316f-4c0d-a542-ecd94991b40f",
                             LogoSvg = "/wwwroot/logos_in_svg/sega",
                             Name = 17
                         },
                         new
                         {
-                            Id = "9592ceb2-6941-4882-bb9d-9d1dff710fdc",
+                            Id = "5db5471f-3c52-46ee-96d0-b30a51b9a087",
                             LogoSvg = "/wwwroot/logos_in_svg/sony",
                             Name = 18
                         },
                         new
                         {
-                            Id = "012d5eb8-2724-4873-9d6d-d004c6affa75",
+                            Id = "5385181f-d7ed-4413-9c82-b94672f4b9dc",
                             LogoSvg = "/wwwroot/logos_in_svg/square-enix",
                             Name = 19
                         },
                         new
                         {
-                            Id = "1933bfcc-6607-40c8-b537-4e802bddfe0a",
+                            Id = "007cceb2-5bb7-4143-b054-e2884d8366f6",
                             LogoSvg = "/wwwroot/logos_in_svg/ubisoft",
                             Name = 20
                         },
                         new
                         {
-                            Id = "8d211a49-6cae-4ac2-bf7d-00ce36934841",
+                            Id = "98066393-e42e-4a16-a029-3fae58babd0d",
                             LogoSvg = "/wwwroot/logos_in_svg/valve",
                             Name = 21
                         });

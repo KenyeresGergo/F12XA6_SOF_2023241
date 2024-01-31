@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model CommentViewModel
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Games";
@@ -37,17 +40,23 @@
                             <div class="thumbnail">
                                 <img class="user-photo"
                                      src="@Url.Action("GetImage", "Home", new {userid = comment.OwnerId})" />
-                               
-                                     @comment.OwnerName - @comment.CreatedOn.ToString("g")
-                                
+
+                                @comment.OwnerName - @comment.CreatedOn.ToString("g") -
+                                @if (comment.OwnerId == UserManager.GetUserId(User))
+                                {
+
+                                    <a href="@Url.Action("DeleteComment", "Game", new { commentId = comment.Id, gameid = @Model.Game.Id })">Delete</a>
+                                }
+
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                    <br />
                                     <p>@comment.Content</p>
-                                    
+
                                 </div>
                             </div>
                         </div>

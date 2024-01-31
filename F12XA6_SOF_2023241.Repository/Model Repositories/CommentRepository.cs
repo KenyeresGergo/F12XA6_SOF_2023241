@@ -68,8 +68,7 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
         }
         public IEnumerable<Comment> GetCommentsForGame(string gameId, int page, int pageSize)
         {
-            // Assuming you have a DbSet<Comment> in your context called Comments
-            // and you want to order by CreatedOn in descending order
+            
             return context.Comments
                 .Where(c => c.GameId == gameId)
                 .OrderByDescending(c => c.CreatedOn)
