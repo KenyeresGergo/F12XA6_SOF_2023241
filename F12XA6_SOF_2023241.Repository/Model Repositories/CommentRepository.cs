@@ -24,8 +24,9 @@ namespace F12XA6_SOF_2023241.Repository.Model_Repositories
             var commId = context.Comments.FirstOrDefault(x => x.Id == comment.Id);
 
             if (commId != null)
-                throw new ArgumentException("Game with thos name already exists!");
-
+                throw new ArgumentException();
+            comment.Owner = context.Users.First(x => x.Id == comment.OwnerId);
+            comment.OwnerName = context.Users.First(x => x.Id == comment.OwnerId).UserName;
             context.Comments.Add(comment);
             context.SaveChanges();
         }

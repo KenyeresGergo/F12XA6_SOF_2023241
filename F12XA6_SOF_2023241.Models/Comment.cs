@@ -24,6 +24,7 @@ namespace F12XA6_SOF_2023241.Models
         [NotMapped]
         public Game Game { get; set; }
         public string OwnerId { get; set; }
+        public string OwnerName { get; set; }
 
         //[ForeignKey("OwnerId")]
         [NotMapped]
@@ -31,6 +32,7 @@ namespace F12XA6_SOF_2023241.Models
         public Comment()
         {
             Id = Guid.NewGuid().ToString();
+            
         }
     }
 }

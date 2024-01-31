@@ -62,7 +62,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize]
         public IActionResult GameReview(string gameId, int page = 1, int pageSize = 10)
         {
             var game = _gamelogic.Read().First(g => g.Title == "Grand Theft Auto V");
@@ -82,6 +82,9 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
                 TotalPages = _commentLogic.GetTotalPagesForGame(gameId, pageSize),
                 PageSize = pageSize
             };
+            
+
+           
 
             return View(viewModel);
         }
@@ -110,6 +113,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateComment(string gameId, string content)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -124,6 +128,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View("GameReview", viewModel);
          
         }
-        
+      
+
     }
 }

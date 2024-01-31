@@ -36,9 +36,9 @@
                         <div class="col-sm-1">
                             <div class="thumbnail">
                                 <img class="user-photo"
-                                     src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                                     src="@Url.Action("GetImage", "Home", new {userid = comment.OwnerId})" />
                                
-                                    Posted by: @Model.CommentOwner.UserName on @comment.CreatedOn.ToString("g")
+                                     @comment.OwnerName - @comment.CreatedOn.ToString("g")
                                 
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                 <div class="col-sm-1">
                     <div class="thumbnail">
                         <img class="img-responsive user-photo"
-                             src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                             src="@Url.Action("GetImage", "Home", new {userid = Model.CommentOwner.Id})" />
                     </div>
                 </div>
 
