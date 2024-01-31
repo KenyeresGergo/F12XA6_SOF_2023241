@@ -27,10 +27,10 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
         }
 
         // GET: GameController
-        public ActionResult Index() //TODO: Studiok megjelentitese
+        public ActionResult Index()
         {
-            //  return RedirectToAction(nameof(HomeController.Index), this._gamelogic.GamesByStudios());
-          var model = new HomePageViewModel(this.GetStudios(), 1, 6);
+
+            var model = new HomePageViewModel(this.GetStudios(), 1, 6);
             return View("~/Views/Home/Index.cshtml", model);
         }
 
@@ -39,7 +39,7 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             return View(this._gamelogic.Read());
         }
 
-     
+
         // GET: GameController/Create
         [HttpPost]
         public ActionResult Create(Game game)
@@ -85,15 +85,15 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
                 TotalPages = _commentLogic.GetTotalPagesForGame(gameId, pageSize),
                 PageSize = pageSize
             };
-            
 
-           
+
+
 
             return View(viewModel);
         }
 
-       
-       
+
+
         public IActionResult GetImage(string id)
         {
             var game = _gamelogic.Read(id);
@@ -125,18 +125,18 @@ namespace F12XA6_SOF_2023241.Webapp.Controllers
             _commentLogic.AddToGameList(comment.Id);
             var game = _gamelogic.Read(gameId);
 
-           var viewModel = new CommentViewModel(game);
-            viewModel.Comments = _commentLogic.Read().Where( c=> c.GameId == gameId).OrderBy(c=> c.CreatedOn).ToList();
+            var viewModel = new CommentViewModel(game);
+            viewModel.Comments = _commentLogic.Read().Where(c => c.GameId == gameId).OrderBy(c => c.CreatedOn).ToList();
             viewModel.CommentOwner = user;
             return View("GameReview", viewModel);
-         
+
         }
 
         public List<Studios> GetStudios()
         {
             return _studioLogic.Read().ToList();
         }
-      
+
 
     }
 }

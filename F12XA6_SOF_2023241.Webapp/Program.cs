@@ -46,6 +46,12 @@ namespace F12XA6_SOF_2023241.Webapp
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
+            builder.Services.AddAuthentication().AddFacebook(opt =>
+            {
+                opt.AppId = "788936216400409";
+                opt.AppSecret = "d91c741aa74729e2342795ffa8f35a54";
+            });
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession(opt =>
             {
