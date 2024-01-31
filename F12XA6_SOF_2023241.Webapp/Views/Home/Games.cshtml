@@ -11,11 +11,15 @@
 <script defer src="~/js/gallery.js" asp-append-version="true"></script>
 
 <div class="photo-grid">
-    @for (int i = 1; i < 25; i++)
+    @{int i = 1;}
+    @foreach(var game in @Model)
     {
-        <div class="card @GetSizeClass(i)"
-                style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg')">
-        </div>
+        <a href="@Url.Action("GameReview", "Game", new { gameId = game.Id})">
+            <div class="card @GetSizeClass(i)">
+                <img class="card-image" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Game Image">
+            </div>
+        </a>
+        i++;
     }
 </div>
 
