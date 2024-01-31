@@ -28,8 +28,8 @@ namespace F12XA6_SOF_2023241.Logic
             else if (game.Title == "")
                 throw new Exception("The game title cannot be an empty string!");
 
-            else if (game.Title == null || game.Owner == null || game.OwnerId == null || game.Rating == null || game.Studios == null || game.StudiosId == null)
-                throw new InvalidDataException();
+            //else if (game.Title == null || game.Owner == null || game.OwnerId == null || game.Rating == null || game.Studios == null || game.StudiosId == null)
+            //    throw new InvalidDataException();
 
             this.repository.Create(game);
         }

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using F12XA6_SOF_2023241.Models.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace F12XA6_SOF_2023241.Models
 {
@@ -29,6 +30,8 @@ namespace F12XA6_SOF_2023241.Models
         public byte[]? PhotoData { get; set; }
 
         public string StudiosId { get; set; }
+        [NotMapped]
+        public IFormFile PhotoFile { get; set; }
 
         // [ForeignKey("StudiosId")]
         [NotMapped]
